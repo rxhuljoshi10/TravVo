@@ -1,0 +1,68 @@
+<resources>
+    <string name="app_name">TravVo</string>
+    <string name="phone_hint">Enter mobile number</string>
+    <string name="otp">Continue</string>
+    <string name="login_label">Login To Continue</string>
+    <string name="lang_eng">English</string>
+    <string name="lang_hi">हिंदी</string>
+    <string name="lang_mr">मराठी</string>
+
+    <string name="verify_otp">Verify &amp; Proceed</string>
+    <string name="verify_otp_label">Enter the OTP we\'ve sent to \n \u0020\u0020\u0020\u0020\u0020 +91</string>
+
+    <string name="welcome">Welcome to App Name</string>
+    <string name="logout">Log out</string>
+    <string name="title_activity_home">Home</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <string name="searchBus">Search Bus</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_logout">Log out</string>
+    <string name="menu_about">About us</string>
+    <string name="menu_help">Help</string>
+
+    <string name="option_profile">Profile</string>
+    <string name="option_settings">Settings</string>
+    <string name="option_theme">Theme</string>
+
+    <string name="fragment_about">This is about section</string>
+    <string name="fragment_help">This is help section</string>
+
+    <string name="source">Source</string>
+    <string name="destination">Destination</string>
+
+    <string name="book">Book Tickets</string>
+
+    <string name="proceed">Proceed</string>
+    <string name="recent">Recent Searches</string>
+
+
+    <string name="eligibleBus">Eligible Buses</string>
+    <string name="trip">Trip</string>
+    <string name="ticketText">Ticket</string>
+    <string name="adult">Adult : \u0020</string>
+    <string name="termsConditions">Terms and Conditions</string>
+    <string name="pay">PAY</string>
+
+    <string name="signature_title">Your signature</string>
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+
+    <string name="wallet">Wallet</string>
+    <string name="recharge">Recharge Wallet</string>
+    <string name="rechargeTextView">Recharge TravVo Wallet</string>
+
+    <string name="walletBenefits1">Extremely fast payments!</string>
+    <string name="walletBenefits2">No need to struggle with cash anymore for your bus tickets</string>
+    <string name="walletBenefits3">Enjoy cashbacks and offeres for future payments.</string>
+
+
+</resources>

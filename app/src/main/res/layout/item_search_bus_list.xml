@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_searchBus"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/primaryBackground"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/item_searchBus_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="123A"
+        android:ems="2"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:textSize="25sp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_marginStart="25dp">
+        <TextView
+            android:id="@+id/item_searchBus_source"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Source"/>
+        <TextView
+            android:id="@+id/item_searchBus_destination"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Destination"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "580811467766",
+    "project_id": "online-bus-ticketing-c157d",
+    "storage_bucket": "online-bus-ticketing-c157d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:580811467766:android:7e04b1ce4e5b4623dff5d7",
+        "android_client_info": {
+          "package_name": "com.example.onlinebusticketing"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpLSBA5YC_f93OgC58Oi9yHbN3TeVYgus"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

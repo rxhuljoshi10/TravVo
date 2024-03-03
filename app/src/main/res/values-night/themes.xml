@@ -1,0 +1,8 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.OnlineBusTicketing" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/primaryBackground</item>
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="iconTint">@color/white</item>
+    </style>
+</resources>
