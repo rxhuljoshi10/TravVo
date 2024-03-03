@@ -1,10 +1,10 @@
 package com.example.onlinebusticketing;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -45,18 +45,15 @@ public class Home extends AppCompatActivity {
     RecyclerView historyView;
     ImageView imgWallet, swapBtn;
     LocationHelper locationHelper = new LocationHelper(this);
-    Switch themeBtn;
     String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
     @SuppressLint("Range")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-//        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.getDefaultNightMode());
-
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         setContentView(R.layout.activity_home);
+
 
         mAuth = FirebaseAuth.getInstance();
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -70,10 +67,19 @@ public class Home extends AppCompatActivity {
         selectStop = findViewById(R.id.selectStop);
         imgWallet = findViewById(R.id.imgWallet);
         swapBtn = findViewById(R.id.swapBtn);
-//        themeBtn = findViewById(R.id.themeSwitchBtn);
+        MenuItem menuItem = navigationView.getMenu().findItem(R.id.nav_theme);
+        @SuppressLint("UseSwitchCompatOrMaterialCode") Switch themeSwitchBtn = (Switch) menuItem.getActionView().findViewById(R.id.themeSwitchBtn);
 
-        View view = LayoutInflater.from(this).inflate(R.layout.theme_toggle_button, null);
-        themeBtn = view.findViewById(R.id.themeSwitchBtn);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("Cookies",Context.MODE_PRIVATE);
+        boolean isDarkModeEnabled = sharedPreferences.getBoolean("theme",false);
+        if(isDarkModeEnabled){
+            themeSwitchBtn.setChecked(true);
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
+        else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
 
         navigationListener();
 
@@ -156,13 +162,14 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        MenuItem menuItem = navigationView.getMenu().findItem(R.id.nav_theme);
-        @SuppressLint("UseSwitchCompatOrMaterialCode") Switch themeButton = (Switch) menuItem.getActionView().findViewById(R.id.themeSwitchBtn);
 
-
-        themeButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        themeSwitchBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharedPreferences sharedPreferences = getSharedPreferences("Cookies",Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("theme", isChecked).apply();
+
                 if(isChecked){
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 }

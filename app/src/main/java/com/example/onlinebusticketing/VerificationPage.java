@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -37,7 +38,7 @@ public class VerificationPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        setContentView(R.layout.activity_verify_otp);
+        setContentView(R.layout.activity_verification_page);
 
         e1 = findViewById(R.id.editText1);
         e2 = findViewById(R.id.editText2);
@@ -46,11 +47,12 @@ public class VerificationPage extends AppCompatActivity {
         e5 = findViewById(R.id.editText5);
         e6 = findViewById(R.id.editText6);
 
-        setEditTextWatcher(e1, e2);
-        setEditTextWatcher(e2, e3);
-        setEditTextWatcher(e3, e4);
-        setEditTextWatcher(e4, e5);
-        setEditTextWatcher(e5, e6);
+        setEditTextWatcher(e1, e2, null);
+        setEditTextWatcher(e2, e3, e1);
+        setEditTextWatcher(e3, e4, e2);
+        setEditTextWatcher(e4, e5, e3);
+        setEditTextWatcher(e5, e6, e4);
+        setEditTextWatcher(e6, null, e5);
         e1.requestFocus();
 
         Intent intent = getIntent();
@@ -62,7 +64,6 @@ public class VerificationPage extends AppCompatActivity {
 
         Intent intent1 = getIntent();
         verificationID = intent1.getStringExtra("verificationID");
-
 
 
         CardView verify_otp = findViewById(R.id.verify_button);
@@ -81,7 +82,7 @@ public class VerificationPage extends AppCompatActivity {
         });
     }
 
-    private void setEditTextWatcher(final EditText currentEditText, final EditText nextEditText) {
+    private void setEditTextWatcher(final EditText currentEditText, final EditText nextEditText, final  EditText prevEditText) {
         currentEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {}
@@ -89,13 +90,31 @@ public class VerificationPage extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
                 if (charSequence.length() == 1) {
-                    // Move focus to the next EditText
-                    nextEditText.requestFocus();
+                    if(nextEditText != null) {
+                        nextEditText.requestFocus();
+                    }
                 }
             }
-
             @Override
             public void afterTextChanged(Editable editable) {}
+        });
+
+        currentEditText.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if(keyCode == KeyEvent.KEYCODE_DEL && event.getAction() == KeyEvent.ACTION_DOWN) {
+                    if(currentEditText.getText().length() == 0) {
+                        if (prevEditText != null) {
+                            prevEditText.getText().clear();
+                            prevEditText.requestFocus();
+                        }
+                    }else{
+                        currentEditText.getText().clear();
+                    }
+                    return true;
+                }
+                return false;
+            }
         });
     }
 

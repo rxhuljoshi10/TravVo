@@ -1,8 +1,6 @@
 package com.example.onlinebusticketing;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,7 +50,7 @@ public class searchBusAdapter extends RecyclerView.Adapter<searchBusAdapter.View
         holder.item_searchBus_Source.setText(source);
         holder.item_searchBus_Destination.setText(destination);
 
-        int colorRes = (position % 2 == 0) ? com.google.android.material.R.color.design_default_color_background : R.color.grey;
+        int colorRes = (position % 2 == 0) ? R.color.primaryBackground : R.color.secondaryBackground;
         holder.item_searchBus.setBackgroundColor(ContextCompat.getColor(holder.itemTextView.getContext(), colorRes));
 
         holder.item_searchBus.setOnClickListener(new View.OnClickListener() {

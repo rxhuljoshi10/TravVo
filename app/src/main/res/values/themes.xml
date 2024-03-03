@@ -3,15 +3,9 @@
     <style name="Base.Theme.OnlineBusTicketing" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/primaryColor</item>
     </style>
-    
-    <attr name="primaryColorBackground" format="color"/>
-    <attr name="secondaryColorBackground" format="color"/>
 
     <style name="Theme.OnlineBusTicketing" parent="Base.Theme.OnlineBusTicketing">
         <item name="colorPrimary">@color/primaryColor</item>
-        <item name="iconTint">@color/black</item>
-
-
     </style>
 
     <style name="Theme.OnlineBusTicketing.NoActionBar">
@@ -26,6 +20,5 @@
     <style name="Theme.OnlineBusTicketing.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
         <item name="android:textColor">@color/black</item>
     </style>
-
 
 </resources>
