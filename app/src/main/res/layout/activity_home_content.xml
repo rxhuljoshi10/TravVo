@@ -90,7 +90,7 @@
                     android:src="@drawable/location2"
                     android:layout_marginEnd="6dp"
                     android:layout_marginStart="7sp"
-                    android:layout_gravity="center_vertical"/>
+                    android:layout_gravity="center_vertical" />
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
