@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -126,6 +127,7 @@ public class VerificationPage extends AppCompatActivity {
                 e5.getText().toString() +
                 e6.getText().toString();
     }
+
     private void verifyCode(String Code){
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationID, Code);
         signInByCredentials(credential);
@@ -138,10 +140,14 @@ public class VerificationPage extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     checkUser();
-                    Toast.makeText(VerificationPage.this, "Login Successfull", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(VerificationPage.this, Home.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(VerificationPage.this, Home.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                        }
+                    }, 2000);
                 }
                 else{
                     findViewById(R.id.pBar).setVisibility(View.INVISIBLE);
@@ -174,10 +180,12 @@ public class VerificationPage extends AppCompatActivity {
 
     private void initUser(String userId, DatabaseReference databaseReference) {
         databaseReference.child(userId).child("phone").setValue(phone);
+        databaseReference.child(userId).child("name").setValue(null);
+        databaseReference.child(userId).child("dob").setValue(null);
         databaseReference.child(userId).child("wallet").setValue(false);
         databaseReference.child(userId).child("walletBalance").setValue(0.0);
 
-        writeDataIntoPreference(phone, false, (float) 0.0);
+        writeDataIntoPreference(phone, null, null, false, (float) 0.0);
     }
 
     private void fetchUserData(String userId) {
@@ -187,10 +195,12 @@ public class VerificationPage extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
                     String phone = snapshot.child("phone").getValue(String.class);
+                    String name = snapshot.child("name").getValue(String.class);
+                    String dob = snapshot.child("dob").getValue(String.class);
                     boolean hasWallet = Boolean.TRUE.equals(snapshot.child("wallet").getValue(Boolean.class));
                     float walletBalance = snapshot.child("walletBalance").getValue(Integer.class);
 
-                    writeDataIntoPreference(phone, hasWallet, walletBalance);
+                    writeDataIntoPreference(phone,name, dob, hasWallet, walletBalance);
                 }
             }
 
@@ -200,13 +210,14 @@ public class VerificationPage extends AppCompatActivity {
     }
 
 
-    private void writeDataIntoPreference(String phone, boolean wallet, float walletBalance) {
+    private void writeDataIntoPreference(String phone, String name, String dob, boolean wallet, float walletBalance) {
         SharedPreferences sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("phone",phone);
+        editor.putString("name",name);
+        editor.putString("dob",dob);
         editor.putBoolean("wallet",wallet);
         editor.putFloat("walletBalance", walletBalance);
-        editor.clear();
         editor.apply();
     }
 }

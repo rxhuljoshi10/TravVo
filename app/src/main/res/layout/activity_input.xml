@@ -47,7 +47,8 @@
                 android:layout_height="25dp"
                 android:src="@drawable/icon_clear"
                 android:layout_gravity="center"
-                android:visibility="gone"/>
+                android:visibility="gone"
+                app:tint="@color/iconColor" />
 
         </LinearLayout>
 

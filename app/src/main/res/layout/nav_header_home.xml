@@ -1,55 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/profile_View"
     android:layout_width="match_parent"
     android:layout_height="150dp"
     android:background="@drawable/side_nav_bar"
-    android:gravity="bottom"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imgProfile"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:contentDescription="@string/nav_header_desc"
-            app:srcCompat="@drawable/icon_profile"
+            android:src="@drawable/icon_profile"
+            android:layout_marginStart="15dp"
             app:tint="@color/white"/>
-
-        <Space
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/nav_header_view"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-
-        <ImageView
-            android:layout_width="51dp"
-            android:layout_height="42dp"
-            android:layout_gravity="bottom"
-            android:src="@drawable/icon_key_right" />
-
+            android:paddingTop="5sp"
+            android:layout_gravity="center_horizontal"
+            android:text="Setup Profile"
+            android:textSize="20sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
     </LinearLayout>
 
-
-
-
-    <TextView
-        android:layout_width="match_parent"
+    <Space
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:paddingTop="5sp"
-        android:text="Your Name"
-        android:textSize="20dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:layout_weight="1"/>
 
-<!--    <TextView-->
-<!--        android:id="@+id/textView"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="@string/nav_header_subtitle" />-->
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/icon_key_right" />
+
 </LinearLayout>

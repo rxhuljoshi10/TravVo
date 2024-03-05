@@ -35,14 +35,13 @@
                     android:layout_height="wrap_content"
                     android:text="Balance"
                     android:fontFamily="sans-serif-medium"
-                    android:textSize="30sp"
-                    />
+                    android:textSize="30sp" />
                 <TextView
                     android:id="@+id/balanceView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="30sp"
-                    android:ems="3"
+                    android:ems="4"
                     android:fontFamily="sans-serif-black"
                     android:text="₹10.00"/>
             </LinearLayout>
@@ -90,7 +89,8 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:src="@drawable/icon_circle_tick"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                app:tint="@color/iconColor" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -108,7 +108,8 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:src="@drawable/icon_circle_tick"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                app:tint="@color/iconColor" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -126,7 +127,8 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:src="@drawable/icon_circle_tick"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                app:tint="@color/iconColor" />
 
             <TextView
                 android:layout_width="wrap_content"

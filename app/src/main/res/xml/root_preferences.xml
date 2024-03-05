@@ -7,10 +7,10 @@
             app:title="Notification"/>
 
 
-<!--        <EditTextPreference-->
-<!--            app:key="signature"-->
-<!--            app:title="@string/signature_title"-->
-<!--            app:useSimpleSummaryProvider="true"/>-->
+        <EditTextPreference
+            app:key="signature"
+            app:title="@string/signature_title"
+            app:useSimpleSummaryProvider="true"/>
 
         <ListPreference
             app:key="Dark"

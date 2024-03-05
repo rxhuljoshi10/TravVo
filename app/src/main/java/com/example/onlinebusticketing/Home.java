@@ -40,12 +40,12 @@ public class Home extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     FirebaseAuth mAuth;
     CardView bookTicket, searchBus, selectStop;
-    LinearLayout selectBusNumber;
-    TextView sourceEntry, destinationEntry;
+    LinearLayout selectBusNumber, profileView;
+    TextView sourceEntry, destinationEntry, nav_header_view;
     RecyclerView historyView;
     ImageView imgWallet, swapBtn;
     LocationHelper locationHelper = new LocationHelper(this);
-    String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    String userId;
 
     @SuppressLint("Range")
     @Override
@@ -54,8 +54,6 @@ public class Home extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         setContentView(R.layout.activity_home);
 
-
-        mAuth = FirebaseAuth.getInstance();
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         bookTicket = findViewById(R.id.bookTicket);
@@ -67,29 +65,21 @@ public class Home extends AppCompatActivity {
         selectStop = findViewById(R.id.selectStop);
         imgWallet = findViewById(R.id.imgWallet);
         swapBtn = findViewById(R.id.swapBtn);
-        MenuItem menuItem = navigationView.getMenu().findItem(R.id.nav_theme);
-        @SuppressLint("UseSwitchCompatOrMaterialCode") Switch themeSwitchBtn = (Switch) menuItem.getActionView().findViewById(R.id.themeSwitchBtn);
+        mAuth = FirebaseAuth.getInstance();
+        profileView = navigationView.getHeaderView(0).findViewById(R.id.profile_View);
+        nav_header_view = navigationView.getHeaderView(0).findViewById(R.id.nav_header_view);
 
-
-        SharedPreferences sharedPreferences = getSharedPreferences("Cookies",Context.MODE_PRIVATE);
-        boolean isDarkModeEnabled = sharedPreferences.getBoolean("theme",false);
-        if(isDarkModeEnabled){
-            themeSwitchBtn.setChecked(true);
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }
-        else{
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
-
-        navigationListener();
+        userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         SharedPreferences preferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.clear();
+        SharedPreferences.Editor editor = preferences.edit().clear();
         editor.apply();
 
+        navigationListener();
+        appThemeSetup();
         stopNames = databaseHelper.getStopNames();
         locationHelper.startFetchingLocation();
+
 
         imgWallet.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,14 +152,34 @@ public class Home extends AppCompatActivity {
             }
         });
 
+        profileView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Home.this, ProfilePage.class));
+            }
+        });
+
+    }
+
+    private void appThemeSetup() {
+        MenuItem menuItem = navigationView.getMenu().findItem(R.id.nav_theme);
+        @SuppressLint("UseSwitchCompatOrMaterialCode") Switch themeSwitchBtn = (Switch) menuItem.getActionView().findViewById(R.id.themeSwitchBtn);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("Cookies",Context.MODE_PRIVATE);
+        boolean isDarkModeEnabled = sharedPreferences.getBoolean("theme",false);
+        if(isDarkModeEnabled){
+            themeSwitchBtn.setChecked(true);
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
+        else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
 
         themeSwitchBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                SharedPreferences sharedPreferences = getSharedPreferences("Cookies",Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean("theme", isChecked).apply();
-
                 if(isChecked){
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 }
@@ -179,7 +189,6 @@ public class Home extends AppCompatActivity {
             }
         });
     }
-
     public void swapInputEntry(){
         String sourceText = sourceEntry.getText().toString();
         String destinationText = destinationEntry.getText().toString();
@@ -187,7 +196,6 @@ public class Home extends AppCompatActivity {
         destinationEntry.setText(sourceText);
         sourceEntry.setText(destinationText);
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -232,13 +240,14 @@ public class Home extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Toast.makeText(Home.this, "Test", Toast.LENGTH_SHORT).show();
                 int id = item.getItemId();
 
                 if (id == R.id.option_logout) {
                     mAuth.signOut();
                     startActivity(new Intent(Home.this, LoginPage.class));
                     finish();
+                } else if (id == R.id.nav_settings) {
+                    startActivity(new Intent(Home.this, SettingsActivity.class));
                 }
 
                 drawerLayout.closeDrawers();
@@ -247,31 +256,17 @@ public class Home extends AppCompatActivity {
         });
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        int id = item.getItemId();
-//        if (id == R.id.wallet) {
-//            startActivity(new Intent(Home.this, WalletPage.class));
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
-//
-//    @SuppressLint("RestrictedApi")
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        if (menu instanceof MenuBuilder) {
-//            ((MenuBuilder) menu).setOptionalIconsVisible(true);
-//        }
-//        getMenuInflater().inflate(R.menu.option_menu, menu);
-//        return true;
-//    }
-
     @Override
     protected void onStart() {
         super.onStart();
+        SharedPreferences userData = getSharedPreferences("UserData",Context.MODE_PRIVATE);
+        String userName = userData.getString("name",null);
+        if(userName != null){
+            nav_header_view.setText(userName);
+        }
+
         List<String> lastSearchHistory = databaseHelper.getLastSearchHistory(userId);
         HistoryListAdapter historyListAdapter = new HistoryListAdapter(Home.this, lastSearchHistory, sourceEntry, destinationEntry);
         historyView.setAdapter(historyListAdapter);
     }
-
 }

@@ -52,7 +52,7 @@
             android:layout_width="45dp"
             android:layout_height="59dp"
             android:layout_marginTop="10dp"
-            app:srcCompat="@drawable/location2" />
+            app:srcCompat="@drawable/icon_location" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -78,7 +78,6 @@
                 android:text="Destination"
                 android:textSize="27sp"
                 android:fontFamily="sans-serif-black" />
-
         </LinearLayout>
 
     </LinearLayout>
@@ -129,7 +128,8 @@
                 android:focusable="true"
                 android:onClick="decrementCounter"
                 app:srcCompat="@drawable/icon_decrement"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                app:tint="@color/iconColor" />
 
             <TextView
                 android:id="@+id/counterTextView"
@@ -215,21 +215,106 @@
         android:layout_marginTop="20sp"
         android:orientation="vertical">
 
-        <TextView
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="20sp"-->
+<!--            android:textColor="@color/orange"-->
+<!--            android:text="@string/termsConditions"/>-->
+
+        <Space
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20sp"
-            android:textColor="@color/orange"
-            android:text="@string/termsConditions"/>
+            android:layout_weight="1"/>
 
-
-        <Button
-            android:id="@+id/payBtn"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:text=""
-            android:layout_marginTop="190dp"/>
+            android:orientation="horizontal"
+            android:paddingHorizontal="10dp"
+            android:layout_marginVertical="20dp"
+            android:layout_marginHorizontal="10dp"
+            android:padding="2dp"
+            android:background="@drawable/list_border">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/icon_wallet"
+                android:layout_margin="10dp"
+                android:layout_gravity="center"
+                app:tint="@color/iconColor" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:layout_marginStart="5sp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TravVo Wallet"
+                    android:fontFamily="sans-serif-black"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/walletBalanceView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Balance : ₹10.0"
+                    android:layout_marginStart="3sp"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+<!--            <TextView-->
+<!--                android:id="@+id/walletBalanceView"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Travo Wallet : 10.0"-->
+<!--                android:textSize="25sp"-->
+<!--                android:paddingHorizontal="10dp" />-->
+        </LinearLayout>
+
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:layout_margin="5sp">
+
+            <Button
+                android:id="@+id/btnSwipe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="23sp"
+                android:padding="10dp"
+                android:textColor="@color/white"
+                android:text="Swipe To Pay" />
+
+            <ImageView
+                android:id="@+id/viewDraggable"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:src="@drawable/ic_swipe_arrow"
+                android:layout_gravity="center|start"/>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginEnd="10dp"
+                android:layout_gravity="center|end"
+                android:indeterminateTint="@color/white"
+                android:visibility="invisible"/>
+        </FrameLayout>
+
+<!--        <Button-->
+<!--            android:id="@+id/payBtn"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="end"-->
+<!--            android:text=""/>-->
 
     </LinearLayout>
 </LinearLayout>

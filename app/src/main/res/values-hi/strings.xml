@@ -46,7 +46,7 @@
     <string name="ticketText">Ticket</string>
     <string name="adult">Adult : </string>
     <string name="termsConditions">Terms and Conditions</string>
-    <string name="pay">PAY</string>
+    <string name="pay">Swipe to pay </string>
 
     <string name="signature_title">Your signature</string>
     <string name="sync_title">Sync email periodically</string>
