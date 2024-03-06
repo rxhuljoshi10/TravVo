@@ -234,7 +234,6 @@
             android:paddingHorizontal="10dp"
             android:layout_marginVertical="20dp"
             android:layout_marginHorizontal="10dp"
-            android:padding="2dp"
             android:background="@drawable/list_border">
 
             <ImageView
@@ -249,7 +248,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:gravity="center_vertical"
+                android:layout_gravity="center_vertical"
                 android:layout_marginStart="5sp">
                 <TextView
                     android:layout_width="wrap_content"
@@ -276,16 +275,16 @@
 <!--                android:paddingHorizontal="10dp" />-->
         </LinearLayout>
 
-        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp"
-            android:layout_margin="5sp">
+            android:layout_marginHorizontal="17dp"
+            android:layout_marginTop="10dp">
 
             <Button
                 android:id="@+id/btnSwipe"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:textSize="23sp"
                 android:padding="10dp"
@@ -297,7 +296,9 @@
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:src="@drawable/ic_swipe_arrow"
-                android:layout_gravity="center|start"/>
+                android:layout_gravity="center|start"
+                android:layout_marginStart="15dp"
+                android:scaleType="centerCrop" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
@@ -308,6 +309,15 @@
                 android:indeterminateTint="@color/white"
                 android:visibility="invisible"/>
         </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100% secure transactions"
+            android:layout_gravity="center"
+            android:textSize="15sp"
+            android:layout_marginVertical="7dp"
+            android:fontFamily="sans-serif-black"/>
 
 <!--        <Button-->
 <!--            android:id="@+id/payBtn"-->

@@ -13,88 +13,106 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        app:title="Pay"
+        app:title="Add"
         app:titleTextColor="@color/white"/>
 
     <TextView
         android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/darkgrey"
+        android:background="@color/secondaryBackground"
         android:text="Payment Methods"
         android:padding="6dp"
         android:textSize="20sp" />
-
-
-    <LinearLayout
-        android:id="@+id/payMethod_Wallet"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp">
-
-        <ImageView
-            android:layout_width="45dp"
-            android:layout_height="39dp"
-            android:layout_gravity="center"
-            android:src="@drawable/icon_wallet"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Wallet"
-            android:layout_marginStart="10dp"
-            android:textSize="23dp"
-            android:fontFamily="sans-serif-medium"
-            android:layout_gravity="center"/>
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/payMethod_UPI"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="10dp">
-
+        android:background="@drawable/borders"
+        android:padding="10dp"
+        android:layout_marginHorizontal="10dp">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UPI"
+            android:textSize="23sp"
+            android:fontFamily="sans-serif-medium"
+            android:layout_gravity="center_vertical"/>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
         <ImageView
             android:layout_width="45dp"
             android:layout_height="39dp"
             android:layout_gravity="center"
             android:src="@drawable/icon_upi"/>
+    </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/payMethod_netBanking"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/borders"
+        android:padding="10dp"
+        android:layout_marginHorizontal="10dp">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="UPI"
-            android:layout_marginStart="10dp"
-            android:textSize="23dp"
+            android:text="Net Banking"
+            android:textSize="23sp"
             android:fontFamily="sans-serif-medium"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center_vertical"/>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="39dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_netbanking"/>
     </LinearLayout>
-
     <LinearLayout
         android:id="@+id/payMethod_Card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-
-        android:padding="10dp">
-
+        android:background="@drawable/borders"
+        android:padding="10dp"
+        android:layout_marginHorizontal="10dp">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Debit/Credit Card"
+            android:textSize="23sp"
+            android:fontFamily="sans-serif-medium"
+            android:layout_gravity="center_vertical"/>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
         <ImageView
             android:layout_width="45dp"
             android:layout_height="39dp"
             android:layout_gravity="center"
             android:src="@drawable/icon_card"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Debit/Card card"
-            android:layout_marginStart="10dp"
-            android:textSize="23dp"
-            android:fontFamily="sans-serif-medium"
-            android:layout_gravity="center"/>
-
-
     </LinearLayout>
+
 </LinearLayout>

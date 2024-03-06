@@ -49,6 +49,9 @@ public class RechargePage extends AppCompatActivity {
             public void onClick(View v) {
                 String amount = inputAmount.getText().toString();
                 updateWalletPrice(Float.parseFloat(amount) + walletBalance);
+                Intent intent1 = new Intent(RechargePage.this, PaymentMethods.class);
+                intent1.putExtra("amount", amount);
+                startActivity(intent1);
                 Toast.makeText(RechargePage.this, "₹"+amount+" Added in your wallet", Toast.LENGTH_SHORT).show();
             }
         });

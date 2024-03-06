@@ -15,19 +15,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.load.resource.gif.GifDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 
+import java.util.ArrayList;
 public class Ticket_Summary extends AppCompatActivity {
     DatabaseHelper databaseHelper = new DatabaseHelper(this);
     ArrayList<String> eligibleBuses = new ArrayList<>();
-
     TextView counterTextView,counterTextView2, sourceView, destinationView, priceView, priceView1,priceView2, walletBalanceView;
     Button payBtn;
-    private ImageView viewDraggable;
+    ImageView viewDraggable;
     private Button btnSwipe;
     private float initialX;
     ProgressBar progressBar;
@@ -99,6 +105,7 @@ public class Ticket_Summary extends AppCompatActivity {
                     case MotionEvent.ACTION_UP:
                         if (view.getX() > (btnSwipe.getWidth() - view.getWidth() - 50)) {
                             simulateLoading();
+                            btnSwipe.setText("Processing...");
                         } else {
                             view.setX(0);
                         }
@@ -109,6 +116,26 @@ public class Ticket_Summary extends AppCompatActivity {
                 }
             }
         });
+
+        Glide.with(this)
+                .asGif()
+                .load(R.raw.swipe2)
+                .placeholder(R.drawable.ic_launcher_background)
+                .listener(new RequestListener<GifDrawable>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<GifDrawable> target, boolean isFirstResource) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(GifDrawable resource, Object model, Target<GifDrawable> target, DataSource dataSource, boolean isFirstResource) {
+                        if (resource != null) {
+                            resource.start();
+                        }
+                        return false;
+                    }
+                })
+                .into(viewDraggable);
 //        payBtn.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
