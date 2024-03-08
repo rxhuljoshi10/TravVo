@@ -1,8 +1,6 @@
 package com.example.onlinebusticketing;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -10,15 +8,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class RechargePage extends AppCompatActivity {
     TextView walletBalanceView, warningView, nextBtn;
@@ -48,23 +41,11 @@ public class RechargePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String amount = inputAmount.getText().toString();
-                updateWalletPrice(Float.parseFloat(amount) + walletBalance);
                 Intent intent1 = new Intent(RechargePage.this, PaymentMethods.class);
                 intent1.putExtra("amount", amount);
                 startActivity(intent1);
-                Toast.makeText(RechargePage.this, "₹"+amount+" Added in your wallet", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    private void updateWalletPrice(float amount) {
-        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users");
-        databaseReference.child(userId).child("walletBalance").setValue(amount);
-        SharedPreferences sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putFloat("walletBalance", amount);
-        editor.apply();
     }
 
     public void setAmount(View view){

@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
+
         app:title="Confirm Booking Details"
         app:titleTextColor="@color/white"/>
 
@@ -108,7 +109,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-black"
-            android:text=""
+            android:text=" ₹10"
             android:textSize="25sp" />
 
         <Space
@@ -228,13 +229,14 @@
             android:layout_weight="1"/>
 
         <LinearLayout
+            android:id="@+id/walletView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingHorizontal="10dp"
             android:layout_marginVertical="20dp"
             android:layout_marginHorizontal="10dp"
-            android:background="@drawable/list_border">
+            android:background="@drawable/borders">
 
             <ImageView
                 android:layout_width="40dp"
@@ -278,53 +280,60 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="17dp"
+            android:layout_marginHorizontal="55dp"
             android:layout_marginTop="10dp">
 
             <Button
                 android:id="@+id/btnSwipe"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_gravity="center"
+                android:layout_height="75dp"
                 android:textSize="23sp"
                 android:padding="10dp"
+                android:gravity="end|center"
+                android:layout_gravity="center"
                 android:textColor="@color/white"
+                android:paddingEnd="30sp"
                 android:text="Swipe To Pay" />
+            <View
+                android:id="@+id/coverView"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="30dp"
+                android:layout_gravity="start|center"
+                android:background="@color/primaryColor"/>
 
             <ImageView
                 android:id="@+id/viewDraggable"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:src="@drawable/ic_swipe_arrow"
-                android:layout_gravity="center|start"
-                android:layout_marginStart="15dp"
-                android:scaleType="centerCrop" />
+                android:layout_width="65dp"
+                android:layout_height="67dp"
+                android:src="@drawable/right_swipe"
+                android:layout_gravity="center|start"/>
 
             <ProgressBar
                 android:id="@+id/progressBar"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                android:layout_marginEnd="10dp"
-                android:layout_gravity="center|end"
+                android:layout_gravity="center"
                 android:indeterminateTint="@color/white"
                 android:visibility="invisible"/>
+
+            <ImageView
+                android:id="@+id/tick_animation"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:visibility="invisible"
+                android:src="@drawable/animated_check"/>
         </FrameLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="100% secure transactions"
+            android:text="100% Secure Transactions"
             android:layout_gravity="center"
             android:textSize="15sp"
             android:layout_marginVertical="7dp"
             android:fontFamily="sans-serif-black"/>
-
-<!--        <Button-->
-<!--            android:id="@+id/payBtn"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="end"-->
-<!--            android:text=""/>-->
 
     </LinearLayout>
 </LinearLayout>

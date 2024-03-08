@@ -42,6 +42,6 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="center_vertical"
-        android:src="@drawable/icon_key_right" />
+        android:src="@drawable/ic_key_right" />
 
 </LinearLayout>

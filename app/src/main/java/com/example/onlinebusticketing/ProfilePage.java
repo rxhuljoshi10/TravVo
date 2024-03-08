@@ -45,7 +45,6 @@ public class ProfilePage extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.icon_backarrow);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
         userNameView = findViewById(R.id.userNameView);
         userPhoneView = findViewById(R.id.userPhoneView);
         userDOBView = findViewById(R.id.userDOBView);
@@ -53,6 +52,24 @@ public class ProfilePage extends AppCompatActivity {
         userNameView.setText(userName);
         userPhoneView.setText(userPhone);
         userDOBView.setText(userDob);
+
+        viewSetup();
+    }
+
+    private void viewSetup() {
+        if(userName!=null && (!userName.isEmpty())){
+            userNameView.setVisibility(View.VISIBLE);
+        }
+        else {
+            userNameView.setVisibility(View.GONE);
+        }
+
+        if(userDob!=null && (!userDob.isEmpty())){
+            userDOBView.setVisibility(View.VISIBLE);
+        }
+        else {
+            userDOBView.setVisibility(View.GONE);
+        }
     }
 
     private void getUserData() {
@@ -71,7 +88,7 @@ public class ProfilePage extends AppCompatActivity {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        String userName = editTextName.getText().toString();
+                        userName = editTextName.getText().toString();
                         userNameView.setText(userName);
                         updateUserData("name",userName);
                     }
@@ -102,6 +119,7 @@ public class ProfilePage extends AppCompatActivity {
     }
 
     private void updateUserData(String key, String value) {
+        viewSetup();
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(key, value).apply();
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primaryColor">#048822</color>
+<!--    <color name="primaryColor">#048822</color>-->
+    <color name="primaryColor">#E37B0B</color>
     <color name="primaryBackground">#FFFFFF</color>
     <color name="secondaryBackground">#F7F2F2</color>
     <color name="iconColor">#191919</color>
@@ -13,4 +14,5 @@
     <color name="darkgrey">#CCCCCC</color>
     <color name="red">#FA0A0A</color>
     <color name="BorderStrokeColor">#000000</color>
+    <color name="lightBlue">#40E9FF</color>
 </resources>

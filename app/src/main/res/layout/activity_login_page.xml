@@ -8,37 +8,45 @@
     android:orientation="vertical"
     tools:context=".LoginPage">
 
-    <ImageView
-        android:layout_width="253dp"
-        android:layout_height="52dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/logo" />
+<!--    <ImageView-->
+<!--        android:layout_width="253dp"-->
+<!--        android:layout_height="52dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:src="@drawable/logo" />-->
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp">
-        <ViewFlipper
+        <com.denzcoskun.imageslider.ImageSlider
+            android:id="@+id/image_slider"
             android:layout_width="wrap_content"
             android:layout_height="200dp"
-            android:flipInterval="2000"
-            android:autoStart="true"
-            android:inAnimation="@android:anim/slide_in_left"
-            android:outAnimation="@android:anim/slide_out_right">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/logo"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/app_splash"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/app_logo"/>
-        </ViewFlipper>
+            app:iss_auto_cycle="true"
+            app:iss_period="1000"
+            app:iss_delay="1000"
+            app:iss_placeholder="@drawable/logo" />
+<!--        <ViewFlipper-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="200dp"-->
+<!--            android:flipInterval="2000"-->
+<!--            android:autoStart="true"-->
+<!--            android:inAnimation="@android:anim/slide_in_left"-->
+<!--            android:outAnimation="@android:anim/slide_out_right">-->
+<!--            <ImageView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:src="@drawable/logo"/>-->
+<!--            <ImageView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:src="@drawable/app_splash"/>-->
+<!--            <ImageView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:src="@drawable/app_logo"/>-->
+<!--        </ViewFlipper>-->
 
     </LinearLayout>
 
@@ -107,39 +115,48 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:visibility="invisible"/>
+        android:visibility="gone"/>
 
-    <TextView
-        android:id="@+id/lang_eng"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/lang_eng"
-        android:textColor="#007bff"
-        android:clickable="true"
-        android:focusable="true"
-        android:textSize="20sp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"/>
+        android:orientation="horizontal"
+        android:layout_marginVertical="15dp"
+        android:gravity="center">
 
-    <TextView
-        android:id="@+id/lang_hi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/lang_hi"
-        android:textColor="#007bff"
-        android:clickable="true"
-        android:focusable="true"
-        android:textSize="20sp"
-        android:layout_marginBottom="18dp"/>
+        <TextView
+            android:id="@+id/lang_hi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lang_hi"
+            android:textColor="@color/link"
+            android:clickable="true"
+            android:focusable="true"
+            android:textSize="20sp"
+            android:layout_marginHorizontal="15dp"/>
 
-    <TextView
-        android:id="@+id/lang_mr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/lang_mr"
-        android:textColor="#007bff"
-        android:clickable="true"
-        android:focusable="true"
-        android:textSize="20sp" />
+        <TextView
+            android:id="@+id/lang_eng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/lang_eng"
+            android:textColor="@color/link"
+            android:textSize="20sp"
+            android:layout_marginHorizontal="15dp"/>
+
+        <TextView
+            android:id="@+id/lang_mr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lang_mr"
+            android:textColor="@color/link"
+            android:clickable="true"
+            android:focusable="true"
+            android:textSize="20sp"
+            android:layout_marginHorizontal="15dp"/>
+
+    </LinearLayout>
 
 </LinearLayout>

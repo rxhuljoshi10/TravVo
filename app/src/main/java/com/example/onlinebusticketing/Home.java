@@ -124,7 +124,14 @@ public class Home extends AppCompatActivity {
         bookTicket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkAndProceed(Ticket_Summary.class);
+                if(MyUtil.isWalletActivated(Home.this)) {
+                    checkAndProceed(Ticket_Summary.class);
+                }
+                else{
+                    FragmentWalletActivation activateWallet = new FragmentWalletActivation();
+                    activateWallet.show(getSupportFragmentManager(), activateWallet.getTag());
+                }
+
             }
         });
 

@@ -43,9 +43,18 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:onClick="showNameInputDialog">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_person"
+                android:layout_gravity="center"
+                android:layout_margin="13dp"
+                app:tint="@color/iconColor" />
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="5sp"
                 android:orientation="vertical">
                 <TextView
                     android:layout_width="wrap_content"
@@ -58,7 +67,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="23sp"
-                    android:text="Rahul Joshi" />
+                    android:text="Rahul Joshi"/>
             </LinearLayout>
             <Space
                 android:layout_width="wrap_content"
@@ -68,7 +77,7 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/icon_key_right"
+                android:src="@drawable/ic_key_right"
                 app:tint="@color/iconColor" />
         </LinearLayout>
 
@@ -83,9 +92,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_phone"
+                android:layout_gravity="center"
+                android:layout_margin="13dp"
+                app:tint="@color/iconColor" />
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5sp"
                 android:orientation="vertical">
                 <TextView
                     android:layout_width="wrap_content"
@@ -114,9 +131,17 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:onClick="showDatePickerDialog">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_calendar"
+                android:layout_gravity="center"
+                android:layout_margin="13dp"
+                app:tint="@color/iconColor" />
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5sp"
                 android:orientation="vertical">
                 <TextView
                     android:layout_width="wrap_content"
@@ -139,7 +164,7 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/icon_key_right"
+                android:src="@drawable/ic_key_right"
                 app:tint="@color/iconColor" />
         </LinearLayout>
 

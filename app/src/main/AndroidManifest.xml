@@ -19,9 +19,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OnlineBusTicketing">
         <activity
-            android:name=".ProfilePage"
+            android:name=".SuccessPayment"
             android:exported="false" />
-        <!-- android:theme="@style/Theme.OnlineBusTicketing" -->
+        <activity
+            android:name=".TicketView"
+            android:exported="false" />
+        <activity
+            android:name=".ProfilePage"
+            android:exported="false" /> <!-- android:theme="@style/Theme.OnlineBusTicketing" -->
         <activity
             android:name=".RechargePage"
             android:exported="false" />
