@@ -1,67 +1,65 @@
 <resources>
     <string name="app_name">TravVo</string>
     <string name="phone_hint">मोबाइल नंबर दर्ज करें</string>
-    <string name="otp">ओटीपी जनरेट करें</string>
-    <string name="login_label">ऐप नाम में लॉग इन करें</string>
-    <string name="lang_eng">English</string>
+    <string name="otp">जारी रखें</string>
+    <string name="login_label">जारी रखने के लिए लॉगिन करें</string>
+    <string name="lang_eng">अंग्रेजी</string>
     <string name="lang_hi">हिंदी</string>
     <string name="lang_mr">मराठी</string>
 
-    <string name="verify_otp">ओटीपी सत्यापित करें</string>
-    <string name="verify_otp_label">ओटीपी भेजा गया \n \u0020\u0020\u0020\u0020\u0020 +91</string>
+    <string name="verify_otp">सत्यापित करें और आगे बढ़ें</string>
+    <string name="verify_otp_label">हमने जो OTP भेजा है, उसे यहां दर्ज करें \n \u0020\u0020\u0020\u0020\u0020 +91</string>
 
-    <string name="welcome">ऐप नाम में आपका स्वागत है</string>
-    <string name="logout">Log out</string>
-    <string name="title_activity_home">Home</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
+    <string name="welcome">एप्लिकेशन नाम में आपका स्वागत है</string>
+    <string name="logout">लॉग आउट</string>
+    <string name="title_activity_home">होम</string>
+    <string name="navigation_drawer_open">नेविगेशन ड्रॉयर खोलें</string>
+    <string name="navigation_drawer_close">नेविगेशन ड्रॉयर बंद करें</string>
+    <string name="nav_header_title">एंड्रॉइड स्टूडियो</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
+    <string name="nav_header_desc">नेविगेशन हैडर</string>
 
-    <string name="searchBus">Search Bus</string>
+    <string name="searchBus">बस खोजें</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_logout">Log out</string>
-    <string name="menu_about">About us</string>
-    <string name="menu_help">Help</string>
+    <string name="menu_home">होम</string>
+    <string name="menu_logout">लॉग आउट</string>
+    <string name="menu_about">हमारे बारे में</string>
+    <string name="menu_help">सहायता</string>
 
-    <string name="option_profile">Profile</string>
-    <string name="option_settings">Settings</string>
-    <string name="option_theme">Theme</string>
+    <string name="option_profile">प्रोफ़ाइल</string>
+    <string name="option_settings">सेटिंग्स</string>
+    <string name="option_theme">थीम</string>
 
-    <string name="fragment_about">This is about section</string>
-    <string name="fragment_help">This is help section</string>
+    <string name="fragment_about">यह हमारे बारे में है</string>
+    <string name="fragment_help">यह सहायता अनुभाग है</string>
 
-    <string name="source">Source</string>
-    <string name="destination">Destination</string>
+    <string name="source">स्रोत</string>
+    <string name="destination">गंतव्य</string>
 
-    <string name="book">Book Tickets</string>
+    <string name="book">टिकट बुक करें</string>
 
-    <string name="proceed">Proceed</string>
-    <string name="recent">Recent Searches</string>
+    <string name="proceed">आगे बढ़ें</string>
+    <string name="recent">हाल की खोजें</string>
 
-    <string name="eligibleBus">Eligible Buses</string>
-    <string name="trip">Trip</string>
-    <string name="ticketText">Ticket</string>
-    <string name="adult">Adult : </string>
-    <string name="termsConditions">Terms and Conditions</string>
-    <string name="pay">Swipe to pay </string>
+    <string name="eligibleBus">योग्य बसें</string>
+    <string name="trip">यात्रा</string>
+    <string name="ticketText">टिकट</string>
+    <string name="adult">पूरी : </string>
+    <string name="half">आधा : </string>
+    <string name="termsConditions">शर्तें और शर्तें</string>
+    <string name="pay">भुगतान करने के लिए स्वाइप करें  ₹</string>
 
-    <string name="signature_title">Your signature</string>
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="signature_title">आपकी हस्ताक्षर</string>
+    <string name="sync_title">समय-समय पर ईमेल सिंक करें</string>
+    <string name="attachment_title">आयने ईमेल अनुलग्नक डाउनलोड करें</string>
+    <string name="attachment_summary_on">आउटकमिंग ईमेल के लिए स्वचालित रूप से अनुलग्नक डाउनलोड करें</string>
+    <string name="attachment_summary_off">अनुलग्नक सिर्फ मैन्युअल रूप से अनुरोध किए जाने पर ही डाउनलोड करें</string>
 
-    <string name="wallet">wallet</string>
-    <string name="recharge">Recharge Wallet</string>
-    <string name="rechargeTextView">Recharge TravVo Wallet</string>
+    <string name="wallet">वॉलेट</string>
+    <string name="recharge">वॉलेट को रिचार्ज करें</string>
+    <string name="rechargeTextView">TravVo वॉलेट को रिचार्ज करें</string>
 
-    <string name="walletBenefits1">Extremely fast payments!</string>
-    <string name="walletBenefits2">No need to struggle with cash anymore for your bus tickets</string>
-    <string name="walletBenefits3">Enjoy cashbacks and offeres for future payments.</string>
-
-
+    <string name="walletBenefits1">अत्यधिक तेज़ भुगतान!</string>
+    <string name="walletBenefits2">अपने बस टिकटों के लिए नकद के साथ परेशानी नहीं करने की आवश्यकता नहीं है</string>
+    <string name="walletBenefits3">भविष्य के भुगतान के लिए कैशबैक और ऑफर्स का आनंद ल</string>
 </resources>

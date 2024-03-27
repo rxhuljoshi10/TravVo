@@ -1,0 +1,8 @@
+<!-- transparent_background.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Set the background color to transparent -->
+    <solid android:color="@android:color/transparent"/>
+    <size
+        android:width="300dp"
+        android:height="300dp"/>
+</shape>

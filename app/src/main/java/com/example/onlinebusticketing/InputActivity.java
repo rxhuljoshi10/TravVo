@@ -9,7 +9,6 @@ import android.text.Editable;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -57,17 +56,11 @@ public class InputActivity extends AppCompatActivity implements InputActivityAda
             @Override
             public void onClick(View v) {
                 Location currentLocation = locationHelper.getCurrentLocation();
-                if(currentLocation != null) {
+                if (currentLocation != null) {
                     int nearestStopLocationIndex = findNearestBusStop(currentLocation.getLatitude(), currentLocation.getLongitude(), stopsLocationList);
                     String nearestBusStop = stopNames.get(nearestStopLocationIndex);
                     inputField.setText(nearestBusStop);
                 }
-                else{
-                    Toast.makeText(InputActivity.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
-                }
-
-//                String address = locationHelper.getAddress(nearestStopLocation);
-//                Toast.makeText(Home.this, address, Toast.LENGTH_SHORT).show();
             }
         });
         imgClear.setOnClickListener(new View.OnClickListener() {

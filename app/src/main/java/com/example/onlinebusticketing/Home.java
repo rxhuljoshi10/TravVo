@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,22 +24,24 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.navigation.ui.AppBarConfiguration;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.models.SlideModel;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
-public class Home extends AppCompatActivity {
+public class Home extends AppCompatActivity implements HistoryListAdapter.OnItemClickListener {
     DatabaseHelper databaseHelper = new DatabaseHelper(this);
     ArrayList<String> stopNames = new ArrayList<>();
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    private AppBarConfiguration mAppBarConfiguration;
     FirebaseAuth mAuth;
     CardView bookTicket, searchBus, selectStop;
     LinearLayout selectBusNumber, profileView;
@@ -46,6 +50,8 @@ public class Home extends AppCompatActivity {
     ImageView imgWallet, swapBtn;
     LocationHelper locationHelper = new LocationHelper(this);
     String userId;
+
+    SharedPreferences cookies;
 
     @SuppressLint("Range")
     @Override
@@ -70,13 +76,12 @@ public class Home extends AppCompatActivity {
         nav_header_view = navigationView.getHeaderView(0).findViewById(R.id.nav_header_view);
 
         userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        cookies = getSharedPreferences("Cookies", Context.MODE_PRIVATE);
 
-        SharedPreferences preferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit().clear();
-        editor.apply();
-
-        navigationListener();
         appThemeSetup();
+        navigationListener();
+        setupSlider();
+        langSetup();
         stopNames = databaseHelper.getStopNames();
         locationHelper.startFetchingLocation();
 
@@ -165,7 +170,26 @@ public class Home extends AppCompatActivity {
                 startActivity(new Intent(Home.this, ProfilePage.class));
             }
         });
+    }
 
+    private void langSetup() {
+        String lang = cookies.getString("appLang", "en");
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Resources resources = this.getResources();
+        Configuration config = resources.getConfiguration();
+        config.setLocale(locale);
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
+    }
+
+    private void setupSlider() {
+        ArrayList<SlideModel> imageList = new ArrayList<>();
+        imageList.add(new SlideModel(R.drawable.slider1, ScaleTypes.CENTER_CROP));
+        imageList.add(new SlideModel(R.drawable.slider2,ScaleTypes.CENTER_CROP));
+        imageList.add(new SlideModel(R.drawable.slider3,ScaleTypes.CENTER_CROP));
+        imageList.add(new SlideModel(R.drawable.slider4,ScaleTypes.CENTER_CROP));
+        ImageSlider imageSlider = findViewById(R.id.image_slider);
+        imageSlider.setImageList(imageList);
     }
 
     private void appThemeSetup() {
@@ -213,6 +237,7 @@ public class Home extends AppCompatActivity {
             destinationEntry.setText(data.getStringExtra("userInput"));
         }
     }
+
     private void checkAndProceed(Class<?> nextActivity) {
         String source = sourceEntry.getText().toString();
         String destination = destinationEntry.getText().toString();
@@ -255,6 +280,8 @@ public class Home extends AppCompatActivity {
                     finish();
                 } else if (id == R.id.nav_settings) {
                     startActivity(new Intent(Home.this, SettingsActivity.class));
+                } else if (id == R.id.nav_language) {
+                    startActivity(new Intent(Home.this, LanguageSelection.class));
                 }
 
                 drawerLayout.closeDrawers();
@@ -263,17 +290,31 @@ public class Home extends AppCompatActivity {
         });
     }
 
+    public void openScanner(View view){
+        Intent intent = new Intent(Home.this, ScannerActivity.class);
+        startActivity(intent);
+    }
+
+
     @Override
-    protected void onStart() {
+    protected void onStart(){
         super.onStart();
         SharedPreferences userData = getSharedPreferences("UserData",Context.MODE_PRIVATE);
         String userName = userData.getString("name",null);
-        if(userName != null){
+        if(userName!=null || !userName.isEmpty()){
             nav_header_view.setText(userName);
+        }
+        else{
+            nav_header_view.setText("User Name");
         }
 
         List<String> lastSearchHistory = databaseHelper.getLastSearchHistory(userId);
-        HistoryListAdapter historyListAdapter = new HistoryListAdapter(Home.this, lastSearchHistory, sourceEntry, destinationEntry);
+        HistoryListAdapter historyListAdapter = new HistoryListAdapter( this, lastSearchHistory, sourceEntry, destinationEntry);
         historyView.setAdapter(historyListAdapter);
+    }
+
+    @Override
+    public void onItemClick(String item) {
+        checkAndProceed(Ticket_Summary.class);
     }
 }

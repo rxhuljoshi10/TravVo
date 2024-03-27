@@ -42,7 +42,7 @@ public class ProfilePage extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.icon_backarrow);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_key_left);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         userNameView = findViewById(R.id.userNameView);
@@ -81,6 +81,9 @@ public class ProfilePage extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.dialog_input, null);
+
+        EditText dialogEditText = dialogView.findViewById(R.id.editTextName);
+        dialogEditText.setText(userName);
 
         final EditText editTextName = dialogView.findViewById(R.id.editTextName);
         builder.setView(dialogView)

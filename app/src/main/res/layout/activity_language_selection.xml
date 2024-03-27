@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LanguageSelection">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="342dp"
+        android:layout_height="127dp"
+        android:src="@drawable/logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.052" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Choose your language"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.083" />
+
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="15dp"
+        android:rowCount="3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.154">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/lang1"
+            style="@style/lang_options"
+            android:layout_width="@dimen/langView_weight"
+            android:layout_height="@dimen/langView_height"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:onClick="onCardViewClick"
+            android:outlineSpotShadowColor="@color/primaryColor"
+            >
+
+            <TextView
+                style="@style/lang_option_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="English" />
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="end|center"
+                android:layout_marginEnd="5sp"
+                android:src="@drawable/ic_check" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/lang2"
+            style="@style/lang_options"
+            android:layout_width="@dimen/langView_weight"
+            android:layout_height="@dimen/langView_height"
+            android:onClick="onCardViewClick">
+
+            <TextView
+                style="@style/lang_option_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="हिंदी" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="end|center"
+                android:layout_marginEnd="5sp"
+                android:src="@drawable/ic_check"
+                android:visibility="gone" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/lang3"
+            style="@style/lang_options"
+            android:layout_width="@dimen/langView_weight"
+            android:layout_height="@dimen/langView_height"
+            android:onClick="onCardViewClick">
+
+            <TextView
+                style="@style/lang_option_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="मराठी" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="end|center"
+                android:layout_marginEnd="5sp"
+                android:src="@drawable/ic_check"
+                android:visibility="gone" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/lang4"
+            style="@style/lang_options"
+            android:layout_width="@dimen/langView_weight"
+            android:layout_height="@dimen/langView_height"
+            android:onClick="onCardViewClick">
+
+            <TextView
+                style="@style/lang_option_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="தமிழ்" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="end|center"
+                android:layout_marginEnd="5sp"
+                android:src="@drawable/ic_check"
+                android:visibility="gone" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/lang5"
+            style="@style/lang_options"
+            android:layout_width="@dimen/langView_weight"
+            android:layout_height="@dimen/langView_height"
+            android:onClick="onCardViewClick">
+
+            <TextView
+                style="@style/lang_option_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="اردو" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="end|center"
+                android:layout_marginEnd="5sp"
+                android:src="@drawable/ic_check"
+                android:visibility="gone" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/lang6"
+            style="@style/lang_options"
+            android:layout_width="@dimen/langView_weight"
+            android:layout_height="@dimen/langView_height"
+            android:onClick="onCardViewClick">
+
+            <TextView
+                style="@style/lang_option_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="বাংলা" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="end|center"
+                android:layout_marginEnd="5sp"
+                android:src="@drawable/ic_check"
+                android:visibility="gone" />
+        </androidx.cardview.widget.CardView>
+    </GridLayout>
+
+    <include
+        layout="@layout/custom_button"
+        android:id="@+id/continueBtn"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:onClick="applyLang"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

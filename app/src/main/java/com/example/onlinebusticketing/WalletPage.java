@@ -26,7 +26,7 @@ public class WalletPage extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.icon_backarrow);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_key_left);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 //        SharedPreferences sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE);

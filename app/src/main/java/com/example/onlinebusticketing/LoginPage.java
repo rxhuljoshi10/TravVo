@@ -1,14 +1,15 @@
 package com.example.onlinebusticketing;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewTreeObserver;
+import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,20 +30,31 @@ import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 
 public class LoginPage extends AppCompatActivity {
-    String verificationID;
-    TextView text_eng,text_hi,text_mr;
+    TextView btnText;
+    EditText phone_editText;
+    ScrollView scrollView;
+    ProgressBar pBar;
     private FirebaseAuth mAuth;
+    CardView generate_otp_button;
     private  PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         setContentView(R.layout.activity_login_page);
+
+        mAuth = FirebaseAuth.getInstance();
+        pBar = findViewById(R.id.pBar);
+        generate_otp_button = findViewById(R.id.generate_otp);
+        btnText = findViewById(R.id.btnText);
+        phone_editText = findViewById(R.id.phone);
+        scrollView = findViewById(R.id.scrollView);
 
         if (alreadyUser()){
             startActivity(new Intent(LoginPage.this, Home.class));
@@ -54,53 +66,90 @@ public class LoginPage extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 1);
         }
 
-        mAuth = FirebaseAuth.getInstance();
+//        text_eng.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                setLocal(LoginPage.this, "en");
+//                finish();
+//                startActivity(getIntent());
+//            }
+//        });
+//        text_hi.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                setLocal(LoginPage.this, "hi");
+//                finish();
+//                startActivity(getIntent());
+//            }
+//        });
 
-        text_eng = findViewById(R.id.lang_eng);
-        text_eng.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setLocal(LoginPage.this, "en");
-                finish();
-                startActivity(getIntent());
-            }
-        });
-
-        text_hi = findViewById(R.id.lang_hi);
-        text_hi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setLocal(LoginPage.this, "hi");
-                finish();
-                startActivity(getIntent());
-            }
-        });
-
-        CardView generate_otp_button = findViewById(R.id.generate_otp);
         generate_otp_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText phone_editText = findViewById(R.id.phone);
                 String phone = phone_editText.getText().toString();
-
                 if(TextUtils.isEmpty(phone) || phone.length() != 10){
                     Toast.makeText(LoginPage.this, "Enter Valid Phone number..!!", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    findViewById(R.id.pBar).setVisibility(View.VISIBLE);
+                    toggleProgressBar();
                     otpSend(phone);
                 }
             }
         });
 
         ArrayList<SlideModel> imageList = new ArrayList<>();
-
-        imageList.add(new SlideModel(R.drawable.image1,ScaleTypes.CENTER_CROP));
-        imageList.add(new SlideModel(R.drawable.image2,ScaleTypes.CENTER_CROP));
-        imageList.add(new SlideModel(R.drawable.app_logo, ScaleTypes.CENTER_CROP));
-
+        imageList.add(new SlideModel(R.drawable.slider1_loginpage,ScaleTypes.CENTER_CROP));
+        imageList.add(new SlideModel(R.drawable.slider2_loginpage,ScaleTypes.CENTER_CROP));
+        imageList.add(new SlideModel(R.drawable.slider3_loginpage,ScaleTypes.CENTER_CROP));
+        imageList.add(new SlideModel(R.drawable.slider4_loginpage,ScaleTypes.CENTER_CROP));
         ImageSlider imageSlider = findViewById(R.id.image_slider);
         imageSlider.setImageList(imageList);
+
+        ViewTreeObserver.OnGlobalLayoutListener listener = new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                if (isKeyboardOpen()) {
+                    scrollUpToMyWantedPosition();
+                }
+            }
+        };
+
+        scrollView.getViewTreeObserver().addOnGlobalLayoutListener(listener);
+    }
+
+    private void scrollUpToMyWantedPosition() {
+        scrollView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                int scrollY = calculateScrollY(scrollView, generate_otp_button);
+                scrollView.smoothScrollTo(0, scrollY);
+            }
+        }, 200);
+    }
+
+    private int calculateScrollY(ScrollView scrollView, View targetView) {
+        int scrollViewHeight = scrollView.getHeight();
+        int targetViewY = targetView.getTop();
+
+        return Math.max(0, targetViewY - scrollViewHeight / 2);
+    }
+
+    private boolean isKeyboardOpen() {
+        int heightDiff = scrollView.getRootView().getHeight() - scrollView.getHeight();
+        return heightDiff > 100; // adjust this threshold as needed
+    }
+
+
+    private void toggleProgressBar() {
+        int visibility = pBar.getVisibility();
+        if(visibility == View.VISIBLE){
+//            btnText.setText("Continue");
+            pBar.setVisibility(View.GONE);
+        }
+        else{
+//            btnText.setText("");
+            pBar.setVisibility(View.VISIBLE);
+        }
     }
 
     private boolean alreadyUser() {
@@ -117,7 +166,7 @@ public class LoginPage extends AppCompatActivity {
 
             @Override
             public void onVerificationFailed(@NonNull FirebaseException e) {
-                findViewById(R.id.pBar).setVisibility(View.INVISIBLE);
+                toggleProgressBar();
                 Toast.makeText(LoginPage.this, "Verification Failed", Toast.LENGTH_SHORT).show();
             }
 
@@ -141,18 +190,11 @@ public class LoginPage extends AppCompatActivity {
         PhoneAuthProvider.verifyPhoneNumber(options);
     }
 
-    public void setLocal(Activity activity, String langCode){
-        Locale locale = new Locale(langCode);
-        Locale.setDefault(locale);
-        Resources resources = activity.getResources();
-        Configuration config = resources.getConfiguration();
-        config.setLocale(locale);
-        resources.updateConfiguration(config, resources.getDisplayMetrics());
-    }
+
 
     @Override
     protected void onStart() {
         super.onStart();
-        findViewById(R.id.pBar).setVisibility(View.INVISIBLE);
+        pBar.setVisibility(View.INVISIBLE);
     }
 }

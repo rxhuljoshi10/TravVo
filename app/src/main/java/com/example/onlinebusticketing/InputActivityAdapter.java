@@ -86,7 +86,7 @@ public class InputActivityAdapter extends RecyclerView.Adapter<InputActivityAdap
     }
 
     public interface OnItemClickListener {
-        void onItemClick(String selectedItem);  // Modify the type as needed
+        void onItemClick(String selectedItem);
     }
 }
 

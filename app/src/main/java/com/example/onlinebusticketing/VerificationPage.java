@@ -147,7 +147,7 @@ public class VerificationPage extends AppCompatActivity {
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
                         }
-                    }, 2000);
+                    }, 3000);
                 }
                 else{
                     findViewById(R.id.pBar).setVisibility(View.INVISIBLE);

@@ -7,4 +7,6 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="defaultCardViewElevation">10dp</dimen>
     <dimen name="defaultCardViewRadius">10dp</dimen>
+    <dimen name="langView_height">53dp</dimen>
+    <dimen name="langView_weight">160dp</dimen>
 </resources>

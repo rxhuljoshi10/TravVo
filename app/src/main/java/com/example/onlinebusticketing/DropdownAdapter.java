@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-// DropdownAdapter.java
 public class DropdownAdapter extends RecyclerView.Adapter<DropdownAdapter.ViewHolder> {
 
     private List<String> items;
@@ -56,7 +55,6 @@ public class DropdownAdapter extends RecyclerView.Adapter<DropdownAdapter.ViewHo
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-//            textViewItem = itemView.findViewById(R.id.textViewItem);
         }
 
         public void bind(String item) {

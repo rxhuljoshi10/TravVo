@@ -38,7 +38,7 @@ public class PaymentMethods extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Add ₹" + amount);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.icon_backarrow);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_key_left);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         payBtn.setOnClickListener(new View.OnClickListener() {

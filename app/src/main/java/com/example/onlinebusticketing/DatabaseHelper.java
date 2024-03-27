@@ -163,7 +163,6 @@ private static final String CREATE_TABLE_2 = "CREATE TABLE "+ TABLE_NAME_2 +"(se
             cursor.close();
         }
         return eligibleBuses;
-
     }
 
     public Cursor getStages(String bus, String source, String destination){

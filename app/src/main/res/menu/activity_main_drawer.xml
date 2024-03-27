@@ -5,10 +5,10 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/icon_home"
-            android:title="@string/menu_home" />
+<!--        <item-->
+<!--            android:id="@+id/nav_home"-->
+<!--            android:icon="@drawable/icon_home"-->
+<!--            android:title="@string/menu_home" />-->
 
         <item
             android:id="@+id/nav_about"
@@ -21,19 +21,23 @@
             android:title="@string/menu_help" />
 
         <item
+            android:id="@+id/nav_language"
+            android:icon="@drawable/ic_lang"
+            android:title="Language"/>
+
+        <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/icon_settings"
             android:title="@string/option_settings" />
 
         <item
-            android:id="@+id/option_logout"
-            android:icon="@drawable/icon_logout"
-            android:title="@string/menu_logout" />
-        <item
             android:id="@+id/nav_theme"
-            android:title="Themes"
-            android:icon="@drawable/icon_light"
+            android:title="Theme"
+            android:icon="@drawable/ic_theme"
             app:actionLayout="@layout/theme_toggle_button"/>
 
+        <item
+            android:id="@+id/option_logout"
+            app:actionLayout="@layout/nav_logout_design"/>
     </group>
 </menu>

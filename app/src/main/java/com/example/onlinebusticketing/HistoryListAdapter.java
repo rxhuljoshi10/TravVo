@@ -1,6 +1,5 @@
 package com.example.onlinebusticketing;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +14,11 @@ import java.util.List;
 public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.ViewHolder> {
     private List<String> dataList;
     TextView sourceEntry,destinationEntry;
+    private OnItemClickListener onItemClickListener;
 
 
-    public HistoryListAdapter(Context context, List<String> dataList, TextView sourceEntry, TextView destinationEntry) {
+    public HistoryListAdapter(OnItemClickListener listener, List<String> dataList, TextView sourceEntry, TextView destinationEntry) {
+        onItemClickListener = listener;
         this.dataList = dataList;
         this.sourceEntry = sourceEntry;
         this.destinationEntry = destinationEntry;
@@ -53,6 +54,7 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
             public void onClick(View v) {
                 sourceEntry.setText(historyParts[0]);
                 destinationEntry.setText(historyParts[1]);
+                onItemClickListener.onItemClick(item);
             }
         });
     }
@@ -72,5 +74,9 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
             sourceText = itemView.findViewById(R.id.sourceText);
             destinationText = itemView.findViewById(R.id.destinationText);
         }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(String item);
     }
 }

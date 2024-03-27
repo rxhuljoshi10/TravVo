@@ -30,41 +30,47 @@ import java.util.ArrayList;
 public class Ticket_Summary extends AppCompatActivity {
     DatabaseHelper databaseHelper = new DatabaseHelper(this);
     ArrayList<String> eligibleBuses = new ArrayList<>();
-    TextView counterTextView,counterTextView2, sourceView, destinationView, priceView, priceView1,priceView2, walletBalanceView;
-    Button payBtn;
+    TextView sourceView, destinationView, walletBalanceView, totalPriceView,
+            counterFullView, counterFullView2, fullPriceView, fullSinglePrice, totalFullPriceView,
+            counterHalfView, counterHalfView2, halfPriceView, halfSinglePrice, totalHalfPriceView;
     LinearLayout walletView;
     ImageView viewDraggable;
     View coverview;
     private Button btnSwipe;
     private float initialX;
     ProgressBar progressBar;
-    private int counter = 1;
-    int price = 5;
-    int totalPrice = price;
+    int fullCounter = 1, halfCounter = 0, fullPrice = 5, halfPrice = 0, totalHalfPrice=0, totalFullPrice = 5;
+    int totalPrice = fullPrice;
     float walletBalance;
     int originalBtnWidth;
-
+    String source, destination;
     final static int animationDuration = 400;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ticket_summary);
+        setContentView(R.layout.test);
 
         Intent intent = getIntent();
-        String source = intent.getStringExtra("source");
-        String destination = intent.getStringExtra("destination");
+        source = intent.getStringExtra("source");
+        destination = intent.getStringExtra("destination");
         eligibleBuses = intent.getStringArrayListExtra("eligibleBuses");
         String bus = eligibleBuses.get(0);
-        price = getPrice(bus, source, destination);
+        fullPrice = getPrice(bus, source, destination);
 
         sourceView = findViewById(R.id.sourceView);
         destinationView = findViewById(R.id.destinationView);
-        priceView = findViewById(R.id.priceView);
-        priceView.setText(" ₹"+price);
-        priceView1 = findViewById(R.id.priceView1);
-        priceView2 = findViewById(R.id.priceView2);
-        counterTextView = findViewById(R.id.counterTextView);
-        counterTextView2 = findViewById(R.id.counterTextView2);
+        fullPriceView = findViewById(R.id.fullPriceView);
+        fullPriceView.setText(String.valueOf(fullPrice));
+        fullSinglePrice = findViewById(R.id.fullSinglePrice);
+        totalFullPriceView = findViewById(R.id.totalFullPriceView);
+        counterFullView = findViewById(R.id.counterFullView);
+        counterFullView2 = findViewById(R.id.counterFullView2);
+        counterHalfView = findViewById(R.id.counterHalfView);
+        counterHalfView2 = findViewById(R.id.counterHalfView2);
+        halfPriceView = findViewById(R.id.halfPriceView);
+        halfSinglePrice = findViewById(R.id.halfSinglePrice);
+        totalHalfPriceView = findViewById(R.id.totalHalfPriceView);
+        totalPriceView = findViewById(R.id.totalPriceView);
         viewDraggable = findViewById(R.id.viewDraggable);
         btnSwipe = findViewById(R.id.btnSwipe);
         progressBar = findViewById(R.id.progressBar);
@@ -73,7 +79,6 @@ public class Ticket_Summary extends AppCompatActivity {
         sourceView.setText(source);
         destinationView.setText(destination);
         coverview = findViewById(R.id.coverView);
-
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -87,7 +92,6 @@ public class Ticket_Summary extends AppCompatActivity {
 
         updateCounterTextView();
         implementSwipeButton();
-
 
         walletView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -201,6 +205,21 @@ public class Ticket_Summary extends AppCompatActivity {
         }, 1000);
     }
 
+    public void toggleTicketSummary(View view) {
+        LinearLayout ticketBill = findViewById(R.id.ticketBill);
+        TextView textView = findViewById(R.id.viewSummaryView);
+        ImageView imageView = findViewById(R.id.indicatorImg);
+        if (ticketBill.getVisibility() == View.VISIBLE) {
+            textView.setText("View Summary");
+            ticketBill.setVisibility(View.GONE);
+            imageView.setImageResource(R.drawable.ic_key_down);
+        } else {
+            textView.setText("Show Less");
+            ticketBill.setVisibility(View.VISIBLE);
+            imageView.setImageResource(R.drawable.ic_key_up);
+        }
+    }
+
     private void successPayment(float newWalletBalance) {
         MyUtil.updateWalletPrice(this, newWalletBalance);
         tickAnimation();
@@ -222,12 +241,32 @@ public class Ticket_Summary extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(Ticket_Summary.this, TicketView.class));
+                nextPage();
             }
         },1000);
     }
 
+    private void nextPage() {
+        Intent intent = new Intent(Ticket_Summary.this, TicketView.class);
+        TicketData ticketData = new TicketData(source, destination, fullPrice, halfPrice, fullCounter, halfCounter, totalFullPrice, totalHalfPrice, totalPrice);
+//        intent.putExtra("source", source);
+//        intent.putExtra("destination", destination);
+//        intent.putExtra("fullPrice", fullPrice);
+//        intent.putExtra("halfPrice", halfPrice);
+//        intent.putExtra("fullCounter", String.valueOf(fullCounter));
+//        intent.putExtra("halfCounter", String.valueOf(halfCounter));
+//        intent.putExtra("totalFullPrice", String.valueOf(totalFullPrice));
+//        intent.putExtra("totalHalfPrice", String.valueOf(totalHalfPrice));
+//        intent.putExtra("totalPrice", String.valueOf(totalPrice));
+        intent.putExtra("ticketData", ticketData);
+        startActivity(intent);
+        finish();
+    }
+
     public int getPrice(String bus, String source, String destination) {
+//        if(bus.endsWith("U")){
+//            bus = bus.substring(0, bus.length() - 1) + "D";
+//        }
         Cursor cursor = databaseHelper.getStages(bus, source, destination);
 
         if(cursor!=null && cursor.moveToFirst()) {
@@ -237,7 +276,7 @@ public class Ticket_Summary extends AppCompatActivity {
 
             return (int) calcPrice(stage1, stage2);
         }
-        return price;
+        return fullPrice;
     }
 
     private double calcPrice(int stage1, int stage2) {
@@ -253,27 +292,56 @@ public class Ticket_Summary extends AppCompatActivity {
     }
 
     public void incrementCounter(View view) {
-        if(counter <= 10){
-            counter++;
+        if(fullCounter < 10){
+            fullCounter++;
             updateCounterTextView();
         }
     }
 
     public void decrementCounter(View view) {
-        if (counter > 1) {
-            counter--;
+        if (fullCounter > 1) {
+            fullCounter--;
+            updateCounterTextView();
+        }
+    }
+
+    public void incrementHalfCounter(View view) {
+        if(halfCounter < 10){
+            halfCounter++;
+            updateCounterTextView();
+        }
+    }
+
+    public void decrementHalfCounter(View view) {
+        if (halfCounter > 0) {
+            halfCounter--;
             updateCounterTextView();
         }
     }
 
     private void updateCounterTextView() {
-        totalPrice = price*counter;
-        String displayPrice = " ₹"+totalPrice;
-        counterTextView.setText(String.valueOf(counter));
-        counterTextView2.setText(String.valueOf(counter));
-        priceView1.setText(displayPrice);
-        priceView2.setText(displayPrice);
-        btnSwipe.setText(getString(R.string.pay) + displayPrice);
+        totalFullPrice = fullPrice*fullCounter;
+        halfPrice = (int) Math.ceil(fullPrice/2.0);
+        halfPrice = ((halfPrice + 4) / 5) * 5;
+        totalHalfPrice = halfPrice*halfCounter;
+
+        totalPrice = totalFullPrice + totalHalfPrice;
+
+        fullPriceView.setText(String.valueOf(totalFullPrice));
+        counterFullView.setText(String.valueOf(fullCounter));
+        counterFullView2.setText(String.valueOf(fullCounter));
+        fullSinglePrice.setText(String.valueOf(fullPrice));
+        totalFullPriceView.setText(String.valueOf("₹"+totalFullPrice));
+
+        halfPriceView.setText(String.valueOf(totalHalfPrice));
+        counterHalfView.setText(String.valueOf(halfCounter));
+        counterHalfView2.setText(String.valueOf(halfCounter));
+        halfSinglePrice.setText(String.valueOf(halfPrice));
+        totalHalfPriceView.setText("₹"+totalHalfPrice);
+
+        totalPriceView.setText("₹"+totalPrice);
+
+        btnSwipe.setText(getString(R.string.pay) + totalPrice);
     }
 
     @Override

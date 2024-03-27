@@ -51,7 +51,7 @@
 
         <ImageView
             android:layout_width="45dp"
-            android:layout_height="59dp"
+            android:layout_height="55dp"
             android:layout_marginTop="10dp"
             app:srcCompat="@drawable/icon_location" />
 
@@ -65,7 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Source"
-                android:textSize="27sp"
+                android:textSize="25sp"
                 android:fontFamily="sans-serif-black" />
             <View
                 android:layout_marginTop="5dp"
@@ -77,7 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Destination"
-                android:textSize="27sp"
+                android:textSize="25sp"
                 android:fontFamily="sans-serif-black" />
         </LinearLayout>
 
@@ -110,6 +110,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-black"
             android:text=" ₹10"
+            android:ems="3"
             android:textSize="25sp" />
 
         <Space
@@ -117,51 +118,41 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
 
-        <LinearLayout
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end">
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="decrementCounter"
+            android:src="@drawable/icon_decrement"
+            android:layout_gravity="center"
+            app:tint="@color/iconColor" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="true"
-                android:onClick="decrementCounter"
-                app:srcCompat="@drawable/icon_decrement"
-                android:layout_gravity="center"
-                app:tint="@color/iconColor" />
+        <TextView
+            android:id="@+id/counterTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-smallcaps"
+            android:layout_marginHorizontal="15dp"
+            android:text="1"
+            android:textSize="30sp" />
 
-            <TextView
-                android:id="@+id/counterTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-smallcaps"
-                android:layout_marginHorizontal="15dp"
-                android:text="1"
-                android:textSize="30sp" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="true"
-                android:onClick="incrementCounter"
-                android:layout_gravity="center"
-                app:srcCompat="@drawable/icon_increment"
-                />
-
-        </LinearLayout>
-
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="incrementCounter"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/icon_increment" />
     </LinearLayout>
-
-
 
     <View
         android:layout_width="wrap_content"
         android:layout_height="3dp"
         android:background="?android:attr/listDivider"
-        android:layout_margin="20dp" />
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="20dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -191,7 +182,7 @@
             android:id="@+id/priceView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text=" ₹10"
             android:textSize="15sp"/>
 
         <Space
@@ -203,10 +194,9 @@
             android:id="@+id/priceView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text=" ₹10"
             android:textSize="15sp"
             android:layout_gravity="end"/>
-
     </LinearLayout>
 
     <LinearLayout
@@ -216,42 +206,26 @@
         android:layout_marginTop="20sp"
         android:orientation="vertical">
 
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_margin="20sp"-->
-<!--            android:textColor="@color/orange"-->
-<!--            android:text="@string/termsConditions"/>-->
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-
         <LinearLayout
             android:id="@+id/walletView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingHorizontal="10dp"
-            android:layout_marginVertical="20dp"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginHorizontal="20dp"
             android:background="@drawable/borders">
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/icon_wallet"
-                android:layout_margin="10dp"
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:tint="@color/iconColor" />
-
+                android:checked="true" />
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="5sp">
+                android:layout_gravity="center_vertical">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -267,15 +241,23 @@
                     android:layout_marginStart="3sp"
                     android:textSize="16sp" />
             </LinearLayout>
-
-<!--            <TextView-->
-<!--                android:id="@+id/walletBalanceView"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Travo Wallet : 10.0"-->
-<!--                android:textSize="25sp"-->
-<!--                android:paddingHorizontal="10dp" />-->
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/icon_wallet"
+                android:layout_margin="10dp"
+                android:layout_gravity="center"
+                app:tint="@color/iconColor" />
         </LinearLayout>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -329,11 +311,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="100% Secure Transactions"
-            android:layout_gravity="center"
-            android:textSize="15sp"
-            android:layout_marginVertical="7dp"
-            android:fontFamily="sans-serif-black"/>
+            android:layout_marginVertical="20dp"
+            android:textColor="@color/orange"
+            android:text="@string/termsConditions"
+            android:layout_gravity="center"/>
 
     </LinearLayout>
 </LinearLayout>

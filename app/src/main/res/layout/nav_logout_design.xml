@@ -1,0 +1,24 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="30dp"
+    android:gravity="center">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="18dp"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="10dp"
+        android:background="@drawable/borders">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/logout"
+            android:textSize="20dp"
+            android:paddingVertical="8sp"
+            android:gravity="center"
+            android:fontFamily="sans-serif-condensed" />
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

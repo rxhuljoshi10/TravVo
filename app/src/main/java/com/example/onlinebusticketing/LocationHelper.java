@@ -2,7 +2,9 @@ package com.example.onlinebusticketing;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -38,19 +40,46 @@ public class LocationHelper {
         this.activity = activity;
     }
 
-
-    public void startFetchingLocation() {
-        checkLocationPermission();
-        checkLocationSettings();
+    public boolean isLocationPermissionGranted(){
+        return ContextCompat.checkSelfPermission(activity, android.Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED;
     }
 
-    public void checkLocationPermission() {
-        if (ContextCompat.checkSelfPermission(activity, android.Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity,
-                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                    100);
+    public void startFetchingLocation() {
+        if(isLocationPermissionGranted()){
+           checkLocationSettings();
         }
+        else{
+            if (ActivityCompat.shouldShowRequestPermissionRationale(activity, android.Manifest.permission.ACCESS_FINE_LOCATION)) {
+                showPermissionRationaleDialog();
+            } else {
+                displayLocationPermissionFragment();
+            }
+        }
+    }
+
+    private void displayLocationPermissionFragment() {
+        ActivityCompat.requestPermissions(activity,
+                new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                100);
+    }
+
+    public void showPermissionRationaleDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setTitle("Location Permission")
+                .setMessage("This app needs access to your location for XYZ reason.")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        displayLocationPermissionFragment();
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                })
+                .show();
     }
 
     private void checkLocationSettings() {
@@ -99,8 +128,6 @@ public class LocationHelper {
                     if (locationResult != null) {
                         Location location = locationResult.getLastLocation();
                         if (location != null) {
-//                            String address = getAddress(location);
-//                            Toast.makeText(activity, address, Toast.LENGTH_SHORT).show();
                             updateLocationInSharedPreferences(location);
                         }
                     }
