@@ -11,18 +11,28 @@
         android:layout_height="210dp"
         android:background="@color/primaryColor"/>
 
+    <ImageView
+        android:id="@+id/imageViewQR"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_scanner"
+        android:layout_gravity="end"
+        android:layout_marginTop="55dp"
+        android:layout_marginEnd="20dp"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:paddingHorizontal="15dp">
-    
+
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/ic_key_left"
             android:layout_marginTop="20dp"
-            app:tint="@color/white" />
+            app:tint="@color/white"
+            android:onClick="previous"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -46,6 +56,7 @@
             android:textColor="@color/white"/>
 
         <TextView
+            android:id="@+id/bookingId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Booking ID : 2321456012"
@@ -79,11 +90,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <ImageView
-                    android:layout_width="45dp"
-                    android:layout_height="55dp"
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
                     android:src="@drawable/icon_location"
+                    android:layout_marginVertical="5dp"
                     android:layout_gravity="center"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -93,15 +107,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Source"
-                        android:textSize="23sp"
+                        android:textSize="20sp"
                         android:fontFamily="sans-serif-medium"/>
+
+                    <View
+                        android:layout_width="60dp"
+                        android:layout_height="1dp"
+                        android:background="@color/secondaryBackground"
+                        android:layout_marginStart="15dp"/>
 
                     <TextView
                         android:id="@+id/destinationView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Destination"
-                        android:textSize="23sp"
+                        android:textSize="20sp"
                         android:fontFamily="sans-serif-medium"/>
                 </LinearLayout>
 
@@ -110,212 +130,322 @@
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="3dp"
-                android:background="?android:attr/listDivider"
-                android:layout_marginVertical="10dp"
+                android:background="@drawable/dashed_line"
+                android:layout_marginVertical="20dp"
                 android:layout_marginHorizontal="10dp"/>
 
-            <LinearLayout
-                android:id="@+id/ticketBill"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingHorizontal="40dp"
-                android:layout_marginTop="15dp">
+<!--            <LinearLayout-->
+<!--                android:id="@+id/ticketBill"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                android:paddingHorizontal="40dp"-->
+<!--                android:layout_marginTop="15dp">-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="43sp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/adult"
-                        style="@style/ticketPriceSummary"/>
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
+<!--                    <TextView-->
+<!--                        android:layout_width="43sp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/adult"-->
+<!--                        style="@style/ticketPriceSummary"/>-->
 
-                    <TextView
-                        android:id="@+id/counterFullView2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="1"
-                        android:ems="1"
-                        style="@style/ticketPriceSummary"/>
+<!--                    <TextView-->
+<!--                        android:id="@+id/counterFullView2"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="1"-->
+<!--                        android:ems="1"-->
+<!--                        style="@style/ticketPriceSummary"/>-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=" X   ₹"
-                        style="@style/ticketPriceSummary"/>
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text=" X   ₹"-->
+<!--                        style="@style/ticketPriceSummary"/>-->
 
-                    <TextView
-                        android:id="@+id/fullSinglePrice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="10"
-                        style="@style/ticketPriceSummary"/>
+<!--                    <TextView-->
+<!--                        android:id="@+id/fullSinglePrice"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="10"-->
+<!--                        style="@style/ticketPriceSummary"/>-->
 
-                    <Space
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"/>
+<!--                    <Space-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"/>-->
 
-                    <TextView
-                        android:id="@+id/totalFullPriceView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="₹10"
-                        android:layout_marginEnd="15dp"
-                        style="@style/ticketPriceSummary"/>
-                </LinearLayout>
+<!--                    <TextView-->
+<!--                        android:id="@+id/totalFullPriceView"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="₹10"-->
+<!--                        android:layout_marginEnd="15dp"-->
+<!--                        style="@style/ticketPriceSummary"/>-->
+<!--                </LinearLayout>-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="43sp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/half"
-                        style="@style/ticketPriceSummary"/>
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
+<!--                    <TextView-->
+<!--                        android:layout_width="43sp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/half"-->
+<!--                        style="@style/ticketPriceSummary"/>-->
 
-                    <TextView
-                        android:id="@+id/counterHalfView2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0"
-                        android:ems="1"
-                        style="@style/ticketPriceSummary"/>
+<!--                    <TextView-->
+<!--                        android:id="@+id/counterHalfView2"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="0"-->
+<!--                        android:ems="1"-->
+<!--                        style="@style/ticketPriceSummary"/>-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=" X   ₹"
-                        style="@style/ticketPriceSummary"/>
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text=" X   ₹"-->
+<!--                        style="@style/ticketPriceSummary"/>-->
 
-                    <TextView
-                        android:id="@+id/halfSinglePrice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0"
-                        style="@style/ticketPriceSummary"/>
+<!--                    <TextView-->
+<!--                        android:id="@+id/halfSinglePrice"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="0"-->
+<!--                        style="@style/ticketPriceSummary"/>-->
 
-                    <Space
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"/>
+<!--                    <Space-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"/>-->
 
-                    <TextView
-                        android:id="@+id/totalHalfPriceView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="₹0"
-                        android:layout_marginEnd="15dp"
-                        style="@style/ticketPriceSummary"/>
-                </LinearLayout>
+<!--                    <TextView-->
+<!--                        android:id="@+id/totalHalfPriceView"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="₹0"-->
+<!--                        android:layout_marginEnd="15dp"-->
+<!--                        style="@style/ticketPriceSummary"/>-->
+<!--                </LinearLayout>-->
 
-                <View
-                    android:layout_width="350dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:background="?android:attr/listDivider"
-                    android:layout_marginVertical="5sp" />
+<!--                <View-->
+<!--                    android:layout_width="350dp"-->
+<!--                    android:layout_height="1dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:background="?android:attr/listDivider"-->
+<!--                    android:layout_marginVertical="5sp" />-->
 
-            </LinearLayout>
+<!--            </LinearLayout>-->
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingHorizontal="40dp">
-                <TextView
+                android:paddingHorizontal="30dp">
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ticket Fare"
-                    android:textSize="20sp"
-                    android:fontFamily="sans-serif-black"/>
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
-                <TextView
-                    android:id="@+id/totalPriceView"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ticket Fare"
+                        android:textSize="18sp"
+                        android:fontFamily="sans-serif-medium"/>
+
+                    <TextView
+                        android:id="@+id/totalPriceView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="₹10"
+                        android:textSize="23sp"
+                        android:fontFamily="sans-serif-black"
+                        android:layout_gravity="center_horizontal"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/dashed_line"
+                    android:layout_marginHorizontal="15dp"
+                    android:rotation="90" />
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="₹10"
-                    android:textSize="20sp"
-                    android:fontFamily="sans-serif-condensed-medium"
-                    android:layout_marginEnd="10dp"
-                    android:layout_gravity="end"/>
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/dateView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="12/01/24"
+                        android:textSize="20sp"
+                        android:fontFamily="sans-serif-medium"/>
+
+                    <TextView
+                        android:id="@+id/timeView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="23:12"
+                        android:textSize="20sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:layout_gravity="center_horizontal"/>
+                </LinearLayout>
             </LinearLayout>
 
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="3dp"
-                android:background="?android:attr/listDivider"
-                android:layout_marginVertical="15dp"
+                android:background="@drawable/dashed_line"
+                android:layout_marginVertical="20dp"
                 android:layout_marginHorizontal="10dp"/>
 
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginHorizontal="20dp">
+                android:text="Helpline : 020-2454-5454"
+                android:textSize="20sp"/>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="140dp"
-                    android:layout_height="wrap_content"
-                    android:hint="Date"
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/dateView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_calendar"
-                        android:textSize="15sp"
-                        android:text="12/21/23"/>
-                </com.google.android.material.textfield.TextInputLayout>
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:layout_marginHorizontal="20dp">-->
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="140dp"
-                    android:layout_height="wrap_content"
-                    android:hint="Time"
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/timeView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_clock"
-                        android:textSize="16sp"
-                        android:text="12:24"/>
-                </com.google.android.material.textfield.TextInputLayout>
+<!--                <com.google.android.material.textfield.TextInputLayout-->
+<!--                    android:layout_width="140dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:hint="Date"-->
+<!--                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox">-->
+<!--                    <com.google.android.material.textfield.TextInputEditText-->
+<!--                        android:id="@+id/dateView"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:drawableStart="@drawable/ic_calendar"-->
+<!--                        android:textSize="15sp"-->
+<!--                        android:text="12/21/23"/>-->
+<!--                </com.google.android.material.textfield.TextInputLayout>-->
 
-            </LinearLayout>
+<!--                <Space-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="1"/>-->
+
+<!--                <com.google.android.material.textfield.TextInputLayout-->
+<!--                    android:layout_width="140dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:hint="Time"-->
+<!--                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox">-->
+<!--                    <com.google.android.material.textfield.TextInputEditText-->
+<!--                        android:id="@+id/timeView"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:drawableStart="@drawable/ic_clock"-->
+<!--                        android:textSize="16sp"-->
+<!--                        android:text="12:24"/>-->
+<!--                </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--            </LinearLayout>-->
 
         </LinearLayout>
 
         <Button
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="70dp"
-            android:paddingVertical="10dp"
-            android:text="Confirm"
+            android:paddingBottom="10dp"
+            android:text="Confirm Now"
             android:textColor="@color/white"
             android:layout_gravity="center_horizontal"
-            android:textSize="25sp"/>
+            android:textSize="25sp"
+            android:layout_marginHorizontal="25dp"/>
 
-        <TextView
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textSize="25sp"-->
+<!--            android:layout_marginVertical="10dp"-->
+<!--            android:fontFamily="sans-serif-medium"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:text="Back To Home"/>-->
+
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:layout_marginVertical="10dp"
-            android:fontFamily="sans-serif-medium"
-            android:layout_gravity="center_horizontal"
-            android:text="Back To Home"/>
+            android:orientation="horizontal"
+            android:layout_marginTop="40dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_gravity="center_horizontal">
 
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="65dp"
+                android:orientation="vertical"
+                android:background="@drawable/borders"
+                android:padding="10dp"
+                android:gravity="center"
+                android:clickable="true"
+                android:onClick="displayEligibleBuses">
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/icon_bus" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="11sp"
+                    android:text="Eligible Buses"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="65dp"
+                android:orientation="vertical"
+                android:background="@drawable/borders"
+                android:padding="10dp"
+                android:layout_marginStart="15dp"
+                android:gravity="center"
+                android:onClick="displayRoute">
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/route"
+                    app:tint="@color/iconColor" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="11sp"
+                    android:text="View Route"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="65dp"
+                android:orientation="vertical"
+                android:background="@drawable/borders"
+                android:padding="10dp"
+                android:layout_marginStart="15dp"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_cancel_ticket"
+                    app:tint="@color/iconColor" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="11sp"
+                    android:text="Cancel Booking"/>
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
 </FrameLayout>

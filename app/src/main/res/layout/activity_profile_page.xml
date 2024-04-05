@@ -1,41 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".ProfilePage">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+<!--    <androidx.appcompat.widget.Toolbar-->
+<!--        android:id="@+id/toolbar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="?attr/actionBarSize"-->
+<!--        android:background="?attr/colorPrimary"-->
+<!--        app:title="Profile"-->
+<!--        app:titleTextColor="@color/white"/>-->
+
+
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        app:title="Profile"
-        app:titleTextColor="@color/white"/>
+        android:layout_height="160dp"
+        android:src="@drawable/profile_ui"/>
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/ic_key_left"
+        android:onClick="previous"
+        app:tint="@color/white" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Profile"
+        android:textSize="25sp"
+        android:fontFamily="sans-serif-medium"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="55dp"
+        android:textColor="@color/white"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="15dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="80dp">
 
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginVertical="25dp"
-            android:src="@drawable/icon_profile"
-            app:tint="@color/iconColor" />
-
-        <TextView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="20dp"
-            android:textSize="35sp"
-            android:fontFamily="sans-serif-condensed-medium"
-            android:text="Basic Info"/>
+            android:layout_marginBottom="40dp"
+            android:layout_gravity="center_horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profilePicView"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/user_account"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_editicon"
+                android:onClick="openGallery"
+                app:layout_constraintBottom_toBottomOf="@+id/profilePicView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/profilePicView"
+                app:layout_constraintVertical_bias="1.0" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginVertical="20dp"-->
+<!--            android:textSize="35sp"-->
+<!--            android:fontFamily="sans-serif-condensed-medium"-->
+<!--            android:text="User Info"/>-->
 
         <LinearLayout
             android:id="@+id/profileNameView"
@@ -60,7 +108,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Name"
-                    android:textSize="23sp"
+                    android:textSize="18sp"
                     android:fontFamily="sans-serif-black"/>
                 <TextView
                     android:id="@+id/userNameView"
@@ -108,7 +156,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Phone"
-                    android:textSize="23sp"
+                    android:textSize="18sp"
                     android:fontFamily="sans-serif-black"/>
                 <TextView
                     android:id="@+id/userPhoneView"
@@ -148,7 +196,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="DOB"
-                    android:textSize="23sp"
+                    android:textSize="18sp"
                     android:fontFamily="sans-serif-black"/>
                 <TextView
                     android:id="@+id/userDOBView"
@@ -171,4 +219,4 @@
 
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

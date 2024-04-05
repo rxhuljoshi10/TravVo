@@ -15,7 +15,7 @@ import java.util.List;
 
 public class SplashScreen extends AppCompatActivity {
     DatabaseHelper databaseHelper = new DatabaseHelper(SplashScreen.this);
-    private static int SPLASH_DELAY = 0;
+    private static int SPLASH_DELAY = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +60,7 @@ public class SplashScreen extends AppCompatActivity {
         }).start();
     }
     private void loadData() {
-        List<List<String>> busRoutes = ExcelReader.readCsvData(SplashScreen.this, "Bus_Routes_1.csv","Bus_Routes_2.csv");
+        List<List<String>> busRoutes = ExcelReader.readCsvData(SplashScreen.this, "Bus_Routes_1_modified.csv","Bus_Routes_2_modified.csv");
         databaseHelper.insertIntoBusRoutes(busRoutes);
     }
 }

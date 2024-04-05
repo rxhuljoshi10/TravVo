@@ -3,8 +3,7 @@ package com.example.onlinebusticketing;
 import java.io.Serializable;
 
 public class TicketData implements Serializable {
-    public String source;
-    public String destination;
+    public String source, destination;
     public int fullPrice;
     public int halfPrice;
     public int fullCounter;
@@ -12,6 +11,8 @@ public class TicketData implements Serializable {
     public int totalFullPrice;
     public int totalHalfPrice;
     public int totalPrice;
+
+    String tDate, tTime, bookingId;
 
     public TicketData(String source, String destination, int fullPrice, int halfPrice, int fullCounter, int halfCounter, int totalFullPrice, int totalHalfPrice, int totalPrice) {
         this.source = source;
@@ -23,5 +24,14 @@ public class TicketData implements Serializable {
         this.totalFullPrice = totalFullPrice;
         this.totalHalfPrice = totalHalfPrice;
         this.totalPrice = totalPrice;
+    }
+
+    public TicketData(String source, String destination, int totalPrice, String tDate, String tTime, String bookingId) {
+        this.source = source;
+        this.destination = destination;
+        this.totalPrice = totalPrice;
+        this.tDate = tDate;
+        this.tTime = tTime;
+        this.bookingId = bookingId;
     }
 }

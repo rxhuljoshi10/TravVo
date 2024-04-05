@@ -8,23 +8,33 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.location.Location;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class DatabaseHelper extends SQLiteOpenHelper{
     private static final String DATABASE_NAME = "PMPML_Data";
     private static final int DATABASE_VERSION = 1;
-//    private static final String TABLE_NAME = "bus_stops";
-//    private static final String CREATE_TABLE_1 = "CREATE TABLE "+ TABLE_NAME +"(direction Text, stop_names TEXT, stop_names_mr TEXT);";
 
     private static final String TABLE_NAME_2 = "SEARCH_HISTORY";
-//    private static final String CREATE_TABLE_2 = "CREATE TABLE "+ TABLE_NAME_2 +"(search_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
-//            "SOURCE TEXT, DESTINATION TEXT);";
-private static final String CREATE_TABLE_2 = "CREATE TABLE "+ TABLE_NAME_2 +"(search_ID INTEGER PRIMARY KEY AUTOINCREMENT, userId varchar(20)," +
+    private static final String CREATE_TABLE_2 = "CREATE TABLE "+ TABLE_NAME_2 +"(search_ID INTEGER PRIMARY KEY AUTOINCREMENT, userId varchar(20)," +
         "SOURCE TEXT, DESTINATION TEXT);";
+
 
     private static final String TABLE_NAME_3 = "Bus_Routes";
     private static final String CREATE_TABLE_3 = "CREATE TABLE "+ TABLE_NAME_3 + "(route_name varchar(6), stop_seq INTEGER, stop_name TEXT, stop_name_mr TEXT, lat TEXT, long TEXT, stage INTEGER);";
+
+
+    private static final String TABLE_NAME_4 = "RECENT_SEARCHES";
+    private static final String CREATE_TABLE_4 = "CREATE TABLE "+ TABLE_NAME_4 +"(search_ID INTEGER PRIMARY KEY AUTOINCREMENT, userId varchar(20)," +
+            "stop TEXT);";
+
+    private static final String TABLE_BOOKING_HISTORY = "tableBookingHistory";
+    private static final String CREATE_TABLE_5 = "CREATE TABLE "+ TABLE_BOOKING_HISTORY +"(tid INTEGER PRIMARY KEY AUTOINCREMENT, uid INTEGER, bid INTEGER, bSource varchar(20), bDestination varchar(20), bPrice INTEGER, bDate varchar(15), bTime varchar(10));";
+
+    private static final String TABLE_SAVED_PLACES = "SavedPlaces";
+    private static final String CREATE_TABLE_6 = "CREATE TABLE "+ TABLE_SAVED_PLACES +"(sid INTEGER PRIMARY KEY AUTOINCREMENT, title varchar(30), address varchar(30));";
 
 
     public DatabaseHelper(Context context){
@@ -33,37 +43,48 @@ private static final String CREATE_TABLE_2 = "CREATE TABLE "+ TABLE_NAME_2 +"(se
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-//        db.execSQL(CREATE_TABLE_1);
         db.execSQL(CREATE_TABLE_2);
         db.execSQL(CREATE_TABLE_3);
+        db.execSQL(CREATE_TABLE_4);
+        db.execSQL(CREATE_TABLE_5);
+        db.execSQL(CREATE_TABLE_6);
+//        insertPredefinedValues(db);
+    }
+
+    private void insertPredefinedValues(SQLiteDatabase db) {
+//        insertIntoSavedPlacesList("Add Home", null);
+//        insertIntoSavedPlacesList("Add Work", null);
+        String value = null;
+        ContentValues v = new ContentValues();
+//        v.put("uid","");
+        v.put("title", "Add Home");
+        v.put("address", value);
+        db.insert(TABLE_SAVED_PLACES, null, v);
+
+        ContentValues v1 = new ContentValues();
+        v1.put("title", "Add Work");
+        v1.put("address", value);
+        db.insert(TABLE_SAVED_PLACES, null, v1);
+    }
+
+    private void insertIntoSavedPlacesList(String title, String address) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues v = new ContentValues();
+        v.put("title", title);
+        v.put("address", address);
+        db.insert(TABLE_SAVED_PLACES, null, v);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-//        db.execSQL("DROP TABLE IF EXISTS "+ TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS "+ TABLE_NAME_2);
         db.execSQL("DROP TABLE IF EXISTS "+ TABLE_NAME_3);
+        db.execSQL("DROP TABLE IF EXISTS "+ TABLE_NAME_4);
+        db.execSQL("DROP TABLE IF EXISTS "+ TABLE_BOOKING_HISTORY);
+        db.execSQL("DROP TABLE IF EXISTS "+ TABLE_SAVED_PLACES);
         onCreate(db);
     }
 
-//    public void insertIntoStops(List<List<String>> data) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        ContentValues values = new ContentValues();
-//
-//        db.beginTransaction();
-//        try {
-//            for (List<String> rowData : data) {
-//                values.put("direction", rowData.get(0));
-//                values.put("stop_names", rowData.get(1));
-//                values.put("stop_names_mr", rowData.get(2));
-//                db.insert(TABLE_NAME, null, values);
-//            }
-//            db.setTransactionSuccessful(); // Mark the transaction as successful
-//        } finally {
-//            db.endTransaction(); // End the transaction
-//            db.close(); // Close the database connection
-//        }
-//    }
 
     public void insertIntoBusRoutes(List<List<String>> data){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -111,8 +132,7 @@ private static final String CREATE_TABLE_2 = "CREATE TABLE "+ TABLE_NAME_2 +"(se
 //        db.close();
 //    }
 
-    public void
-    insertSearchHistory(String userID, String source, String destination){
+    public void insertSearchHistory(String userID, String source, String destination){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("userID", userID);
@@ -135,6 +155,34 @@ private static final String CREATE_TABLE_2 = "CREATE TABLE "+ TABLE_NAME_2 +"(se
                 @SuppressLint("Range") String source = cursor.getString(cursor.getColumnIndex("SOURCE"));
                 @SuppressLint("Range") String destination = cursor.getString(cursor.getColumnIndex("DESTINATION"));
                 searchHistory.add(source + " - " + destination);
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return searchHistory;
+    }
+
+
+    public void insertSearchedStop(String userID, String stop){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("userID", userID);
+        values.put("stop", stop);
+        db.insert(TABLE_NAME_4,null, values);
+        db.close();
+    }
+
+    public ArrayList<String> getRecentSearchedStops(String userID) {
+        ArrayList<String> searchHistory = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT DISTINCT stop FROM " + TABLE_NAME_4 +
+                " WHERE userId = ? ORDER BY search_ID DESC LIMIT 5";
+
+        Cursor cursor = null;
+        cursor = db.rawQuery(query, new String[]{userID});
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                @SuppressLint("Range") String stop_name = cursor.getString(cursor.getColumnIndex("stop"));
+                searchHistory.add(stop_name);
             } while (cursor.moveToNext());
             cursor.close();
         }
@@ -197,7 +245,21 @@ private static final String CREATE_TABLE_2 = "CREATE TABLE "+ TABLE_NAME_2 +"(se
     @SuppressLint("Range")
     public int getSequenceNumber(String stopName, String busNumber){
         SQLiteDatabase db = this.getReadableDatabase();
-        int stop_seq = -1, first_stop_seq = 0;
+        int stop_seq = -1;
+        String query = "SELECT stop_seq FROM "+ TABLE_NAME_3+
+                " WHERE route_name = ? AND stop_name = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{busNumber, stopName});
+        if (cursor.moveToFirst()) {
+            stop_seq = cursor.getInt(cursor.getColumnIndex("stop_seq"));
+        }
+        cursor.close();
+        return stop_seq;
+    }
+
+    @SuppressLint("Range")
+    public int getFirstSequenceNumber(String busNumber){
+        SQLiteDatabase db = this.getReadableDatabase();
+        int first_stop_seq = 0;
 
         String query1 = "SELECT stop_seq FROM "+TABLE_NAME_3+
                 " WHERE route_name = ? LIMIT 1";
@@ -205,23 +267,10 @@ private static final String CREATE_TABLE_2 = "CREATE TABLE "+ TABLE_NAME_2 +"(se
         if (cursor1.moveToFirst()) {
             first_stop_seq = cursor1.getInt(cursor1.getColumnIndex("stop_seq"));
         }
-
-        String query = "SELECT stop_seq FROM "+ TABLE_NAME_3+
-                " WHERE route_name = ? AND stop_name = ?";
-        Cursor cursor = db.rawQuery(query, new String[]{busNumber, stopName});
-        if (cursor.moveToFirst()) {
-            stop_seq = cursor.getInt(cursor.getColumnIndex("stop_seq"));
-        }
-
-        cursor.close();
         cursor1.close();
-
-        if(first_stop_seq == 1){
-            stop_seq -= 1;
-        }
-
-        return stop_seq;
+        return first_stop_seq;
     }
+
 
     @SuppressLint("Range")
     public int getTotalStops(String busNumber, String source, String destination) {
@@ -338,6 +387,94 @@ private static final String CREATE_TABLE_2 = "CREATE TABLE "+ TABLE_NAME_2 +"(se
             cursor.close();
         }
         return buses;
+    }
+
+    @SuppressLint("Range")
+    public Cursor getInRouteStops(String sourceNum, String destinNum, String busNumber) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "Select stop_name, lat, long FROM "+TABLE_NAME_3+ " WHERE route_name = ? AND (stop_seq >= ? AND stop_seq <= ?)";
+        return db.rawQuery(query, new String[]{busNumber, sourceNum, destinNum});
+    }
+
+    public void addBookingDetails(TicketData bookingDetails, String userId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues v = new ContentValues();
+        v.put("uid", userId);
+        v.put("bid", bookingDetails.bookingId);
+        v.put("bSource", bookingDetails.source);
+        v.put("bDestination", bookingDetails.destination);
+        v.put("bPrice", bookingDetails.totalPrice);
+        v.put("bDate", bookingDetails.tDate);
+        v.put("bTime", bookingDetails.tTime);
+
+        db.insert(TABLE_BOOKING_HISTORY, null, v);
+    }
+
+    @SuppressLint("Range")
+    public List<TicketData> getAllBookingDetails(String userId) {
+        List<TicketData> bookingList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_BOOKING_HISTORY+ " WHERE uid = ? ORDER BY tid DESC", new String[]{userId});
+        if (cursor.moveToFirst()) {
+            do {
+                String source = cursor.getString(cursor.getColumnIndex("bSource"));
+                String destination = cursor.getString(cursor.getColumnIndex("bDestination"));
+                int totalPrice = cursor.getInt(cursor.getColumnIndex("bPrice"));
+                String tDate = cursor.getString(cursor.getColumnIndex("bDate"));
+                String tTime = cursor.getString(cursor.getColumnIndex("bTime"));
+                String bookingId = cursor.getString(cursor.getColumnIndex("bid"));
+
+                TicketData bookingDetails = new TicketData(source, destination, totalPrice, tDate, tTime, bookingId);
+                bookingList.add(bookingDetails);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return bookingList;
+    }
+
+    public void storeSavedPlacesList(List<Map.Entry<String, String>> dataList, String userId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        String[] selectionArgs = { userId };
+//        db.delete(TABLE_SAVED_PLACES, "uid = ?", selectionArgs);
+        db.delete(TABLE_SAVED_PLACES, null, null);
+        for (Map.Entry<String, String> entry : dataList) {
+//            values.put("uid", userId);
+            values.put("title", entry.getKey());
+            values.put("address", entry.getValue());
+            db.insert(TABLE_SAVED_PLACES, null, values);
+        }
+        db.close();
+    }
+
+    public List<Map.Entry<String, String>> getSavedPlacesList(String userId) {
+        List<Map.Entry<String, String>> dataList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+//        String selection = "uid = ?";
+//        String[] selectionArgs = { userId };
+        Cursor cursor = db.query(
+                TABLE_SAVED_PLACES,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                String key = cursor.getString(cursor.getColumnIndexOrThrow("title"));
+                String value = cursor.getString(cursor.getColumnIndexOrThrow("address"));
+                dataList.add(new AbstractMap.SimpleEntry<>(key, value));
+            }
+            cursor.close();
+        }
+        db.close();
+
+        return dataList;
     }
 }
 

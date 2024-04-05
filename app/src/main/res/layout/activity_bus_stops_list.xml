@@ -12,9 +12,47 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        app:title="123"
-        app:titleTextColor="@color/white"/>
+        app:title=""
+        app:titleTextColor="@color/white">
+        <ImageView
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:src="@drawable/ic_key_left"
+            android:onClick="previous"/>
 
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/icon_bus"
+            android:layout_marginStart="20dp"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/toolbarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="123"
+            android:textColor="@color/white"
+            android:textSize="23sp"
+            android:fontFamily="sans-serif-medium"
+            android:layout_gravity="center_vertical"/>
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="10dp"
+        app:cardElevation="8dp"
+        app:cardCornerRadius="6dp">
+
+        <fragment
+            android:id="@+id/gmap"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_margin="7dp"/>
+    </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/bus_list_view"

@@ -12,8 +12,9 @@ import java.util.ArrayList;
 public class BusStops_Adapter extends RecyclerView.Adapter<BusStops_Adapter.ViewHolder>{
     private ArrayList<String> dataList;
     int sourceNum, destinNum;
-
-    public BusStops_Adapter(ArrayList<String> dataList, int sourceNum, int destinNum) {
+    private OnItemClickListener listener;
+    public BusStops_Adapter(OnItemClickListener listener,ArrayList<String> dataList, int sourceNum, int destinNum) {
+        this.listener = listener;
         this.dataList = dataList;
         this.sourceNum = sourceNum;
         this.destinNum = destinNum;
@@ -34,6 +35,12 @@ public class BusStops_Adapter extends RecyclerView.Adapter<BusStops_Adapter.View
         if(position == sourceNum || position == destinNum){
             holder.itemTextView.setTextColor(ContextCompat.getColor(holder.itemTextView.getContext(), R.color.primaryColor));
         }
+        holder.itemTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onItemClick(item);
+            }
+        });
     }
 
     @Override
@@ -59,5 +66,8 @@ public class BusStops_Adapter extends RecyclerView.Adapter<BusStops_Adapter.View
             super(itemView);
             itemTextView = itemView.findViewById(R.id.busStop);
         }
+    }
+    public interface OnItemClickListener {
+        void onItemClick(String selectedItem);
     }
 }

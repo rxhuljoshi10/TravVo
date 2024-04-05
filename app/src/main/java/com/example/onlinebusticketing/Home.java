@@ -29,6 +29,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -37,7 +42,7 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class Home extends AppCompatActivity implements HistoryListAdapter.OnItemClickListener {
+public class Home extends AppCompatActivity implements HistoryListAdapter.OnItemClickListener, OnMapReadyCallback {
     DatabaseHelper databaseHelper = new DatabaseHelper(this);
     ArrayList<String> stopNames = new ArrayList<>();
     DrawerLayout drawerLayout;
@@ -49,6 +54,7 @@ public class Home extends AppCompatActivity implements HistoryListAdapter.OnItem
     RecyclerView historyView;
     ImageView imgWallet, swapBtn;
     LocationHelper locationHelper = new LocationHelper(this);
+    GoogleMap gMap;
     String userId;
 
     SharedPreferences cookies;
@@ -59,6 +65,9 @@ public class Home extends AppCompatActivity implements HistoryListAdapter.OnItem
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         setContentView(R.layout.activity_home);
+
+//        SupportMapFragment supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.gmap);
+//        supportMapFragment.getMapAsync(this);
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
@@ -157,9 +166,9 @@ public class Home extends AppCompatActivity implements HistoryListAdapter.OnItem
         selectStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Home.this, InputActivity.class);
-                intent.putExtra("entry","Enter Stop Name");
-                intent.putStringArrayListExtra("stopNames",stopNames);
+                Intent intent = new Intent(Home.this, allBusStops.class);
+                intent.putExtra("Entry", "");
+                intent.putExtra("position", -1);
                 startActivity(intent);
             }
         });
@@ -295,13 +304,17 @@ public class Home extends AppCompatActivity implements HistoryListAdapter.OnItem
         startActivity(intent);
     }
 
+    public void openBookingHistory(View v){
+        startActivity(new Intent(Home.this, BookingHistory.class));
+    }
+
 
     @Override
     protected void onStart(){
         super.onStart();
         SharedPreferences userData = getSharedPreferences("UserData",Context.MODE_PRIVATE);
         String userName = userData.getString("name",null);
-        if(userName!=null || !userName.isEmpty()){
+        if(userName!=null){
             nav_header_view.setText(userName);
         }
         else{
@@ -316,5 +329,13 @@ public class Home extends AppCompatActivity implements HistoryListAdapter.OnItem
     @Override
     public void onItemClick(String item) {
         checkAndProceed(Ticket_Summary.class);
+    }
+
+    @Override
+    public void onMapReady(@NonNull GoogleMap googleMap) {
+        gMap = googleMap;
+        LatLng location = new LatLng(18.4512, 73.93412);
+        googleMap.addMarker(new MarkerOptions().position(location).title("Hadapsar"));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location,15));
     }
 }

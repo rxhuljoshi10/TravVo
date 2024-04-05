@@ -18,17 +18,20 @@ public class InputActivityAdapter extends RecyclerView.Adapter<InputActivityAdap
     private ArrayList<String> dataList;
     private ArrayList<String> filteredData;
     private OnItemClickListener listener;
+    int layoutResId;
 
-    public InputActivityAdapter(OnItemClickListener listener, ArrayList<String> dataList) {
+    public InputActivityAdapter(OnItemClickListener listener, ArrayList<String> dataList, int layoutResId) {
         this.listener = listener;
         this.dataList = dataList;
         this.filteredData = new ArrayList<>(dataList);
+        this.layoutResId = layoutResId;
+
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        int layoutResId = R.layout.item_stop_name_list;
+//        layoutResId = R.layout.item_stop_name_list;
         View view = LayoutInflater.from(parent.getContext()).inflate(layoutResId, parent, false);
         return new ViewHolder(view);
     }
@@ -42,11 +45,6 @@ public class InputActivityAdapter extends RecyclerView.Adapter<InputActivityAdap
             @Override
             public void onClick(View v) {
                 listener.onItemClick(item);
-
-//                intent.putExtra("Source","");
-//                intent.putExtra("Destination","");
-//                intent.putExtra("busNumber", bus_number);
-//                v.getContext().startActivity(intent);
             }
         });
     }

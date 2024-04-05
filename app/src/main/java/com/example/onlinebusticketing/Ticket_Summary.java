@@ -175,7 +175,7 @@ public class Ticket_Summary extends AppCompatActivity {
                 else{
                     viewDraggable.setVisibility(View.VISIBLE);
                     viewDraggable.setX(0);
-                    btnSwipe.setText(getString(R.string.pay) + " ₹"+totalPrice);
+                    btnSwipe.setText(getString(R.string.pay) +totalPrice);
                     updateCoverView(0);
                     coverview.setVisibility(View.VISIBLE);
                 }
@@ -249,34 +249,47 @@ public class Ticket_Summary extends AppCompatActivity {
     private void nextPage() {
         Intent intent = new Intent(Ticket_Summary.this, TicketView.class);
         TicketData ticketData = new TicketData(source, destination, fullPrice, halfPrice, fullCounter, halfCounter, totalFullPrice, totalHalfPrice, totalPrice);
-//        intent.putExtra("source", source);
-//        intent.putExtra("destination", destination);
-//        intent.putExtra("fullPrice", fullPrice);
-//        intent.putExtra("halfPrice", halfPrice);
-//        intent.putExtra("fullCounter", String.valueOf(fullCounter));
-//        intent.putExtra("halfCounter", String.valueOf(halfCounter));
-//        intent.putExtra("totalFullPrice", String.valueOf(totalFullPrice));
-//        intent.putExtra("totalHalfPrice", String.valueOf(totalHalfPrice));
-//        intent.putExtra("totalPrice", String.valueOf(totalPrice));
         intent.putExtra("ticketData", ticketData);
+        intent.putExtra("eligibleBuses", eligibleBuses);
+        intent.putExtra("entry","book");
         startActivity(intent);
         finish();
     }
 
     public int getPrice(String bus, String source, String destination) {
-//        if(bus.endsWith("U")){
-//            bus = bus.substring(0, bus.length() - 1) + "D";
-//        }
+        String busReverse;
+        int Price1=0, Price2=0;
+        if(bus.endsWith("U")){
+            busReverse = bus.substring(0, bus.length() - 1) + "D";
+        }
+        else{
+            busReverse = bus.substring(0, bus.length() - 1) + "U";
+        }
+
         Cursor cursor = databaseHelper.getStages(bus, source, destination);
+        Cursor cursor2 = databaseHelper.getStages(busReverse, source, destination);
 
         if(cursor!=null && cursor.moveToFirst()) {
             @SuppressLint("Range") int stage1 = cursor.getInt(cursor.getColumnIndex("stage"));
             cursor.moveToNext();
             @SuppressLint("Range") int stage2 = cursor.getInt(cursor.getColumnIndex("stage"));
 
-            return (int) calcPrice(stage1, stage2);
+            Price1 = (int) calcPrice(stage1, stage2);
         }
-        return fullPrice;
+        try {
+            if (cursor2 != null && cursor2.moveToFirst()) {
+                @SuppressLint("Range") int stage1 = cursor2.getInt(cursor2.getColumnIndex("stage"));
+                cursor2.moveToNext();
+                @SuppressLint("Range") int stage2 = cursor2.getInt(cursor2.getColumnIndex("stage"));
+
+                Price2 = (int) calcPrice(stage1, stage2);
+            }
+        }
+        catch (Exception e){
+            Price2 = Price1 + 5;
+        }
+
+        return Math.max(Price1, Price2);
     }
 
     private double calcPrice(int stage1, int stage2) {

@@ -1,15 +1,14 @@
 package com.example.onlinebusticketing;
 
 import android.content.Intent;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
 
 public class EligibleBusAdapter extends RecyclerView.Adapter<EligibleBusAdapter.ViewHolder> {
@@ -42,9 +41,13 @@ public class EligibleBusAdapter extends RecyclerView.Adapter<EligibleBusAdapter.
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(source.isEmpty()){
+                    source = databaseHelper.getSource(bus_number, 1);
+                    destination = databaseHelper.getSource(bus_number, -1);
+                }
                 Intent intent = new Intent(v.getContext(), ListOfBusStops.class);
-                intent.putExtra("Source",source);
-                intent.putExtra("Destination",destination);
+                intent.putExtra("source",source);
+                intent.putExtra("destination",destination);
                 intent.putExtra("busNumber", bus_number);
                 v.getContext().startActivity(intent);
             }

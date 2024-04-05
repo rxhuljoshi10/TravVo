@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -39,6 +40,7 @@ public class LoginPage extends AppCompatActivity {
     ScrollView scrollView;
     ProgressBar pBar;
     private FirebaseAuth mAuth;
+    LinearLayout bottomArea;
     CardView generate_otp_button;
     private  PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
 
@@ -55,6 +57,7 @@ public class LoginPage extends AppCompatActivity {
         btnText = findViewById(R.id.btnText);
         phone_editText = findViewById(R.id.phone);
         scrollView = findViewById(R.id.scrollView);
+        bottomArea = findViewById(R.id.bottomArea);
 
         if (alreadyUser()){
             startActivity(new Intent(LoginPage.this, Home.class));
@@ -65,23 +68,6 @@ public class LoginPage extends AppCompatActivity {
         if (permissionState == PackageManager.PERMISSION_DENIED) {
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 1);
         }
-
-//        text_eng.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                setLocal(LoginPage.this, "en");
-//                finish();
-//                startActivity(getIntent());
-//            }
-//        });
-//        text_hi.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                setLocal(LoginPage.this, "hi");
-//                finish();
-//                startActivity(getIntent());
-//            }
-//        });
 
         generate_otp_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,7 +107,7 @@ public class LoginPage extends AppCompatActivity {
         scrollView.postDelayed(new Runnable() {
             @Override
             public void run() {
-                int scrollY = calculateScrollY(scrollView, generate_otp_button);
+                int scrollY = calculateScrollY(scrollView, bottomArea);
                 scrollView.smoothScrollTo(0, scrollY);
             }
         }, 200);
@@ -189,7 +175,6 @@ public class LoginPage extends AppCompatActivity {
                         .build();
         PhoneAuthProvider.verifyPhoneNumber(options);
     }
-
 
 
     @Override

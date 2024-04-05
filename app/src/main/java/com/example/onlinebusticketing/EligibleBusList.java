@@ -25,7 +25,7 @@ public class EligibleBusList extends AppCompatActivity {
         eligibleBusView = findViewById(R.id.eligibleBusView);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.icon_backarrow);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_key_left);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 

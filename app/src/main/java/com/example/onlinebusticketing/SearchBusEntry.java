@@ -44,7 +44,6 @@ public class SearchBusEntry extends AppCompatActivity {
         while (iterator.hasNext()) {
             iterator.next();
 
-            // Remove elements at odd positions
             if (index % 2 != 0) {
                 iterator.remove();
             }

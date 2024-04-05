@@ -9,9 +9,13 @@ import android.text.Editable;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -21,13 +25,16 @@ public class InputActivity extends AppCompatActivity implements InputActivityAda
 
     InputActivityAdapter inputActivityAdapter;
     EditText inputField;
-    RecyclerView stopsView;
-    ImageView imgLocation, imgClear;
+    RecyclerView stopsView, recentStopsView;
+    ImageView imgClear;
+    LinearLayout recentView;
+    LinearLayout imgLocation;
     ArrayList<String> stopNames = new ArrayList<>();
+    ArrayList<String> recentSearches = new ArrayList<>();
     List<Location> stopsLocationList = new ArrayList<>();
     LocationHelper locationHelper = new LocationHelper(this);
     DatabaseHelper databaseHelper = new DatabaseHelper(this);
-    String entry;
+    String entry, userId;
 
     @SuppressLint("Range")
     @Override
@@ -40,16 +47,26 @@ public class InputActivity extends AppCompatActivity implements InputActivityAda
         stopNames = intent.getStringArrayListExtra("stopNames");
 
         stopsView = findViewById(R.id.stopsView);
+        recentStopsView = findViewById(R.id.recentStopsView);
         imgLocation = findViewById(R.id.imgLocation);
         imgClear = findViewById(R.id.imgClear);
         inputField = findViewById(R.id.inputField);
+        recentView = findViewById(R.id.recentView);
         inputField.requestFocus();
         inputField.setHint(entry);
         inputField.addTextChangedListener(new CustomTextWatcher());
 
-        stopsLocationList = databaseHelper.getStopsLocationList();
+        userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        inputActivityAdapter = new InputActivityAdapter(this, stopNames);
+        stopsLocationList = databaseHelper.getStopsLocationList();
+        recentSearches = databaseHelper.getRecentSearchedStops(userId);
+        inputActivityAdapter = new InputActivityAdapter(this, recentSearches, R.layout.item_recent_stop_list);
+        recentStopsView.setAdapter(inputActivityAdapter);
+        if(recentSearches.isEmpty()){
+            recentView.setVisibility(View.GONE);
+        }
+
+        inputActivityAdapter = new InputActivityAdapter(this, stopNames, R.layout.item_stop_name_list);
         stopsView.setAdapter(inputActivityAdapter);
 
         imgLocation.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +77,7 @@ public class InputActivity extends AppCompatActivity implements InputActivityAda
                     int nearestStopLocationIndex = findNearestBusStop(currentLocation.getLatitude(), currentLocation.getLongitude(), stopsLocationList);
                     String nearestBusStop = stopNames.get(nearestStopLocationIndex);
                     inputField.setText(nearestBusStop);
+                    transferSelectedData(nearestBusStop);
                 }
             }
         });
@@ -104,25 +122,25 @@ public class InputActivity extends AppCompatActivity implements InputActivityAda
 
     @Override
     public void onItemClick(String selectedItem){
-        if(entry.equals("Enter Stop Name")){
-            ArrayList<String> stopBuses = databaseHelper.getStopBuses(selectedItem);
-            removeOddIndices(stopBuses);
-            Intent intent = new Intent(InputActivity.this, EligibleBusList.class);
-            intent.putExtra("source","");
-            intent.putExtra("destination","");
-            intent.putStringArrayListExtra("eligibleBuses",stopBuses);
-            startActivity(intent);
-        }
-        else{
-            Intent resultIntent = new Intent();
-            resultIntent.putExtra("userInput", selectedItem);
-            setResult(Activity.RESULT_OK, resultIntent);
-            finish();
-        }
+        transferSelectedData(selectedItem);
+    }
+
+    private void transferSelectedData(String selectedItem) {
+        Intent resultIntent = new Intent();
+        databaseHelper.insertSearchedStop(userId,selectedItem);
+        resultIntent.putExtra("userInput", selectedItem);
+        setResult(Activity.RESULT_OK, resultIntent);
+        finish();
     }
 
     public void goBack(View view){
         getOnBackPressedDispatcher().onBackPressed();
+    }
+
+    public void goSavedPlacesPage(View v){
+        Intent intent = new Intent(InputActivity.this, SavedPlaces.class);
+        startActivityForResult(intent, 1);
+//        startActivity(intent);
     }
 
     private class CustomTextWatcher implements android.text.TextWatcher {
@@ -137,11 +155,15 @@ public class InputActivity extends AppCompatActivity implements InputActivityAda
         @Override
         public void afterTextChanged(Editable s) {
             if(!inputField.getText().toString().isEmpty()){
-                imgLocation.setVisibility(View.GONE);
+                recentView.setVisibility(View.GONE);
+//                imgLocation.setVisibility(View.GONE);
                 imgClear.setVisibility(View.VISIBLE);
             }
             else{
-                imgLocation.setVisibility(View.VISIBLE);
+                if(!recentSearches.isEmpty()) {
+                    recentView.setVisibility(View.VISIBLE);
+                }
+//                imgLocation.setVisibility(View.VISIBLE);
                 imgClear.setVisibility(View.GONE);
             }
         }
@@ -159,6 +181,15 @@ public class InputActivity extends AppCompatActivity implements InputActivityAda
                 iterator.remove();
             }
             index++;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1 && resultCode == RESULT_OK){
+            String stop = data.getStringExtra("userInput");
+            transferSelectedData(stop);
         }
     }
 }

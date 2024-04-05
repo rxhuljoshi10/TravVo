@@ -50,15 +50,18 @@ public class searchBusAdapter extends RecyclerView.Adapter<searchBusAdapter.View
         holder.item_searchBus_Source.setText(source);
         holder.item_searchBus_Destination.setText(destination);
 
+
         int colorRes = (position % 2 == 0) ? R.color.primaryBackground : R.color.secondaryBackground;
         holder.item_searchBus.setBackgroundColor(ContextCompat.getColor(holder.itemTextView.getContext(), colorRes));
 
         holder.item_searchBus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                source = databaseHelper.getSource(bus_number, 1);
+                destination = databaseHelper.getSource(bus_number, -1);
                 Intent intent = new Intent(v.getContext(), ListOfBusStops.class);
-                intent.putExtra("Source","");
-                intent.putExtra("Destination","");
+                intent.putExtra("source",source);
+                intent.putExtra("destination", destination);
                 intent.putExtra("busNumber", bus_number);
                 v.getContext().startActivity(intent);
             }

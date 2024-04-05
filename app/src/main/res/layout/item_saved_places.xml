@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/savedPlacesIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginHorizontal="10dp"
+            android:src="@drawable/ic_star" />
+        <LinearLayout
+            android:id="@+id/ItemView"
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:layout_marginStart="7sp">
+            <TextView
+                android:id="@+id/savedPlaceTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif-medium"/>
+            <TextView
+                android:id="@+id/savedPlaceAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shewalwadi Market"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:id="@+id/delView"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/icon_decrement"
+            android:layout_marginHorizontal="15dp"
+            android:layout_gravity="end|center_vertical"
+            app:tint="@color/iconColor" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/secondaryBackground" />
+</LinearLayout>

@@ -30,11 +30,21 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.util.AbstractMap;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 public class VerificationPage extends AppCompatActivity {
     String verificationID, phone;
     private EditText e1, e2, e3, e4, e5, e6;
+
+    DatabaseHelper databaseHelper = new DatabaseHelper(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -185,14 +195,38 @@ public class VerificationPage extends AppCompatActivity {
         databaseReference.child(userId).child("wallet").setValue(false);
         databaseReference.child(userId).child("walletBalance").setValue(0.0);
 
-        writeDataIntoPreference(phone, null, null, false, (float) 0.0);
+        List<Map.Entry<String, String>> savedPlacesList = new ArrayList<>();
+        Map.Entry<String, String> entry;
+        entry = new AbstractMap.SimpleEntry<>("Add Home", null);
+        savedPlacesList.add(entry);
+        entry = new AbstractMap.SimpleEntry<>("Add Work", null);
+        savedPlacesList.add(entry);
+
+        Map<String, Map.Entry<String, String>> dataMap = new HashMap<>();
+        for (int i = 0; i < savedPlacesList.size(); i++) {
+            dataMap.put("place_" + i, savedPlacesList.get(i));
+        }
+
+        databaseReference.child(userId).child("saved_places").setValue(dataMap);
+        databaseHelper.storeSavedPlacesList(savedPlacesList, userId);
+
+//        Map.Entry<String, String> entry1 = new AbstractMap.SimpleEntry<>("Add Home", null);
+//        Map.Entry<String, String> entry2 = new AbstractMap.SimpleEntry<>("Add Work", null);
+//        databaseReference.child(userId).child("saved_places").child("place_0").setValue(entry1);
+//        databaseReference.child(userId).child("saved_places").child("place_1").setValue(entry2);
+
+
+        writeDataIntoPreference(phone, null, null, false, (float) 0.0, null);
     }
 
     private void fetchUserData(String userId) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(userId);
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            private String imageUrl;
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                 if(snapshot.exists()){
                     String phone = snapshot.child("phone").getValue(String.class);
                     String name = snapshot.child("name").getValue(String.class);
@@ -200,7 +234,13 @@ public class VerificationPage extends AppCompatActivity {
                     boolean hasWallet = Boolean.TRUE.equals(snapshot.child("wallet").getValue(Boolean.class));
                     float walletBalance = snapshot.child("walletBalance").getValue(Integer.class);
 
-                    writeDataIntoPreference(phone,name, dob, hasWallet, walletBalance);
+                    StorageReference profilePicRef = FirebaseStorage.getInstance().getReference().child("profile_images/" + userId + ".jpg");
+                    profilePicRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                        imageUrl = uri.toString();
+                    });
+
+                    fetchSavedPlaces(userId);
+                    writeDataIntoPreference(phone,name, dob, hasWallet, walletBalance, imageUrl);
                 }
             }
 
@@ -209,8 +249,33 @@ public class VerificationPage extends AppCompatActivity {
         });
     }
 
+    private void fetchSavedPlaces(String userId) {
+        DatabaseReference savedPlacesReference = FirebaseDatabase.getInstance().getReference("Users").child(userId).child("saved_places");
+        savedPlacesReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<Map.Entry<String, String>> savedPlacesList = new ArrayList<>();
 
-    private void writeDataIntoPreference(String phone, String name, String dob, boolean wallet, float walletBalance) {
+                if (snapshot.exists()) {
+                    for (DataSnapshot placeSnapshot : snapshot.getChildren()) {
+                        String placeKey = placeSnapshot.getKey();
+                        String title = snapshot.child(placeKey).child("key").getValue(String.class);
+                        String address = snapshot.child(placeKey).child("value").getValue(String.class);
+                        savedPlacesList.add(new AbstractMap.SimpleEntry<>(title, address));
+                    }
+                }
+                databaseHelper.storeSavedPlacesList(savedPlacesList, userId);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(VerificationPage.this, "Something went wrong..!!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+    private void writeDataIntoPreference(String phone, String name, String dob, boolean wallet, float walletBalance, String imageUrl) {
         SharedPreferences sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("phone",phone);
@@ -218,6 +283,7 @@ public class VerificationPage extends AppCompatActivity {
         editor.putString("dob",dob);
         editor.putBoolean("wallet",wallet);
         editor.putFloat("walletBalance", walletBalance);
+        editor.putString("imagePath",imageUrl);
         editor.apply();
     }
 }

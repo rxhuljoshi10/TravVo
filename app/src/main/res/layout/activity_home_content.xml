@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <View
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:background="@color/primaryColor"/>
@@ -14,304 +14,321 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="40dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:onClick="toggleDrawer"
-                android:src="@drawable/icon_profile"
-                app:tint="@color/white" />
-
-            <ImageView
-                android:layout_width="260dp"
-                android:layout_height="80dp"
-                android:layout_gravity="center"
-                android:src="@drawable/logo" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <ImageView
-                android:id="@+id/imgWallet"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center"
-                android:layout_marginEnd="20dp"
-                android:src="@drawable/icon_wallet"
-                app:tint="@color/white" />
-
-            <!--            <TextView-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:ems="4"-->
-            <!--                android:text="10.00"-->
-            <!--                android:textSize="15sp"-->
-            <!--                android:padding="10dp"-->
-            <!--                android:textColor="@color/white"-->
-            <!--                android:background="@drawable/list_border"-->
-            <!--                android:layout_marginEnd="10dp"-->
-            <!--                android:layout_gravity="center"-->
-            <!--                android:gravity="center"/>-->
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="375dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginVertical="20dp"
-            android:background="@drawable/borders"
+            android:layout_height="match_parent"
             android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="10dp"
+                    android:onClick="toggleDrawer"
+                    android:src="@drawable/icon_profile"
+                    app:tint="@color/white" />
+
+                <ImageView
+                    android:layout_width="260dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/logo" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:id="@+id/imgWallet"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/icon_wallet"
+                    app:tint="@color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="375dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginVertical="20dp"
+                android:background="@drawable/borders"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="65dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="7sp"
+                        android:layout_marginEnd="6dp"
+                        android:src="@drawable/icon_location" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/sourceEntry"
+                            android:layout_width="270dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="3dp"
+                            android:focusable="true"
+                            android:hint="From"
+                            android:textSize="22sp" />
+
+                        <View
+                            android:layout_width="270dp"
+                            android:layout_height="1dp"
+                            android:layout_marginVertical="6dp"
+                            android:background="?android:attr/listDivider" />
+
+                        <TextView
+                            android:id="@+id/destinationEntry"
+                            android:layout_width="270dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="3dp"
+                            android:hint="To"
+                            android:textSize="22sp" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/swapBtn"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="15dp"
+                        android:src="@drawable/swap" />
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/bookTicket"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="5dp"
+                    app:cardCornerRadius="10sp"
+                    app:cardElevation="12dp">
+
+                    <TextView
+                        android:layout_width="340dp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/primaryColor"
+                        android:fontFamily="sans-serif-black"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="@string/book"
+                        android:textColor="@color/white"
+                        android:textSize="22sp" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/searchBus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="20dp"
+                    app:cardCornerRadius="10sp"
+                    app:cardElevation="12dp">
+
+                    <TextView
+                        android:layout_width="340dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-black"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="@string/searchBus"
+                        android:textSize="22sp" />
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:layout_marginTop="10dp"
+                android:background="?android:attr/listDivider" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/historyView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="5dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_history_list" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="?android:attr/listDivider" />
+
+            <com.denzcoskun.imageslider.ImageSlider
+                android:id="@+id/image_slider"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_gravity="center"
+                android:background="@drawable/borders"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="20dp"
+                app:iss_auto_cycle="true"
+                app:iss_delay="3000"
+                app:iss_period="3000"
+                app:iss_placeholder="@drawable/slider1" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:layout_marginVertical="5sp"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="65dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="7sp"
-                    android:layout_marginEnd="6dp"
-                    android:src="@drawable/icon_location" />
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/selectBus"
+                    android:layout_width="172dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginVertical="10dp"
+                    android:clickable="true"
+                    app:cardCornerRadius="10sp"
+                    app:cardElevation="5dp">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:orientation="vertical">
+                    <LinearLayout
+                        android:id="@+id/selectBusNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
 
-                    <TextView
-                        android:id="@+id/sourceEntry"
-                        android:layout_width="270dp"
-                        android:layout_height="30dp"
-                        android:layout_marginStart="3dp"
-                        android:focusable="true"
-                        android:hint="From"
-                        android:textSize="22sp" />
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="5dp"
+                            android:src="@drawable/icon_bus" />
 
-                    <View
-                        android:layout_width="270dp"
-                        android:layout_height="1dp"
-                        android:layout_marginVertical="6dp"
-                        android:background="?android:attr/listDivider" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-condensed"
+                            android:padding="5dp"
+                            android:text="Bus Numbers"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-                    <TextView
-                        android:id="@+id/destinationEntry"
-                        android:layout_width="270dp"
-                        android:layout_height="30dp"
-                        android:layout_marginStart="3dp"
-                        android:hint="To"
-                        android:textSize="22sp" />
-                </LinearLayout>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/selectStop"
+                    android:layout_width="172dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginVertical="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardCornerRadius="10sp"
+                    app:cardElevation="5dp">
 
-                <ImageView
-                    android:id="@+id/swapBtn"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="15dp"
-                    android:src="@drawable/swap" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="5dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/icon_bus_stop" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ems="5"
+                            android:fontFamily="sans-serif-condensed"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:text="Bus Stops"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
             </LinearLayout>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/bookTicket"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="5dp"
-                app:cardCornerRadius="10sp"
-                app:cardElevation="12dp">
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="170dp"-->
+<!--                android:layout_marginHorizontal="20dp"-->
+<!--                android:layout_marginVertical="20dp"-->
+<!--                app:cardElevation="8dp"-->
+<!--                app:cardCornerRadius="6dp">-->
 
-                <TextView
-                    android:layout_width="340dp"
-                    android:layout_height="wrap_content"
-                    android:background="@color/primaryColor"
-                    android:fontFamily="sans-serif-black"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="@string/book"
-                    android:textColor="@color/white"
-                    android:textSize="22sp" />
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/searchBus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="20dp"
-                app:cardCornerRadius="10sp"
-                app:cardElevation="12dp">
-
-                <TextView
-                    android:layout_width="340dp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-black"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="@string/searchBus"
-                    android:textSize="22sp" />
-            </androidx.cardview.widget.CardView>
+<!--                <fragment-->
+<!--                    android:id="@+id/gmap"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:name="com.google.android.gms.maps.SupportMapFragment"-->
+<!--                    android:layout_margin="10dp"/>-->
+<!--            </androidx.cardview.widget.CardView>-->
         </LinearLayout>
+    </ScrollView>
 
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="10dp"
-            android:layout_marginTop="10dp"
-            android:background="?android:attr/listDivider" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/historyView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_history_list" />
-
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="?android:attr/listDivider" />
-
-        <com.denzcoskun.imageslider.ImageSlider
-            android:id="@+id/image_slider"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_gravity="center"
-            android:background="@drawable/borders"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="20dp"
-            app:iss_auto_cycle="true"
-            app:iss_delay="3000"
-            app:iss_period="3000"
-            app:iss_placeholder="@drawable/slider1" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_marginVertical="5sp"
-            android:layout_marginHorizontal="20dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="5sp">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/selectBus"
-                android:layout_width="170dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="5dp"
-                android:layout_marginVertical="10dp"
-                android:clickable="true"
-                app:cardCornerRadius="10sp"
-                app:cardElevation="8dp">
-
-                <LinearLayout
-                    android:id="@+id/selectBusNumber"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="horizontal"
-                    android:padding="5dp">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="5dp"
-                        android:src="@drawable/icon_bus" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-condensed"
-                        android:padding="5dp"
-                        android:text="Bus Numbers"
-                        android:textSize="15sp" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/selectStop"
-                android:layout_width="170dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="5dp"
-                android:layout_marginVertical="10dp"
-                android:clickable="true"
-                android:focusable="true"
-                app:cardCornerRadius="10sp"
-                app:cardElevation="10dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:padding="5dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:src="@drawable/icon_bus_stop" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ems="5"
-                        android:fontFamily="sans-serif-condensed"
-                        android:gravity="center"
-                        android:padding="5dp"
-                        android:text="Bus Stops"
-                        android:textSize="15sp" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_mybookings"
+                android:layout_margin="10dp"
+                app:tint="@color/iconColor"
+                android:onClick="openBookingHistory"/>
+            <ImageView
+                android:id="@+id/myBookings"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_scanner"
+                android:onClick="openScanner"
+                android:layout_margin="10dp"/>
         </LinearLayout>
-    </LinearLayout>
-    </ScrollView>
-    <ImageView
-        android:id="@+id/myBookings"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
-        app:srcCompat="@drawable/ic_scanner"
-        android:onClick="openScanner"/>
 
-
-    <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-    <!--        android:id="@+id/myBookings"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_centerHorizontal="true"-->
-    <!--        android:layout_alignParentBottom="true"-->
-    <!--        android:layout_marginBottom="20dp"-->
-    <!--        app:srcCompat="@drawable/ic_mybookings"-->
-    <!--        android:onClick="openScanner"/>-->
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

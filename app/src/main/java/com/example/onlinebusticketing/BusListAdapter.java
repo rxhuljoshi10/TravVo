@@ -38,8 +38,8 @@ public class BusListAdapter extends RecyclerView.Adapter<BusListAdapter.ViewHold
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), ListOfBusStops.class);
-                intent.putExtra("Source",source);
-                intent.putExtra("Destination",destination);
+                intent.putExtra("source",source);
+                intent.putExtra("destination",destination);
                 intent.putExtra("busNumber", bus_number);
                 v.getContext().startActivity(intent);
             }
