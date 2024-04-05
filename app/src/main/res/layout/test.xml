@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Ticket_Summary">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:title="Confirm Booking Details"
+        app:titleTextColor="@color/white"/>
+
+    <TextView
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/secondaryBackground"
+        android:text="@string/eligibleBus"
+        android:paddingHorizontal="10dp"
+        android:textSize="15sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/busList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="8sp"
+        android:layout_marginBottom="5dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_bus_list" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/secondaryBackground"
+        android:text="@string/trip"
+        android:paddingHorizontal="10dp"
+        android:textSize="15sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="17dp">
+
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/icon_location" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/sourceView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Source"
+                android:textSize="25sp"
+                android:fontFamily="sans-serif-medium" />
+            <View
+                android:layout_marginTop="5dp"
+                android:layout_width="350dp"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider" />
+            <TextView
+                android:id="@+id/destinationView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Destination"
+                android:textSize="25sp"
+                android:fontFamily="sans-serif-medium" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/secondaryBackground"
+        android:text="@string/ticketText"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="2dp"
+        android:textSize="15sp"/>
+
+    <LinearLayout
+        android:layout_marginTop="10sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="25dp"
+        android:layout_marginBottom="15dp">
+        <TextView
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="FULL"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" :  ₹"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/fullPriceView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="10"
+            android:ems="3"
+            android:textSize="20sp" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="decrementCounter"
+            android:src="@drawable/icon_decrement"
+            android:layout_gravity="center"
+            app:tint="@color/iconColor" />
+
+        <TextView
+            android:id="@+id/counterFullView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-smallcaps"
+            android:layout_marginHorizontal="15dp"
+            android:gravity="center_horizontal"
+            android:text="1"
+            android:ems="1"
+            android:textSize="22sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_gravity="center"
+            android:src="@drawable/icon_increment"
+            android:onClick="incrementCounter"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="25dp">
+        <TextView
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:text="HALF"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" :  ₹"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-light"/>
+
+        <TextView
+            android:id="@+id/halfPriceView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:ems="3"
+            android:textSize="18sp" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="decrementHalfCounter"
+            android:src="@drawable/icon_decrement"
+            android:layout_gravity="center"
+            app:tint="@color/iconColor" />
+
+        <TextView
+            android:id="@+id/counterHalfView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="15dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:gravity="center_horizontal"
+            android:text="0"
+            android:ems="1"
+            android:textSize="22sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_gravity="center"
+            android:src="@drawable/icon_increment"
+            android:onClick="incrementHalfCounter"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="3dp"
+        android:background="?android:attr/listDivider"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5sp"
+        android:layout_marginHorizontal="20dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginEnd="18dp"
+        android:orientation="horizontal"
+        android:onClick="toggleTicketSummary">
+
+        <TextView
+            android:id="@+id/viewSummaryView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View Summary"
+            android:textSize="12sp"
+            android:layout_gravity="end"
+            android:textColor="@color/primaryColor"/>
+
+        <ImageView
+            android:id="@+id/indicatorImg"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_key_down" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ticketBill"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="40dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="43sp"
+                android:layout_height="wrap_content"
+                android:text="@string/adult"
+                style="@style/ticketPriceSummary"/>
+
+            <TextView
+                android:id="@+id/counterFullView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:ems="1"
+                style="@style/ticketPriceSummary"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" X   ₹"
+                style="@style/ticketPriceSummary"/>
+
+            <TextView
+                android:id="@+id/fullSinglePrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10"
+                style="@style/ticketPriceSummary"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/totalFullPriceView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="₹10"
+                android:layout_marginEnd="15dp"
+                style="@style/ticketPriceSummary"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="43sp"
+                android:layout_height="wrap_content"
+                android:text="@string/half"
+                style="@style/ticketPriceSummary"/>
+
+            <TextView
+                android:id="@+id/counterHalfView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:ems="1"
+                style="@style/ticketPriceSummary"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" X   ₹"
+                style="@style/ticketPriceSummary"/>
+
+            <TextView
+                android:id="@+id/halfSinglePrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                style="@style/ticketPriceSummary"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/totalHalfPriceView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="₹0"
+                android:layout_marginEnd="15dp"
+                style="@style/ticketPriceSummary"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="350dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:background="?android:attr/listDivider"
+            android:layout_marginVertical="5sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="50dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total"
+            android:textSize="20sp"
+            android:fontFamily="sans-serif-black"/>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/totalPriceView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="₹10"
+            android:textSize="20sp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:layout_gravity="end"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/secondaryBackground"
+        android:layout_marginTop="15sp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/walletView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="10dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/borders">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:checked="true" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TravVo Wallet"
+                    android:fontFamily="sans-serif-black"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/walletBalanceView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Balance : ₹10.0"
+                    android:layout_marginStart="3sp"
+                    android:textSize="16sp" />
+            </LinearLayout>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/icon_wallet"
+                android:layout_margin="10dp"
+                android:layout_gravity="center"
+                app:tint="@color/iconColor" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="55dp"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:id="@+id/btnSwipe"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:textSize="23sp"
+                android:padding="10dp"
+                android:gravity="end|center"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:paddingEnd="30sp"
+                android:text="Swipe To Pay" />
+            <View
+                android:id="@+id/coverView"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="30dp"
+                android:layout_gravity="start|center"
+                android:background="@color/primaryColor"/>
+
+            <ImageView
+                android:id="@+id/viewDraggable"
+                android:layout_width="65dp"
+                android:layout_height="67dp"
+                android:src="@drawable/right_swipe"
+                android:layout_gravity="center|start"/>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:indeterminateTint="@color/white"
+                android:visibility="invisible"/>
+
+            <ImageView
+                android:id="@+id/tick_animation"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:visibility="invisible"
+                android:src="@drawable/animated_check"/>
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
+            android:textColor="@color/orange"
+            android:text="@string/termsConditions"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+</LinearLayout>
