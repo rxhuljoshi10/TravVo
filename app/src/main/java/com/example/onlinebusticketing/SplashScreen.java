@@ -43,7 +43,14 @@ public class SplashScreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashScreen.this, LoginPage.class);
+                Intent intent;
+                if(isFirstLaunch){
+                    intent = new Intent(SplashScreen.this, LanguageSelection.class);
+                    intent.putExtra("entry", "firstLaunch");
+                }
+                else {
+                    intent = new Intent(SplashScreen.this, LoginPage.class);
+                }
                 startActivity(intent);
                 finish();
             }

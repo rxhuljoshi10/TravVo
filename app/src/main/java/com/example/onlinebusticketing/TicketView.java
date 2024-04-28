@@ -1,36 +1,43 @@
 package com.example.onlinebusticketing;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Random;
 
 public class TicketView extends AppCompatActivity {
     TextView ticketId, dateView, timeView, sourceView, destinationView, totalPriceView,
-            counterFullView2, fullSinglePrice, totalFullPriceView,
-            counterHalfView2, halfSinglePrice, totalHalfPriceView,
-            amountPaid, bookingId;
+            fullTicketView, halfTicketView, amountPaid, bookingId, titleView;
     ArrayList<String> eligibleBuses = new ArrayList<>();
+
     TicketData ticketData;
 
     DatabaseHelper databaseHelper = new DatabaseHelper(this);
-    String bid, entry, userId;
+
+    String entry;
 
     private ImageView imageViewQR;
+    Button confirmBtn;
+    LinearLayout cancelTicketView, bookAgainView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,20 +49,18 @@ public class TicketView extends AppCompatActivity {
         timeView = findViewById(R.id.timeView);
         sourceView = findViewById(R.id.sourceView);
         destinationView = findViewById(R.id.destinationView);
-//        fullSinglePrice = findViewById(R.id.fullSinglePrice);
-//        totalFullPriceView = findViewById(R.id.totalFullPriceView);
-//        counterFullView2 = findViewById(R.id.counterFullView2);
-//        counterHalfView2 = findViewById(R.id.counterHalfView2);
-//        halfSinglePrice = findViewById(R.id.halfSinglePrice);
-//        totalHalfPriceView = findViewById(R.id.totalHalfPriceView);
+        fullTicketView = findViewById(R.id.fullTicketView);
+        halfTicketView = findViewById(R.id.halfTicketView);
         totalPriceView = findViewById(R.id.totalPriceView);
         amountPaid = findViewById(R.id.amountPaid);
         bookingId = findViewById(R.id.bookingId);
         imageViewQR = findViewById(R.id.imageViewQR);
-        userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        confirmBtn = findViewById(R.id.confirmBtn);
+        cancelTicketView = findViewById(R.id.cancelView);
+        titleView = findViewById(R.id.titleView);
+        bookAgainView = findViewById(R.id.bookAgainView);
 
         setTicketData();
-        saveData();
     }
 
     private void setTicketData() {
@@ -66,47 +71,28 @@ public class TicketView extends AppCompatActivity {
         if(ticketData!=null) {
             sourceView.setText(ticketData.source);
             destinationView.setText(ticketData.destination);
-//            counterFullView2.setText(String.valueOf(ticketData.fullCounter));
-//            fullSinglePrice.setText(String.valueOf(ticketData.fullPrice));
-//            totalFullPriceView.setText(String.valueOf("₹"+ticketData.totalFullPrice));
-//
-//            counterHalfView2.setText(String.valueOf(ticketData.halfCounter));
-//            halfSinglePrice.setText(String.valueOf(ticketData.halfPrice));
-//            totalHalfPriceView.setText("₹"+ticketData.totalHalfPrice);
 
             totalPriceView.setText("₹"+ticketData.totalPrice);
+            fullTicketView.setText("Full : "+ ticketData.fullCounter+" x ₹"+ticketData.fullPrice);
+            halfTicketView.setText("Half : "+ ticketData.halfCounter+" x ₹"+ticketData.halfPrice);
             amountPaid.setText("Amount Paid : ₹"+ticketData.totalPrice);
-            Calendar c = Calendar.getInstance();
-            int year = c.get(Calendar.YEAR) % 100;
-            int month = c.get(Calendar.MONTH)+1;
-            int day = c.get(Calendar.DAY_OF_MONTH);
-            int hour = c.get(Calendar.HOUR_OF_DAY);
 
-            int min = c.get(Calendar.MINUTE);
+            dateView.setText(ticketData.tDate);
+            timeView.setText(ticketData.tTime);
 
-            dateView.setText(day +"/"+ month +"/"+year);
-            timeView.setText(hour +":"+min);
+            bookingId.setText("Booking ID : "+ ticketData.bookingId);
 
-            bid = getRandomNumbers();
-            bookingId.setText("Booking ID : "+bid);
-            generateQRCode(bid);
+            if(!ticketData.status.equals("Cancelled")) {
+                imageViewQR.setVisibility(View.VISIBLE);
+//                confirmBtn.setVisibility(View.VISIBLE);
+                bookAgainView.setVisibility(View.GONE);
+                cancelTicketView.setVisibility(View.VISIBLE);
+                generateQRCode(ticketData.bookingId);
+            }
+            else {
+                titleView.setText("Booking Cancelled");
+            }
         }
-    }
-
-    private String getRandomNumbers() {
-        Random random = new Random();
-        int min = 10000000; // Minimum 8-digit number
-        int max = 99999999; // Maximum 8-digit number
-        return String.valueOf(random.nextInt(max - min + 1) + min);
-    }
-
-    private void saveData(){
-//        if(entry.equals("book")) {
-//            TicketData bookingDetails = new TicketData(ticketData.source, ticketData.destination, ticketData.totalPrice, dateView.getText().toString(), timeView.getText().toString(), bid);
-//            databaseHelper.addBookingDetails(bookingDetails, userId);
-//        }
-        TicketData bookingDetails = new TicketData(ticketData.source, ticketData.destination, ticketData.totalPrice, dateView.getText().toString(), timeView.getText().toString(), bid);
-        databaseHelper.addBookingDetails(bookingDetails, userId);
     }
 
     public void displayEligibleBuses(View v){
@@ -128,7 +114,7 @@ public class TicketView extends AppCompatActivity {
     private void generateQRCode(String data) {
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
         try {
-            BitMatrix bitMatrix = multiFormatWriter.encode(data, BarcodeFormat.QR_CODE, 100, 100);
+            BitMatrix bitMatrix = multiFormatWriter.encode(data, BarcodeFormat.QR_CODE, 150, 150);
             Bitmap bitmap = toBitmap(bitMatrix);
             imageViewQR.setImageBitmap(bitmap);
             imageViewQR.setVisibility(android.view.View.VISIBLE);
@@ -143,13 +129,48 @@ public class TicketView extends AppCompatActivity {
         Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                bmp.setPixel(x, y, bitMatrix.get(x, y) ? android.graphics.Color.BLACK : getColor(R.color.primaryColor));
+                bmp.setPixel(x, y, bitMatrix.get(x, y) ? android.graphics.Color.BLACK : getColor(R.color.grey));
             }
         }
         return bmp;
     }
 
+    public void cancelTicket(View v){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Confirm Cancellation..!")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(TicketView.this, "Ticket Cancelled!", Toast.LENGTH_SHORT).show();
+                        databaseHelper.updateBookingStatus(ticketData.bookingId, "Cancelled");
+                        FirebaseDatabase db = FirebaseDatabase.getInstance();
+
+                        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+                        DatabaseReference databaseReference = db.getReference("Users").child(userId).child("Bookings").child(ticketData.tid);
+                        databaseReference.child("status").setValue("Cancelled");
+                        getOnBackPressedDispatcher().onBackPressed();
+                        finish();
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+
+                .show();
+    }
     public void previous(View v){
         getOnBackPressedDispatcher().onBackPressed();
+        finish();
+    }
+
+    public void bookAgain(View view) {
+        Intent intent = new Intent(TicketView.this, Ticket_Summary.class);
+        intent.putExtra("source", ticketData.source);
+        intent.putExtra("destination", ticketData.destination);
+        intent.putExtra("eligibleBuses", eligibleBuses);
+        startActivity(intent);
     }
 }

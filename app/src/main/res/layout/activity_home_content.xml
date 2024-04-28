@@ -32,16 +32,21 @@
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginHorizontal="10dp"
                     android:onClick="toggleDrawer"
                     android:src="@drawable/icon_profile"
                     app:tint="@color/white" />
 
+<!--                <ImageView-->
+<!--                    android:layout_width="260dp"-->
+<!--                    android:layout_height="80dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:src="@drawable/logo2" />-->
                 <ImageView
-                    android:layout_width="260dp"
-                    android:layout_height="80dp"
-                    android:layout_gravity="center"
+                    android:layout_width="280dp"
+                    android:layout_height="53dp"
+                    android:layout_gravity="center_horizontal"
                     android:src="@drawable/logo" />
 
                 <Space
@@ -53,7 +58,7 @@
                     android:id="@+id/imgWallet"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginEnd="20dp"
                     android:src="@drawable/icon_wallet"
                     app:tint="@color/white" />
@@ -94,7 +99,7 @@
                             android:layout_height="30dp"
                             android:layout_marginStart="3dp"
                             android:focusable="true"
-                            android:hint="From"
+                            android:hint="@string/From"
                             android:textSize="22sp" />
 
                         <View
@@ -108,7 +113,7 @@
                             android:layout_width="270dp"
                             android:layout_height="30dp"
                             android:layout_marginStart="3dp"
-                            android:hint="To"
+                            android:hint="@string/To"
                             android:textSize="22sp" />
                     </LinearLayout>
 
@@ -237,7 +242,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-condensed"
                             android:padding="5dp"
-                            android:text="Bus Numbers"
+                            android:text="@string/bus_numbers"
                             android:textSize="15sp" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -273,7 +278,7 @@
                             android:fontFamily="sans-serif-condensed"
                             android:gravity="center"
                             android:padding="5dp"
-                            android:text="Bus Stops"
+                            android:text="@string/bus_stops"
                             android:textSize="15sp" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>

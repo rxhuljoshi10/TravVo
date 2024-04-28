@@ -7,6 +7,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
@@ -17,6 +18,7 @@ import com.bumptech.glide.request.target.Target;
 
 public class SuccessPayment extends AppCompatActivity {
     ImageView imageView;
+    CardView button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,13 @@ public class SuccessPayment extends AppCompatActivity {
         setContentView(R.layout.activity_success_payment);
 
         imageView = findViewById(R.id.successTick);
+        button = findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goBack();
+            }
+        });
 
         Glide.with(this)
                 .asGif()
@@ -59,8 +68,5 @@ public class SuccessPayment extends AppCompatActivity {
         finish();
     }
 
-    public void Continue(View view){
-        goBack();
-    }
 
 }

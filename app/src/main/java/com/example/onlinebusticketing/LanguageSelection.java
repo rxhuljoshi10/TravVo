@@ -25,11 +25,15 @@ public class LanguageSelection extends AppCompatActivity {
     private List<ImageView> checkImageViews;
 
     int index = 0;
+    String entry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_language_selection);
+
+        Intent intent = getIntent();
+        entry = intent.getStringExtra("entry");
 
 
         cardViews = new ArrayList<>();
@@ -90,8 +94,13 @@ public class LanguageSelection extends AppCompatActivity {
         setLocal(LanguageSelection.this, getLang(index));
         SharedPreferences sharedPreferences = getSharedPreferences("Cookies", Context.MODE_PRIVATE);
         sharedPreferences.edit().putInt("langIndex", index).putString("appLang", getLang(index)).apply();
+        if(entry.equals("firstLaunch")) {
+            startActivity(new Intent(this, LoginPage.class));
+        }
+        else {
+            startActivity(new Intent(this, Home.class));
+        }
         finish();
-        startActivity(new Intent(this, Home.class));
     }
 
     private String getLang(int index) {
@@ -122,5 +131,10 @@ public class LanguageSelection extends AppCompatActivity {
         Configuration config = resources.getConfiguration();
         config.setLocale(locale);
         resources.updateConfiguration(config, resources.getDisplayMetrics());
+    }
+
+    public void previous(View v){
+        getOnBackPressedDispatcher().onBackPressed();
+        finish();
     }
 }

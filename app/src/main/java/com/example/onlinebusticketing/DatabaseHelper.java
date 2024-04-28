@@ -31,7 +31,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             "stop TEXT);";
 
     private static final String TABLE_BOOKING_HISTORY = "tableBookingHistory";
-    private static final String CREATE_TABLE_5 = "CREATE TABLE "+ TABLE_BOOKING_HISTORY +"(tid INTEGER PRIMARY KEY AUTOINCREMENT, uid INTEGER, bid INTEGER, bSource varchar(20), bDestination varchar(20), bPrice INTEGER, bDate varchar(15), bTime varchar(10));";
+    private static final String CREATE_TABLE_5 = "CREATE TABLE "+ TABLE_BOOKING_HISTORY +"(tid INTEGER PRIMARY KEY, uid INTEGER, bid INTEGER, bSource varchar(20), bDestination varchar(20), fullPrice INTEGER, halfPrice INTEGER, fullCounter INTEGER, halfCounter INTEGER, totalFullPrice INTEGER, totalHalfPrice INTEGER, totalPrice INTEGER, bDate varchar(15), bTime varchar(10), status varchar(20));";
 
     private static final String TABLE_SAVED_PLACES = "SavedPlaces";
     private static final String CREATE_TABLE_6 = "CREATE TABLE "+ TABLE_SAVED_PLACES +"(sid INTEGER PRIMARY KEY AUTOINCREMENT, title varchar(30), address varchar(30));";
@@ -399,17 +399,29 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public void addBookingDetails(TicketData bookingDetails, String userId) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues v = new ContentValues();
+        v.put("tid", bookingDetails.tid);
         v.put("uid", userId);
         v.put("bid", bookingDetails.bookingId);
         v.put("bSource", bookingDetails.source);
         v.put("bDestination", bookingDetails.destination);
-        v.put("bPrice", bookingDetails.totalPrice);
+        v.put("fullPrice", bookingDetails.fullPrice);
+        v.put("halfPrice", bookingDetails.halfPrice);
+        v.put("fullCounter", bookingDetails.fullCounter);
+        v.put("halfCounter", bookingDetails.halfCounter);
+        v.put("totalFullPrice", bookingDetails.totalFullPrice);
+        v.put("totalHalfPrice", bookingDetails.totalHalfPrice);
+        v.put("totalPrice", bookingDetails.totalPrice);
         v.put("bDate", bookingDetails.tDate);
         v.put("bTime", bookingDetails.tTime);
+        v.put("status", bookingDetails.status);
 
         db.insert(TABLE_BOOKING_HISTORY, null, v);
     }
 
+    public void clearBookingHistory(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_BOOKING_HISTORY, null, null);
+    }
     @SuppressLint("Range")
     public List<TicketData> getAllBookingDetails(String userId) {
         List<TicketData> bookingList = new ArrayList<>();
@@ -418,19 +430,40 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_BOOKING_HISTORY+ " WHERE uid = ? ORDER BY tid DESC", new String[]{userId});
         if (cursor.moveToFirst()) {
             do {
+                String tid = cursor.getString(cursor.getColumnIndex("tid"));
+                String bid = cursor.getString(cursor.getColumnIndex("bid"));
                 String source = cursor.getString(cursor.getColumnIndex("bSource"));
                 String destination = cursor.getString(cursor.getColumnIndex("bDestination"));
-                int totalPrice = cursor.getInt(cursor.getColumnIndex("bPrice"));
+                int fullPrice = cursor.getInt(cursor.getColumnIndex("fullPrice"));
+                int halfPrice= cursor.getInt(cursor.getColumnIndex("halfPrice"));
+                int fullCounter = cursor.getInt(cursor.getColumnIndex("fullCounter"));
+                int halfCounter = cursor.getInt(cursor.getColumnIndex("halfCounter"));
+                int totalFullPrice = cursor.getInt(cursor.getColumnIndex("totalFullPrice"));
+                int totalHalfPrice = cursor.getInt(cursor.getColumnIndex("totalHalfPrice"));
+                int totalPrice = cursor.getInt(cursor.getColumnIndex("totalPrice"));
                 String tDate = cursor.getString(cursor.getColumnIndex("bDate"));
                 String tTime = cursor.getString(cursor.getColumnIndex("bTime"));
-                String bookingId = cursor.getString(cursor.getColumnIndex("bid"));
+                String status = cursor.getString(cursor.getColumnIndex("status"));
 
-                TicketData bookingDetails = new TicketData(source, destination, totalPrice, tDate, tTime, bookingId);
+                TicketData bookingDetails = new TicketData(tid, bid, source, destination,fullPrice, halfPrice, fullCounter, halfCounter, totalFullPrice, totalHalfPrice, totalPrice, tDate, tTime, status);
                 bookingList.add(bookingDetails);
             } while (cursor.moveToNext());
         }
         cursor.close();
         return bookingList;
+    }
+
+    public void updateBookingStatus(String bid, String newStatus) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("status", newStatus);
+
+        String selection = "bid = ?";
+        String[] selectionArgs = {bid};
+
+        db.update(TABLE_BOOKING_HISTORY, values, selection, selectionArgs);
+        db.close();
     }
 
     public void storeSavedPlacesList(List<Map.Entry<String, String>> dataList, String userId) {

@@ -267,7 +267,7 @@
             <TextView
                 android:layout_width="43sp"
                 android:layout_height="wrap_content"
-                android:text="@string/adult"
+                android:text="@string/full"
                 style="@style/ticketPriceSummary"/>
 
             <TextView

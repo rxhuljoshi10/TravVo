@@ -6,39 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".InputActivity">
 
-<!--    <androidx.cardview.widget.CardView-->
-<!--        android:id="@+id/imgLocation"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="bottom|center_horizontal"-->
-<!--        android:layout_marginBottom="20dp"-->
-<!--        android:layout_marginHorizontal="10dp"-->
-<!--        app:cardElevation="12sp"-->
-<!--        app:cardCornerRadius="70dp">-->
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="horizontal"-->
-<!--            android:background="@color/primaryColor"-->
-<!--            android:padding="15dp">-->
-<!--            <ImageView-->
-<!--                android:layout_width="25dp"-->
-<!--                android:layout_height="25dp"-->
-<!--                android:src="@drawable/icon_mylocation"-->
-<!--                app:tint="@color/white"-->
-<!--                android:layout_marginEnd="7sp"-->
-<!--                android:layout_gravity="center_vertical"/>-->
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Current Location"-->
-<!--                android:fontFamily="sans-serif-black"-->
-<!--                android:textColor="@color/white"-->
-<!--                android:textSize="20sp" />-->
-<!--        </LinearLayout>-->
-<!--    </androidx.cardview.widget.CardView>-->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -67,13 +34,6 @@
                 android:layout_gravity="center"
                 style="@style/NoUnderlineAutoCompleteTextView"/>
 
-<!--            <ImageView-->
-<!--                android:id="@+id/imgLocation"-->
-<!--                android:layout_width="30dp"-->
-<!--                android:layout_height="30dp"-->
-<!--                android:src="@drawable/icon_mylocation"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:visibility="visible"/>-->
             <ImageView
                 android:id="@+id/imgClear"
                 android:layout_width="25dp"
@@ -99,7 +59,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Recent Searches"
+                android:text="@string/recent_searches"
                 android:layout_marginStart="12dp"
                 android:textSize="16sp"
                 android:fontFamily="sans-serif-black"/>
@@ -140,8 +100,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+            android:layout_height="55dp"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
             <LinearLayout
                 android:id="@+id/imgLocation"
                 android:layout_width="205dp"
@@ -155,15 +116,19 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Current Location"
+                    android:text="@string/current_location"
+                    android:textSize="17sp"
                     android:layout_marginStart="10dp"
-                    android:fontFamily="sans-serif-medium" />
+                    android:fontFamily="sans-serif-black" />
             </LinearLayout>
+
             <View
+                android:id="@+id/centerView"
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:background="@color/darkgrey"
-                android:layout_marginVertical="7dp"/>
+                android:layout_marginVertical="7dp" />
+
             <LinearLayout
                 android:id="@+id/favourites"
                 android:layout_width="205dp"
@@ -178,9 +143,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Favourites"
+                    android:text="@string/favourites"
+                    android:textSize="17sp"
                     android:layout_marginStart="10dp"
-                    android:fontFamily="sans-serif-medium" />
+                    android:fontFamily="sans-serif-black" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

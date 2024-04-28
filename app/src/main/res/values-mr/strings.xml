@@ -1,0 +1,74 @@
+<resources>
+    <string name="app_name">TravVo</string>
+    <string name="phone_hint">मोबाइल नंबर</string>
+    <string name="otp">सुरू</string>
+    <string name="login_label">सुरू करण्यासाठी लॉगिन करा</string>
+    <string name="lang_eng">इंग्रजी</string>
+    <string name="lang_hi">हिंदी</string>
+    <string name="lang_mr">मराठी</string>
+
+    <string name="verify_otp">चाचणी आणि सुरू</string>
+    <string name="verify_otp_label">आपल्याकडून पाठवलेल्या OTP प्रविष्ट करा \n \u0020\u0020\u0020\u0020\u0020 +९१</string>
+
+    <string name="welcome">आपल्या अॅप नावास स्वागत</string>
+    <string name="logout">बाहेर पडणे</string>
+    <string name="title_activity_home">होम</string>
+    <string name="navigation_drawer_open">नेव्हिगेशन ड्रॉअर उघडा</string>
+    <string name="navigation_drawer_close">नेव्हिगेशन ड्रॉअर बंद करा</string>
+    <string name="nav_header_title">एंड्रॉइड स्टूडियो</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">नेव्हिगेशन मुखपृष्ठ</string>
+    <string name="nav_fav">Favourites</string>
+    <string name="nav_bookings">My Bookings</string>
+
+    <string name="searchBus">बस शोधा</string>
+
+    <string name="menu_home">होम</string>
+    <string name="menu_logout">बाहेर पडा</string>
+    <string name="menu_about">आमच्याबद्दल</string>
+    <string name="menu_help">मदत</string>
+
+    <string name="option_profile">प्रोफाइल</string>
+    <string name="option_settings">सेटिंग्ज</string>
+    <string name="option_theme">थीम</string>
+
+    <string name="fragment_about">हा आमच्याबद्दल आहे</string>
+    <string name="fragment_help">हा मदत विभाग आहे</string>
+
+    <string name="source">स्रोत</string>
+    <string name="destination">गंतव्य</string>
+
+    <string name="book">तिकीटे बुक करा</string>
+
+    <string name="proceed">सुरू करा</string>
+    <string name="recent">अलिकडील शोध</string>
+
+
+    <string name="eligibleBus">योग्य बस</string>
+    <string name="trip">प्रवास</string>
+    <string name="ticketText">तिकीट</string>
+    <string name="full">पूर्ण : </string>
+    <string name="half">अर्ध : </string>
+    <string name="termsConditions">अटी व अटीचे अटी</string>
+    <string name="pay">स्वाइप टू पे  ₹</string>
+
+    <string name="signature_title">आपली हस्ताक्षरे</string>
+    <string name="sync_title">एक्स्प्रेस नेटवर्क कनेक्शन सेट करा</string>
+    <string name="attachment_title">प्रतिक्रिया डाउनलोड करा</string>
+    <string name="attachment_summary_on">आपल्याला स्वतःची आवश्यकता असेल तेव्हा प्रतिनिधी ईमेल्ससाठी स्वतःच्या प्रतिक्रिया डाउनलोड करा</string>
+    <string name="attachment_summary_off">प्रतिनिधी ईमेल्ससाठी केवळ प्रतिक्रिया डाउनलोड करा</string>
+
+    <string name="wallet">बटवा</string>
+    <string name="recharge">बटवा रिचार्ज करा</string>
+    <string name="rechargeTextView">Recharge TravVo Wallet</string>
+
+    <string name="walletBenefits1">Extremely fast payments!</string>
+    <string name="walletBenefits2">No need to struggle with cash anymore for your bus tickets</string>
+    <string name="walletBenefits3">Enjoy cashbacks and offeres for future payments.</string>
+
+
+    <string name="From">फ्रॉम</string>
+    <string name="To">टू</string>
+
+
+</resources>

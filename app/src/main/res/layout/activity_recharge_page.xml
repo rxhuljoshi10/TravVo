@@ -165,7 +165,7 @@
             android:textColor="@color/design_default_color_background"
             android:fontFamily="sans-serif-black"
             android:background="@drawable/disabled_backgroud"
-            android:paddingVertical="5dp"
+            android:paddingVertical="8dp"
             android:enabled="false"/>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

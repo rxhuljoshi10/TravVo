@@ -13,7 +13,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         app:titleTextColor="@color/white"
-        app:title="@null"
+        app:title="Wallet Activation"
         android:layout_marginBottom="15dp"/>
 
     <TextView
@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:text="To activate TravVo Wallet"
+        android:text="to activate TravVo Wallet"
         android:layout_marginHorizontal="15dp"/>
 
     <TextView
@@ -38,13 +38,13 @@
         android:text="Full Name"
         android:textSize="20sp"
         android:layout_marginHorizontal="15dp"
-        android:layout_marginTop="80dp"/>
+        android:layout_marginTop="50dp"/>
     <EditText
         android:id="@+id/walletName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="15dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="3dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -59,7 +59,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="15dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="3dp"/>
 
     <Space
         android:layout_width="wrap_content"
@@ -69,19 +69,21 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp"
+        android:padding="5dp"
         android:orientation="horizontal">
 
         <CheckBox
             android:id="@+id/checkboxTerms"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8sp" />
+            android:layout_marginTop="8sp"
+            android:layout_gravity="center_vertical"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="By entering Aadhaar number, I hereby agree and voluntarily declare that I have no objection in authenticating myself with Aadhar based OTP authentication."
+            android:layout_marginStart="5dp"
+            android:text="By entering Aadhaar number, I hereby agree and voluntarily declare that I have no objection in authenticating myself with Aadhaar based OTP authentication."
             />
     </LinearLayout>
 

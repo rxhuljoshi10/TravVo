@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical"
+    tools:context=".TermsConditions">
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_key_left"
+        android:onClick="previous"
+        app:tint="@color/iconColor" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            android:paddingHorizontal="10dp">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Terms and Conditions"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/tvPrivacy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Privacy Statement"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/tvPrivacyContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/privacy_statement_text"/>
+
+            <!-- Confidentiality -->
+            <TextView
+                android:id="@+id/tvConfidentiality"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Confidentiality"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/tvConfidentialityContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/confidentiality_text"/>
+
+            <!-- User Account -->
+            <TextView
+                android:id="@+id/tvUserAccount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="User Account"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/tvUserAccountContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/user_account_text"/>
+
+            <!-- License -->
+            <TextView
+                android:id="@+id/tvLicense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="License"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/tvLicenseContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/license_text"/>
+
+            <!-- Usage Restrictions -->
+            <TextView
+                android:id="@+id/tvUsageRestrictions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Usage Restrictions"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/tvUsageRestrictionsContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/usage_restrictions_text"/>
+
+            <!-- Contact Information -->
+            <TextView
+                android:id="@+id/tvContactInformation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Contact Information"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/tvContactInformationContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/contact_information_text"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

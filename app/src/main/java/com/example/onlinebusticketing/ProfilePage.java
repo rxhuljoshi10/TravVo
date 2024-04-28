@@ -162,8 +162,9 @@ public class ProfilePage extends AppCompatActivity {
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(this,
                 (view, selectedYear, selectedMonth, selectedDay) -> {
-                    String selectedDate = selectedYear + "-" + (selectedMonth + 1) + "-" + selectedDay;
+                    String selectedDate = selectedDay + "-" + (selectedMonth + 1) + "-" + selectedYear;
                     userDOBView.setText(selectedDate);
+                    userDOBView.setVisibility(View.VISIBLE);
                     updateUserData("dob",selectedDate);
                 }, year, month, day);
 

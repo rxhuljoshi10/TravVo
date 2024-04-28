@@ -34,19 +34,12 @@ public class BookingHistory extends AppCompatActivity implements BookingHistoryA
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_key_left);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        bookingDetailsList = databaseHelper.getAllBookingDetails(userId);
-        if(bookingDetailsList.size() == 0){
-            textView.setVisibility(View.VISIBLE);
-            recentBookingList.setVisibility(View.GONE);
-        }
-        BookingHistoryAdapter adapter = new BookingHistoryAdapter(this, bookingDetailsList);
-        recentBookingList.setAdapter(adapter);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         getOnBackPressedDispatcher().onBackPressed();
+        finish();
         return super.onOptionsItemSelected(item);
     }
 
@@ -58,5 +51,18 @@ public class BookingHistory extends AppCompatActivity implements BookingHistoryA
         intent.putExtra("eligibleBuses", eligibleBuses);
         intent.putExtra("entry","view");
         startActivity(intent);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        bookingDetailsList = databaseHelper.getAllBookingDetails(userId);
+        if(bookingDetailsList.size() == 0){
+            textView.setVisibility(View.VISIBLE);
+            recentBookingList.setVisibility(View.GONE);
+        }
+        BookingHistoryAdapter adapter = new BookingHistoryAdapter(this, bookingDetailsList);
+        recentBookingList.setAdapter(adapter);
     }
 }

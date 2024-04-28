@@ -23,7 +23,7 @@ public class SavedPlaces extends AppCompatActivity implements SavedPlacesAdapter
     List<Map.Entry<String, String>> savedPlacesList = new ArrayList<>();
     RecyclerView savedPlacesView;
     DatabaseHelper databaseHelper = new DatabaseHelper(this);
-    String userId;
+    String userId, entry;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,12 +33,16 @@ public class SavedPlaces extends AppCompatActivity implements SavedPlacesAdapter
         savedPlacesView = findViewById(R.id.savedPlacesView);
         savedPlacesList = databaseHelper.getSavedPlacesList(userId);
 
+        Intent intent= getIntent();
+        entry = intent.getStringExtra("entry");
+
         SavedPlacesAdapter savedPlacesAdapter = new SavedPlacesAdapter(this,this, savedPlacesList);
         savedPlacesView.setAdapter(savedPlacesAdapter);
     }
 
     public void previous(View v){
         getOnBackPressedDispatcher().onBackPressed();
+        finish();
     }
 
     public void addNewSavedPlace(View v){
@@ -57,10 +61,12 @@ public class SavedPlaces extends AppCompatActivity implements SavedPlacesAdapter
             startActivityForResult(intent, 1);
         }
         else {
-            Intent resultIntent = new Intent();
-            resultIntent.putExtra("userInput", selectedItem.getValue());
-            setResult(Activity.RESULT_OK, resultIntent);
-            finish();
+            if(entry.equals("Select")) {
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("userInput", selectedItem.getValue());
+                setResult(Activity.RESULT_OK, resultIntent);
+                finish();
+            }
         }
     }
 

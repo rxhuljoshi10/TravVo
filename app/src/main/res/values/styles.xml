@@ -26,12 +26,12 @@
     
     <style name="ticketPriceSummary">
         <item name="android:fontFamily">sans-serif-condensed-light</item>
-        <item name="android:textSize">15dp</item>
+        <item name="android:textSize">16dp</item>
     </style>
 
     <style name="lang_options">
         <item name="cardCornerRadius">5dp</item>
-        <item name="cardElevation">12dp</item>
+        <item name="cardElevation">8dp</item>
         <item name="android:layout_margin">14dp</item>
     </style>
 

@@ -240,7 +240,43 @@ public class VerificationPage extends AppCompatActivity {
                     });
 
                     fetchSavedPlaces(userId);
+                    fetchBookingHistory(userId);
                     writeDataIntoPreference(phone,name, dob, hasWallet, walletBalance, imageUrl);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {}
+        });
+    }
+
+    private void fetchBookingHistory(String userId) {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(userId).child("Bookings");
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            /** @noinspection DataFlowIssue*/
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    databaseHelper.clearBookingHistory();
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                        String key = dataSnapshot.getKey();
+                        String bid = snapshot.child(key).child("bid").getValue(String.class);
+                        String source = snapshot.child(key).child("source").getValue(String.class);
+                        String destination = snapshot.child(key).child("destination").getValue(String.class);
+                        int fullPrice = snapshot.child(key).child("fullPrice").getValue(Integer.class);
+                        int halfPrice = snapshot.child(key).child("halfPrice").getValue(Integer.class);
+                        int fullCounter = snapshot.child(key).child("fullCounter").getValue(Integer.class);
+                        int halfCounter = snapshot.child(key).child("halfCounter").getValue(Integer.class);
+                        int totalFullPrice = snapshot.child(key).child("totalFullPrice").getValue(Integer.class);
+                        int totalHalfPrice = snapshot.child(key).child("totalHalfPrice").getValue(Integer.class);
+                        int totalPrice = snapshot.child(key).child("totalPrice").getValue(Integer.class);
+                        String date = snapshot.child(key).child("date").getValue(String.class);
+                        String time = snapshot.child(key).child("time").getValue(String.class);
+                        String status = snapshot.child(key).child("status").getValue(String.class);
+
+                        TicketData ticketData = new TicketData(key, bid, source, destination, fullPrice, halfPrice, fullCounter, halfCounter, totalFullPrice, totalHalfPrice, totalPrice, date, time, status);
+                        databaseHelper.addBookingDetails(ticketData, userId);
+                    }
                 }
             }
 

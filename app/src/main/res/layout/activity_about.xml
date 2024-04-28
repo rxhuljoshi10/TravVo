@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".About">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/ic_key_left"
+            android:onClick="previous"
+            app:tint="@color/iconColor" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/about_us"
+            android:textSize="30sp"
+            android:fontFamily="sans-serif-black"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp"
+            android:textSize="18sp"
+            android:text="@string/aboutUs"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="25dp"
+            android:layout_marginStart="10dp"
+            android:onClick="toggleFeatures">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/feature"
+                android:textSize="26sp"
+                android:fontFamily="sans-serif-medium"/>
+
+            <ImageView
+                android:id="@+id/featuresIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_key_down"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:tag="down"
+                />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/featuresView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5sp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/features"
+            android:visibility="gone"/>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="10dp"
+            android:onClick="toggleMissionStatement">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mission_statement"
+                android:textSize="26sp"
+                android:fontFamily="sans-serif-medium"/>
+
+            <ImageView
+                android:id="@+id/missionIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_key_down"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:tag="down"
+                />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/missionView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_marginTop="5sp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/mission"
+            android:visibility="gone"/>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="10dp"
+            android:onClick="toggleContact">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/contact_us"
+                android:textSize="26sp"
+                android:fontFamily="sans-serif-medium"/>
+
+            <ImageView
+                android:id="@+id/contactIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_key_down"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:tag="down"
+                />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/contactView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_marginTop="5sp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/contact"
+            android:visibility="gone"/>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="10dp"
+            android:onClick="toggleDevelopers">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/about_the_developers"
+                android:textSize="26sp"
+                android:fontFamily="sans-serif-medium"/>
+
+            <ImageView
+                android:id="@+id/developersIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_key_down"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:tag="down"
+                />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/developersView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_marginTop="5sp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/developers"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+</ScrollView>

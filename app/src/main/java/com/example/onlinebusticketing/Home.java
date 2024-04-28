@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -261,13 +262,25 @@ public class Home extends AppCompatActivity implements HistoryListAdapter.OnItem
                 intent.putStringArrayListExtra("eligibleBuses", eligibleBuses);
                 startActivity(intent);
             } else {
-                Toast.makeText(Home.this, "No bus found for this route..!!", Toast.LENGTH_SHORT).show();
+                FragmentNoRoute fragmentNoRoute = new FragmentNoRoute();
+                fragmentNoRoute.show(getSupportFragmentManager(), fragmentNoRoute.getTag());
             }
-        } else {
-            Toast.makeText(Home.this, "Invalid Bus Stop", Toast.LENGTH_SHORT).show();
         }
     }
     private Boolean valid_stop_check(String source, String destination) {
+        if (source.isEmpty() && destination.isEmpty()){
+            Toast.makeText(this, "Enter Source & Destination", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (source.isEmpty()) {
+            Toast.makeText(this, "Enter Source", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (destination.isEmpty()) {
+            Toast.makeText(this, "Enter Destination", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (source.equals(destination)){
+            Toast.makeText(this, "Source & Destination cannot be same!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
         return stopNames.contains(source) && stopNames.contains(destination);
     }
     public void toggleDrawer(View view) {
@@ -290,7 +303,19 @@ public class Home extends AppCompatActivity implements HistoryListAdapter.OnItem
                 } else if (id == R.id.nav_settings) {
                     startActivity(new Intent(Home.this, SettingsActivity.class));
                 } else if (id == R.id.nav_language) {
-                    startActivity(new Intent(Home.this, LanguageSelection.class));
+                    Intent intent = new Intent(Home.this, LanguageSelection.class);
+                    intent.putExtra("entry", "");
+                    startActivity(intent);
+                } else if (id == R.id.nav_help) {
+                    startActivity(new Intent(Home.this, Help.class));
+                } else if (id == R.id.nav_fav) {
+                    Intent intent = new Intent(Home.this, SavedPlaces.class);
+                    intent.putExtra("entry", "");
+                    startActivity(intent);
+                } else if (id == R.id.nav_myBookings){
+                    startActivity(new Intent(Home.this, BookingHistory.class));
+                } else if (id == R.id.nav_about){
+                    startActivity(new Intent(Home.this, About.class));
                 }
 
                 drawerLayout.closeDrawers();
@@ -313,12 +338,12 @@ public class Home extends AppCompatActivity implements HistoryListAdapter.OnItem
     protected void onStart(){
         super.onStart();
         SharedPreferences userData = getSharedPreferences("UserData",Context.MODE_PRIVATE);
-        String userName = userData.getString("name",null);
-        if(userName!=null){
-            nav_header_view.setText(userName);
+        String userName = userData.getString("name","");
+        if(userName.equals("")){
+            nav_header_view.setText("User Name");
         }
         else{
-            nav_header_view.setText("User Name");
+            nav_header_view.setText(userName);
         }
 
         List<String> lastSearchHistory = databaseHelper.getLastSearchHistory(userId);
@@ -337,5 +362,26 @@ public class Home extends AppCompatActivity implements HistoryListAdapter.OnItem
         LatLng location = new LatLng(18.4512, 73.93412);
         googleMap.addMarker(new MarkerOptions().position(location).title("Hadapsar"));
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location,15));
+    }
+
+    private boolean doubleBackToExitPressedOnce = false;
+    private static final int TIME_INTERVAL = 2000;
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Press again to Exit!", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, TIME_INTERVAL);
     }
 }

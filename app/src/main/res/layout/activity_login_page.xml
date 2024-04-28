@@ -19,7 +19,7 @@
             android:layout_height="500dp"
             android:layout_marginBottom="50dp"
             app:iss_auto_cycle="true"
-            app:iss_corner_radius="50"
+            app:iss_corner_radius="20"
             app:iss_delay="1000"
             app:iss_period="2000"
             app:iss_placeholder="@drawable/slider1_loginpage" />
@@ -33,35 +33,6 @@
             android:textStyle="bold"
             android:layout_marginBottom="10dp"
             android:fontFamily="sans-serif-medium"/>
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="horizontal"-->
-<!--            android:layout_marginVertical="10dp"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:gravity="center">-->
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="50dp"-->
-<!--                android:background="@drawable/list_border"-->
-<!--                android:text="+91"-->
-<!--                android:textSize="20sp"-->
-<!--                android:gravity="center_vertical"-->
-<!--                android:padding="10dp"/>-->
-<!--            <EditText-->
-<!--                android:id="@+id/phone"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="50dp"-->
-<!--                android:inputType="phone"-->
-<!--                android:ems="10"-->
-<!--                android:hint="@string/phone_hint"-->
-<!--                android:autofillHints="true"-->
-<!--                android:textSize="20sp"-->
-<!--                android:background="@drawable/borders"-->
-<!--                android:gravity="center_vertical"-->
-<!--                android:padding="10dp"/>-->
-<!--        </LinearLayout>-->
 
         <LinearLayout
             android:layout_width="wrap_content"

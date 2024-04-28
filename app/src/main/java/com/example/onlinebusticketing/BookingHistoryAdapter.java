@@ -1,5 +1,6 @@
 package com.example.onlinebusticketing;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,11 +40,16 @@ public class BookingHistoryAdapter extends RecyclerView.Adapter<BookingHistoryAd
         if (destin.length() > len) {
             destin = destin.substring(0, len) + "...";
         }
+
+        holder.bidView.setText("Booking ID : "+item.bookingId);
         holder.sourceView.setText(source);
         holder.destinationView.setText(destin);
         holder.dateView.setText(item.tDate+",");
         holder.timeView.setText(item.tTime);
-        holder.bidView.setText("Booking ID : "+item.bookingId);
+        holder.statusView.setText(item.status);
+        if(item.status.equals( "Cancelled" )){
+            holder.statusView.setTextColor(Color.RED);
+        }
         holder.ItemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,7 +70,7 @@ public class BookingHistoryAdapter extends RecyclerView.Adapter<BookingHistoryAd
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         LinearLayout ItemView;
-        TextView sourceView, destinationView, bidView, dateView, timeView;
+        TextView sourceView, destinationView, bidView, dateView, timeView, statusView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -74,6 +80,7 @@ public class BookingHistoryAdapter extends RecyclerView.Adapter<BookingHistoryAd
             bidView = itemView.findViewById(R.id.bidView);
             dateView = itemView.findViewById(R.id.dateView);
             timeView = itemView.findViewById(R.id.timeView);
+            statusView = itemView.findViewById(R.id.statusView);
         }
     }
     public interface OnItemClickListener {

@@ -66,6 +66,11 @@ public class InputActivity extends AppCompatActivity implements InputActivityAda
             recentView.setVisibility(View.GONE);
         }
 
+        if(entry.equals("Destination")){
+            imgLocation.setVisibility(View.GONE);
+            findViewById(R.id.centerView).setVisibility(View.GONE);
+        }
+
         inputActivityAdapter = new InputActivityAdapter(this, stopNames, R.layout.item_stop_name_list);
         stopsView.setAdapter(inputActivityAdapter);
 
@@ -139,6 +144,7 @@ public class InputActivity extends AppCompatActivity implements InputActivityAda
 
     public void goSavedPlacesPage(View v){
         Intent intent = new Intent(InputActivity.this, SavedPlaces.class);
+        intent.putExtra("entry", "Select");
         startActivityForResult(intent, 1);
 //        startActivity(intent);
     }

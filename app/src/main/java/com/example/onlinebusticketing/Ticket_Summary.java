@@ -6,6 +6,7 @@ import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.graphics.drawable.Animatable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -24,9 +25,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Random;
+
 public class Ticket_Summary extends AppCompatActivity {
     DatabaseHelper databaseHelper = new DatabaseHelper(this);
     ArrayList<String> eligibleBuses = new ArrayList<>();
@@ -43,12 +52,12 @@ public class Ticket_Summary extends AppCompatActivity {
     int totalPrice = fullPrice;
     float walletBalance;
     int originalBtnWidth;
-    String source, destination;
+    String source, destination, userId;
     final static int animationDuration = 400;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.test);
+        setContentView(R.layout.activity_ticket_summary);
 
         Intent intent = getIntent();
         source = intent.getStringExtra("source");
@@ -79,6 +88,8 @@ public class Ticket_Summary extends AppCompatActivity {
         sourceView.setText(source);
         destinationView.setText(destination);
         coverview = findViewById(R.id.coverView);
+
+        userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -247,13 +258,63 @@ public class Ticket_Summary extends AppCompatActivity {
     }
 
     private void nextPage() {
+        Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR) % 100;
+        int month = c.get(Calendar.MONTH)+1;
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        int hour = c.get(Calendar.HOUR_OF_DAY);
+        String min = String.format("%02d" ,c.get(Calendar.MINUTE));
+        String sec = String.format("%02d" ,c.get(Calendar.SECOND));
+
+
+        String date = day +"/"+ month +"/"+year;
+        String time = hour +":"+min;
+        String bid = getRandomNumbers();
+
+        String tid = date + time + sec;
+        tid = tid.replace("/","").replace(":","");
+
+        TicketData ticketData = new TicketData(tid, bid, source, destination, fullPrice, halfPrice, fullCounter, halfCounter, totalFullPrice, totalHalfPrice, totalPrice,date, time, "Booking Succesful");
+        saveData(ticketData);
+
         Intent intent = new Intent(Ticket_Summary.this, TicketView.class);
-        TicketData ticketData = new TicketData(source, destination, fullPrice, halfPrice, fullCounter, halfCounter, totalFullPrice, totalHalfPrice, totalPrice);
         intent.putExtra("ticketData", ticketData);
         intent.putExtra("eligibleBuses", eligibleBuses);
         intent.putExtra("entry","book");
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
+    }
+
+    private void saveData(TicketData t){
+        databaseHelper.addBookingDetails(t, userId);
+        saveDataToFirebase(t);
+    }
+
+    private void saveDataToFirebase(TicketData t) {
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
+
+        DatabaseReference databaseReference = db.getReference("Users").child(userId).child("Bookings").child(t.tid);
+        databaseReference.child("bid").setValue(t.bookingId);
+        databaseReference.child("source").setValue(t.source);
+        databaseReference.child("destination").setValue(t.destination);
+        databaseReference.child("fullPrice").setValue(t.fullPrice);
+        databaseReference.child("halfPrice").setValue(t.halfPrice);
+        databaseReference.child("fullCounter").setValue(t.fullCounter);
+        databaseReference.child("halfCounter").setValue(t.halfCounter);
+        databaseReference.child("totalFullPrice").setValue(t.totalFullPrice);
+        databaseReference.child("totalHalfPrice").setValue(t.totalHalfPrice);
+        databaseReference.child("totalPrice").setValue(t.totalPrice);
+        databaseReference.child("date").setValue(t.tDate);
+        databaseReference.child("time").setValue(t.tTime);
+        databaseReference.child("status").setValue(t.status);
+    }
+
+    private String getRandomNumbers() {
+        Random random = new Random();
+        int min = 10000000; // Minimum 8-digit number
+        int max = 99999999; // Maximum 8-digit number
+        return String.valueOf(random.nextInt(max - min + 1) + min);
     }
 
     public int getPrice(String bus, String source, String destination) {
@@ -333,18 +394,20 @@ public class Ticket_Summary extends AppCompatActivity {
     }
 
     private void updateCounterTextView() {
-        totalFullPrice = fullPrice*fullCounter;
+
+        totalFullPrice = fullPrice * fullCounter;
         halfPrice = (int) Math.ceil(fullPrice/2.0);
         halfPrice = ((halfPrice + 4) / 5) * 5;
-        totalHalfPrice = halfPrice*halfCounter;
+        totalHalfPrice = halfPrice * halfCounter;
 
         totalPrice = totalFullPrice + totalHalfPrice;
+        checkBalanceAndHighlight();
 
         fullPriceView.setText(String.valueOf(totalFullPrice));
         counterFullView.setText(String.valueOf(fullCounter));
         counterFullView2.setText(String.valueOf(fullCounter));
         fullSinglePrice.setText(String.valueOf(fullPrice));
-        totalFullPriceView.setText(String.valueOf("₹"+totalFullPrice));
+        totalFullPriceView.setText("₹"+totalFullPrice);
 
         halfPriceView.setText(String.valueOf(totalHalfPrice));
         counterHalfView.setText(String.valueOf(halfCounter));
@@ -357,9 +420,27 @@ public class Ticket_Summary extends AppCompatActivity {
         btnSwipe.setText(getString(R.string.pay) + totalPrice);
     }
 
+    private void checkBalanceAndHighlight() {
+        if(totalPrice > walletBalance){
+            alertBalance();
+        }
+        else{
+            removeAlertBalance();
+        }
+    }
+
+    private void removeAlertBalance() {
+        totalPriceView.setTextColor(ContextCompat.getColor(this, R.color.iconColor));
+    }
+
+    private void alertBalance() {
+        totalPriceView.setTextColor(Color.RED);
+    }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         getOnBackPressedDispatcher().onBackPressed();
+        finish();
         return super.onOptionsItemSelected(item);
     }
 
@@ -367,6 +448,12 @@ public class Ticket_Summary extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         walletBalance = MyUtil.getWalletBalance(this);
-        walletBalanceView.setText("Balance : ₹"+String.valueOf(walletBalance));
+        walletBalanceView.setText("Balance : ₹"+walletBalance);
+        checkBalanceAndHighlight();
     }
+
+    public void showTermsCondtions(View view) {
+        startActivity(new Intent(Ticket_Summary.this, TermsConditions.class));
+    }
+
 }

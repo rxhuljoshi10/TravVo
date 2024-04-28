@@ -13,7 +13,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         app:titleTextColor="@color/white"
-        app:title="My Bookings"/>
+        app:title="@string/my_bookings"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recentBookingsList"
@@ -26,9 +26,9 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text="You don't have any trips..!!"
+        android:text="@string/you_don_t_have_any_trips"
         android:textSize="20sp"
-        android:fontFamily="sans-serif-black"
+        android:fontFamily="sans-serif-medium"
         android:layout_gravity="center"
         android:gravity="center_vertical"
         android:visibility="gone"/>

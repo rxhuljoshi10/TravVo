@@ -59,8 +59,9 @@ public class FragmentWalletActivation extends BottomSheetDialogFragment {
     }
     private void onOption1Click() {
         Intent intent = new Intent(getActivity(), WalletKYC.class);
-        ActivityResultLauncher.launch(intent);
-//        dismiss();
+        startActivity(intent);
+//        ActivityResultLauncher.launch(intent);
+        dismiss();
     }
 
     private void onOption2Click() {

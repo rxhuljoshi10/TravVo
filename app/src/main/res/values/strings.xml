@@ -18,6 +18,8 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
+    <string name="nav_fav">Favourites</string>
+    <string name="nav_bookings">My Bookings</string>
 
     <string name="searchBus">Search Bus</string>
 
@@ -45,8 +47,8 @@
     <string name="eligibleBus">Eligible Buses</string>
     <string name="trip">Trip</string>
     <string name="ticketText">Ticket</string>
-    <string name="adult">FULL : </string>
-    <string name="half">HALF : </string>
+    <string name="full">FULL</string>
+    <string name="half">HALF</string>
     <string name="termsConditions">Terms and Conditions</string>
     <string name="pay">Swipe to pay  ₹</string>
 
@@ -65,5 +67,66 @@
     <string name="walletBenefits2">No need to struggle with cash anymore for your bus tickets</string>
     <string name="walletBenefits3">Enjoy cashbacks and offeres for future payments.</string>
 
+
+    <string name="From">From</string>
+    <string name="To">To</string>
+
+    <string name="aboutUs">TravVO is an innovative Android application developed by third-year students of BCA (Science) at Annasaheb Magar Mahavidyalay Pune. Designed as a final year project, TravVO aims to revolutionize bus commuting experiences for users in urban areas.</string>
+    <string name="features">TravVO offers a range of features to simplify your bus commuting experience:\n\n1. Bus Search: Easily search for buses by destination or bus number. Whether you\'re planning your daily commute or a one-time journey, TravVO helps you find the most convenient buses.
+
+\n\n2. Bus Stop Search: Need to find a bus stop? TravVO\'s bus stop search feature allows you to locate individual bus stops and discover which buses are available at each stop.
+
+\n\n3. Algorithmic Selection: TravVO utilizes advanced algorithms to determine eligible buses for your journey. Say goodbye to guesswork – TravVO ensures you get the most efficient route every time.
+
+\n\n4. Dynamic Pricing: Our application employs sophisticated formulas to calculate ticket prices accurately. You can trust TravVO to provide transparent and fair pricing for your bus journeys.</string>
+
+    <string name="mission">At TravVO, our mission is to simplify bus commuting and enhance the overall experience for users. We are committed to leveraging technology to provide reliable information, streamline ticketing processes, and ultimately make bus travel more accessible and convenient for everyone.</string>
+    <string name="contact">Have questions or feedback? We\'d love to hear from you! Reach out to us at [contact email] for any inquiries or suggestions.\n\nThank you for choosing TravVO – your trusted companion for hassle-free bus commuting.</string>
+    <string name="developers">TravVO is brought to you by a dedicated team of third-year students pursuing BCA (Science) at Annasaheb Magar Mahavidyalay Pune. With a passion for technology and a commitment to innovation, we embarked on this journey to revolutionize bus commuting for users everywhere. Through collaboration, creativity, and perseverance, we\'ve brought TravVO to life, and we\'re excited to share it with you.</string>
+
+
+    <string name="terms_and_conditions_text">Welcome to TravVO! These terms and conditions outline the rules and regulations for the use of the TravVO application, developed by the third-year students of BCA (Science) at Annasaheb Magar Mahavidyalay Pune.\n\nBy accessing this application, we assume you accept these terms and conditions in full. Do not continue to use TravVO if you do not accept all of the terms and conditions stated on this page.\n\nThe following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and any or all Agreements: \"Client\", \"You\" and \"Your\" refers to you, the person accessing this application and accepting the Company\'s terms and conditions. \"The Company\", \"Ourselves\", \"We\", \"Our\" and \"Us\", refers to our Company. \"Party\", \"Parties\", or \"Us\", refers to both the Client and ourselves, or either the Client or ourselves.\n\nPrivacy Statement\n\nWe are committed to protecting your privacy. Authorized employees within the company on a need to know basis only use any information collected from individual customers. We constantly review our systems and data to ensure the best possible service to our customers.\n\nConfidentiality\n\nWe will not sell, share, or rent your personal information to any third party or use your e-mail address for unsolicited mail. Any emails sent by this Company will only be in connection with the provision of agreed services and products.\n\nUser Account\n\nUpon registering with TravVO, you agree to provide accurate, current, and complete information as required for the application\'s registration process. You are responsible for maintaining the confidentiality of your account and password, and for restricting access to your computer or mobile device. You agree to accept responsibility for all activities that occur under your account or password.\n\nLicense\n\nUnless otherwise stated, TravVO and/or its licensors own the intellectual property rights for all material on TravVO. All intellectual property rights are reserved. You may view and/or print pages from the application for your own personal use subject to restrictions set in these terms and conditions.\n\nUsage Restrictions\n\nYou must not:\n- Republish material from this application\n- Sell, rent, or sub-license material from the application\n- Reproduce, duplicate or copy material from the application\n- Redistribute content from TravVO\n\nDisclaimer\n\nTo the maximum extent permitted by applicable law, we exclude all representations, warranties, and conditions relating to our application and the use of this application (including, without limitation, any warranties implied by law in respect of satisfactory quality, fitness for purpose, and/or the use of reasonable care and skill). Nothing in this disclaimer will:\n\nLimit or exclude our or your liability for death or personal injury resulting from negligence\nLimit or exclude our or your liability for fraud or fraudulent misrepresentation\nLimit any of our or your liabilities in any way that is not permitted under applicable law\nExclude any of our or your liabilities that may not be excluded under applicable law\n\nChanges to Terms\n\nWe reserve the right to revise these terms of use at any time without notice. By using this application, you are agreeing to be bound by the then current version of these Terms and Conditions of Use.\n\nContact Information\n\nIf you have any questions or concerns regarding these Terms and Conditions, please contact us at [contact email].\n\nBy using TravVO, you acknowledge that you have read, understood, and agree to be bound by these terms and conditions.</string>
+
+    <string name="privacy_statement_text">We are committed to protecting your privacy. Authorized employees within the company on a need to know basis only use any information collected from individual customers. We constantly review our systems and data to ensure the best possible service to our customers.</string>
+
+    <string name="confidentiality_text">We will not sell, share, or rent your personal information to any third party or use your e-mail address for unsolicited mail. Any emails sent by this Company will only be in connection with the provision of agreed services and products.</string>
+
+    <string name="user_account_text">Upon registering with TravVO, you agree to provide accurate, current, and complete information as required for the application\'s registration process. You are responsible for maintaining the confidentiality of your account and password, and for restricting access to your computer or mobile device. You agree to accept responsibility for all activities that occur under your account or password.</string>
+
+    <string name="license_text">Unless otherwise stated, TravVO and/or its licensors own the intellectual property rights for all material on TravVO. All intellectual property rights are reserved. You may view and/or print pages from the application for your own personal use subject to restrictions set in these terms and conditions.</string>
+
+    <string name="usage_restrictions_text">You must not:\n- Republish material from this application\n- Sell, rent, or sub-license material from the application\n- Reproduce, duplicate or copy material from the application\n- Redistribute content from TravVO</string>
+
+    <string name="contact_information_title">Contact Information</string>
+    <string name="contact_information_text">If you have any questions or concerns regarding these Terms and Conditions, please contact us at [contact email].</string>
+    <string name="bus_numbers">Bus Numbers</string>
+    <string name="bus_stops">Bus Stops</string>
+    <string name="view_summary">View Summary</string>
+    <string name="swipe_to_pay">Swipe To Pay</string>
+    <string name="booking_details">Booking details</string>
+    <string name="ticket_fare">Ticket Fare</string>
+    <string name="eligible_buses">Eligible Buses</string>
+    <string name="view_route">View Route</string>
+    <string name="book_again">Book Again</string>
+    <string name="cancel_booking">Cancel Booking</string>
+    <string name="about_us">About Us</string>
+    <string name="feature">Features</string>
+    <string name="mission_statement">Mission Statement</string>
+    <string name="contact_us">Contact us</string>
+    <string name="about_the_developers">About the Developers</string>
+    <string name="add_place">Add Place</string>
+    <string name="name">Name</string>
+    <string name="address">Address</string>
+    <string name="my_bookings">My Bookings</string>
+    <string name="you_don_t_have_any_trips">You don\'t have any trips..!!</string>
+    <string name="contact_travvo_customer_services">Contact TravVo Customer Services</string>
+    <string name="we_ll_connect_the_call_for_free_using_your_internet_connection">We\'ll connect the call for free using your internet connection.</string>
+    <string name="find_help">Find Help</string>
+    <string name="chat">CHAT</string>
+    <string name="call">CALL</string>
+    <string name="recent_searches">Recent Searches</string>
+    <string name="current_location">Current Location</string>
+    <string name="favourites">Favourites</string>
+    <string name="phone">Phone</string>
 
 </resources>

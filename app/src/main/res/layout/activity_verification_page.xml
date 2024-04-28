@@ -72,8 +72,8 @@
         android:id="@+id/verify_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="20dp"
-        android:layout_marginHorizontal="20dp"
+        android:layout_marginHorizontal="25dp"
+        app:cardElevation="5dp"
         app:cardCornerRadius="10dp">
 
         <TextView
