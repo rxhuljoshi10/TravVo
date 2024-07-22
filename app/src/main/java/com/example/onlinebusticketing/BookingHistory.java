@@ -65,4 +65,6 @@ public class BookingHistory extends AppCompatActivity implements BookingHistoryA
         BookingHistoryAdapter adapter = new BookingHistoryAdapter(this, bookingDetailsList);
         recentBookingList.setAdapter(adapter);
     }
+
+
 }

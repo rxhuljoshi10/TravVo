@@ -146,7 +146,6 @@ public class Home extends AppCompatActivity implements HistoryListAdapter.OnItem
                     FragmentWalletActivation activateWallet = new FragmentWalletActivation();
                     activateWallet.show(getSupportFragmentManager(), activateWallet.getTag());
                 }
-
             }
         });
 
