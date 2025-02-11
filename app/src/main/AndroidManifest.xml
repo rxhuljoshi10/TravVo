@@ -28,6 +28,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OnlineBusTicketing">
         <activity
+            android:name=".MetroHome"
+            android:exported="false" />
+        <activity
             android:name=".TermsConditions"
             android:exported="false" />
         <activity

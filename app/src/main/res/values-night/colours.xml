@@ -14,4 +14,7 @@
     <color name="darkgrey">#CCCCCC</color>
     <color name="red">#FA0A0A</color>
     <color name="BorderStrokeColor">#CCCCCC</color>
+
+<!--    Metro UI Colors:-->
+    <color name="primaryColorMetro">#8647F6</color>
 </resources>

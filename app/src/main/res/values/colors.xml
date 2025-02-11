@@ -18,4 +18,7 @@
     <color name="lightBlue">#40E9FF</color>
     <color name="green">#2FC10B</color>
     <color name="faintRed">#FD4B4B</color>
+
+<!--    Metro UI colors : -->
+    <color name="primaryColorMetro">#8647F6</color>
 </resources>

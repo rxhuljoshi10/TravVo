@@ -63,7 +63,8 @@ public class LoginPage extends AppCompatActivity {
 
         if (alreadyUser()){
             SharedPreferences sharedPreferences = getSharedPreferences("Cookies", Context.MODE_PRIVATE);
-            String activityName = sharedPreferences.getString("homePage", "TermsConditions");
+            String activityName = sharedPreferences.getString("homePage", "Home");
+
             Class<?> homeActivity;
             try {
                 homeActivity = Class.forName("com.example.onlinebusticketing." + activityName);

@@ -60,7 +60,7 @@ public class Home extends AppCompatActivity implements HistoryListAdapter.OnItem
     String userId;
     SharedPreferences cookies;
 
-    ImageView headerView;
+    ImageView swipeView;
     private static final String TAG = "SwipeDebug";
     private GestureDetector gestureDetector;
 
@@ -100,9 +100,9 @@ public class Home extends AppCompatActivity implements HistoryListAdapter.OnItem
         stopNames = databaseHelper.getStopNames();
         locationHelper.startFetchingLocation();
 
-        headerView = findViewById(R.id.swipeView);
+        swipeView = findViewById(R.id.swipeView);
         gestureDetector = new GestureDetector(this, new SwipeGestureListener());
-        headerView.setOnTouchListener((v, event) -> gestureDetector.onTouchEvent(event));
+        swipeView.setOnTouchListener((v, event) -> gestureDetector.onTouchEvent(event));
 
         imgWallet.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -203,10 +203,9 @@ public class Home extends AppCompatActivity implements HistoryListAdapter.OnItem
             float diffX = e2.getX() - e1.getX();
             if (Math.abs(diffX) > SWIPE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
                 if (diffX > 0) {
-                    Intent intent = new Intent(Home.this, TermsConditions.class);
+                    Intent intent = new Intent(Home.this, MetroHome.class);
                     SharedPreferences.Editor editor = cookies.edit();
-                    editor.putString("homePage", "TermsConditions");
-                    editor.apply();
+                    editor.putString("homePage", "MetroHome").apply();
 
                     startActivity(intent);
                     overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
