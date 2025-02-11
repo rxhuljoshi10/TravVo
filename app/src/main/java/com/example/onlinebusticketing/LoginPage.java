@@ -1,6 +1,8 @@
 package com.example.onlinebusticketing;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -60,7 +62,18 @@ public class LoginPage extends AppCompatActivity {
         bottomArea = findViewById(R.id.bottomArea);
 
         if (alreadyUser()){
-            startActivity(new Intent(LoginPage.this, Home.class));
+            SharedPreferences sharedPreferences = getSharedPreferences("Cookies", Context.MODE_PRIVATE);
+            String activityName = sharedPreferences.getString("homePage", "TermsConditions");
+            Class<?> homeActivity;
+            try {
+                homeActivity = Class.forName("com.example.onlinebusticketing." + activityName);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            Intent intent = new Intent(LoginPage.this, homeActivity);
+            startActivity(intent);
+
+//            startActivity(new Intent(LoginPage.this, Home.class));
             finish();
         }
 

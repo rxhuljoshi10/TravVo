@@ -8,7 +8,9 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.GestureDetector;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
@@ -42,7 +44,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-
 public class Home extends AppCompatActivity implements HistoryListAdapter.OnItemClickListener, OnMapReadyCallback {
     DatabaseHelper databaseHelper = new DatabaseHelper(this);
     ArrayList<String> stopNames = new ArrayList<>();
@@ -57,8 +58,11 @@ public class Home extends AppCompatActivity implements HistoryListAdapter.OnItem
     LocationHelper locationHelper = new LocationHelper(this);
     GoogleMap gMap;
     String userId;
-
     SharedPreferences cookies;
+
+    ImageView headerView;
+    private static final String TAG = "SwipeDebug";
+    private GestureDetector gestureDetector;
 
     @SuppressLint("Range")
     @Override
@@ -69,6 +73,7 @@ public class Home extends AppCompatActivity implements HistoryListAdapter.OnItem
 
 //        SupportMapFragment supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.gmap);
 //        supportMapFragment.getMapAsync(this);
+
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
@@ -95,6 +100,9 @@ public class Home extends AppCompatActivity implements HistoryListAdapter.OnItem
         stopNames = databaseHelper.getStopNames();
         locationHelper.startFetchingLocation();
 
+        headerView = findViewById(R.id.swipeView);
+        gestureDetector = new GestureDetector(this, new SwipeGestureListener());
+        headerView.setOnTouchListener((v, event) -> gestureDetector.onTouchEvent(event));
 
         imgWallet.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,6 +187,34 @@ public class Home extends AppCompatActivity implements HistoryListAdapter.OnItem
                 startActivity(new Intent(Home.this, ProfilePage.class));
             }
         });
+    }
+//    @Override
+//    public boolean onTouchEvent(MotionEvent event) {
+//        return gestureDetector.onTouchEvent(event) || super.onTouchEvent(event);
+//    }
+
+    private class SwipeGestureListener extends GestureDetector.SimpleOnGestureListener {
+        private static final int SWIPE_THRESHOLD = 20;
+        private static final int SWIPE_VELOCITY_THRESHOLD = 50;
+
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            if (e1 == null || e2 == null) return false;
+            float diffX = e2.getX() - e1.getX();
+            if (Math.abs(diffX) > SWIPE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
+                if (diffX > 0) {
+                    Intent intent = new Intent(Home.this, TermsConditions.class);
+                    SharedPreferences.Editor editor = cookies.edit();
+                    editor.putString("homePage", "TermsConditions");
+                    editor.apply();
+
+                    startActivity(intent);
+                    overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 
     private void langSetup() {
