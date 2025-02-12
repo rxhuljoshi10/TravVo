@@ -6,16 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".ProfilePage">
 
-<!--    <androidx.appcompat.widget.Toolbar-->
-<!--        android:id="@+id/toolbar"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="?attr/actionBarSize"-->
-<!--        android:background="?attr/colorPrimary"-->
-<!--        app:title="Profile"-->
-<!--        app:titleTextColor="@color/white"/>-->
-
 
     <ImageView
+        android:id="@+id/headerView"
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:src="@drawable/profile_ui"/>

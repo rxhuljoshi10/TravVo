@@ -1,0 +1,11 @@
+<!-- res/drawable/custom_border.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:shape="rectangle">
+
+    <solid android:color="@color/secondaryBackground" />
+    <stroke
+        android:color="@color/primaryColorMetro"
+        android:width="2dp" />
+    <corners android:radius="12dp"/>
+</shape>

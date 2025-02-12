@@ -7,6 +7,13 @@
     <style name="AppTheme.Dark" parent="Theme.AppCompat">
     </style>
 
+    <style name="MetroTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/primaryColorMetro</item>
+<!--        <item name="colorPrimaryVariant">@color/metro_primary_variant</item>-->
+<!--        <item name="colorAccent">@color/metro_accent</item>-->
+    </style>
+
+
 
     <style name="NoUnderlineAutoCompleteTextView" parent="Widget.AppCompat.AutoCompleteTextView">
         <item name="android:background">@null</item>

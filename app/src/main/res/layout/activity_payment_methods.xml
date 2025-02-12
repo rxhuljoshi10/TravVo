@@ -145,12 +145,13 @@
             android:id="@+id/payBtn"
             android:layout_width="230dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/custom_button_corners"
+
             android:text="Pay"
             android:fontFamily="sans-serif-black"
             android:layout_marginEnd="5sp"
             android:textColor="@color/white"
             android:textSize="25sp"/>
+<!--        android:background="@drawable/custom_button_corners"-->
     </LinearLayout>
 
 </LinearLayout>

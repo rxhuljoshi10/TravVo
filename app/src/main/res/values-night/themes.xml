@@ -4,4 +4,7 @@
         <item name="android:windowBackground">@color/primaryBackground</item>
         <item name="colorPrimary">@color/primaryColor</item>
     </style>
+    <style name="Theme.MetroTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="colorPrimary">@color/primaryColorMetro</item>
+    </style>
 </resources>

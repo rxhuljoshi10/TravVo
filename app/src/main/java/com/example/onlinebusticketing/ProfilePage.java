@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -49,14 +51,18 @@ public class ProfilePage extends AppCompatActivity {
     String userId;
     String userName, userDob, userPhone;
     TextView userDOBView, userNameView, userPhoneView;
-    ImageView profilePicView;
+    ImageView profilePicView, headerView;
 
 
     private static final int PICK_IMAGE_REQUEST = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+//        setTheme(R.style.MetroTheme);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_page);
+
 
         userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE);
@@ -67,12 +73,25 @@ public class ProfilePage extends AppCompatActivity {
         userNameView = findViewById(R.id.userNameView);
         userPhoneView = findViewById(R.id.userPhoneView);
         userDOBView = findViewById(R.id.userDOBView);
+        headerView = findViewById(R.id.headerView);
 
         userNameView.setText(userName);
         userPhoneView.setText("+91 "+userPhone);
         userDOBView.setText(userDob);
 
         viewSetup();
+        changeTheme();
+    }
+
+    public void changeTheme(){
+        SharedPreferences cookies = getSharedPreferences("Cookies", Context.MODE_PRIVATE);
+        String activityName = cookies.getString("homePage", "Home");
+        if (activityName.equals("MetroHome")){
+            headerView.setImageResource(R.drawable.profile_ui_metro);
+            Window window = getWindow();
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.primaryColorMetro));
+
+        }
     }
 
     private void viewSetup() {

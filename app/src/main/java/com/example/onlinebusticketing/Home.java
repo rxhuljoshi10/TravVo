@@ -188,10 +188,6 @@ public class Home extends AppCompatActivity implements HistoryListAdapter.OnItem
             }
         });
     }
-//    @Override
-//    public boolean onTouchEvent(MotionEvent event) {
-//        return gestureDetector.onTouchEvent(event) || super.onTouchEvent(event);
-//    }
 
     private class SwipeGestureListener extends GestureDetector.SimpleOnGestureListener {
         private static final int SWIPE_THRESHOLD = 20;
