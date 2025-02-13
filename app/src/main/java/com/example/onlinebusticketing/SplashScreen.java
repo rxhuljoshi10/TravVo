@@ -68,6 +68,10 @@ public class SplashScreen extends AppCompatActivity {
     }
     private void loadData() {
         List<List<String>> busRoutes = ExcelReader.readCsvData(SplashScreen.this, "Bus_Routes_1_modified.csv","Bus_Routes_2_modified.csv");
+        List<List<String>> metroRoutes = ExcelReader.readCsvData(SplashScreen.this, "Metro-Routes.csv");
+        List<List<String>> metroStops = ExcelReader.readCsvData(SplashScreen.this, "Metro-Stops.csv");
         databaseHelper.insertIntoBusRoutes(busRoutes);
+        databaseHelper.insertIntoMetroRoutes(metroRoutes);
+        databaseHelper.insertIntoMetroStops(metroStops);
     }
 }

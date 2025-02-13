@@ -37,6 +37,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     private static final String CREATE_TABLE_6 = "CREATE TABLE "+ TABLE_SAVED_PLACES +"(sid INTEGER PRIMARY KEY AUTOINCREMENT, title varchar(30), address varchar(30));";
 
 
+
     public DatabaseHelper(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -48,7 +49,21 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db.execSQL(CREATE_TABLE_4);
         db.execSQL(CREATE_TABLE_5);
         db.execSQL(CREATE_TABLE_6);
-//        insertPredefinedValues(db);
+
+        db.execSQL("CREATE TABLE metro_routes (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "Source TEXT," +
+                "Destination TEXT," +
+                "Distance REAL," +
+                "Stops INTEGER," +
+                "Fare REAL)");
+
+        db.execSQL("CREATE TABLE metro_stops (" +
+                "Station_ID INTEGER PRIMARY KEY," +  // Unique ID for each station
+                "Station_Name TEXT," +               // Metro station name
+                "Line TEXT," +                       // Metro line
+                "Latitude REAL," +                   // Latitude coordinate
+                "Longitude REAL)");
     }
 
     private void insertPredefinedValues(SQLiteDatabase db) {
@@ -82,34 +97,12 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db.execSQL("DROP TABLE IF EXISTS "+ TABLE_NAME_4);
         db.execSQL("DROP TABLE IF EXISTS "+ TABLE_BOOKING_HISTORY);
         db.execSQL("DROP TABLE IF EXISTS "+ TABLE_SAVED_PLACES);
+        db.execSQL("DROP TABLE IF EXISTS metro_stops");
+        db.execSQL("DROP TABLE IF EXISTS metro_routes");
         onCreate(db);
     }
 
 
-    public void insertIntoBusRoutes(List<List<String>> data){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-
-        db.beginTransaction();
-        try {
-            for (List<String> rowData : data) {
-                values.put("route_name", rowData.get(1));
-                values.put("stop_seq", rowData.get(3));
-                values.put("stop_name", rowData.get(4));
-                values.put("stop_name_mr", rowData.get(5));
-                values.put("lat", rowData.get(6));
-                values.put("long", rowData.get(7));
-                values.put("stage", rowData.get(8));
-
-                db.insert(TABLE_NAME_3, null, values);
-            }
-            db.setTransactionSuccessful();
-        }
-        finally {
-            db.endTransaction();
-            db.close();
-        }
-    }
 
     public List<String> getBusStops(){
         List<String> temp = new ArrayList<>();
@@ -509,5 +502,113 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
         return dataList;
     }
+
+
+    public void insertIntoBusRoutes(List<List<String>> data){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        db.beginTransaction();
+        try {
+            for (List<String> rowData : data) {
+                values.put("route_name", rowData.get(1));
+                values.put("stop_seq", rowData.get(3));
+                values.put("stop_name", rowData.get(4));
+                values.put("stop_name_mr", rowData.get(5));
+                values.put("lat", rowData.get(6));
+                values.put("long", rowData.get(7));
+                values.put("stage", rowData.get(8));
+
+                db.insert(TABLE_NAME_3, null, values);
+            }
+            db.setTransactionSuccessful();
+        }
+        finally {
+            db.endTransaction();
+            db.close();
+        }
+    }
+
+    public void insertIntoMetroRoutes(List<List<String>> data) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        db.beginTransaction();
+        try {
+            for (List<String> rowData : data) {
+                values.clear();
+
+                values.put("Source", rowData.get(0));
+                values.put("Destination", rowData.get(1));
+                values.put("Distance", Double.parseDouble(rowData.get(2)));
+                values.put("Stops", Integer.parseInt(rowData.get(3)));
+                values.put("Fare", Double.parseDouble(rowData.get(4)));
+
+                db.insert("metro_routes", null, values);
+            }
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
+    }
+
+    public void insertIntoMetroStops(List<List<String>> data) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        db.beginTransaction();
+        try {
+            for (List<String> rowData : data) {
+                values.clear();  // ✅ Clear old values
+
+                values.put("Station_ID", Integer.parseInt(rowData.get(0)));  // ID
+                values.put("Station_Name", rowData.get(1));                  // Name
+                values.put("Line", rowData.get(2));                          // Metro Line
+                values.put("Latitude", Double.parseDouble(rowData.get(3)));  // Latitude
+                values.put("Longitude", Double.parseDouble(rowData.get(4))); // Longitude
+
+                db.insert("metro_stops", null, values);
+            }
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
+    }
+
+    public double getMetroFare(String source, String destination) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        double fare = -1; // Default value if no route is found
+
+        Cursor cursor = db.rawQuery("SELECT Fare FROM metro_routes WHERE Source = ? AND Destination = ?",
+                new String[]{source, destination});
+
+        if (cursor.moveToFirst()) {
+            fare = cursor.getDouble(0); // Fetch fare value
+        }
+        cursor.close();
+        db.close();
+
+        return fare;
+    }
+
+    public ArrayList<String> getAllMetroStops() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<String> stopNames = new ArrayList<>();
+
+        Cursor cursor = db.rawQuery("SELECT Station_Name FROM metro_stops", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                stopNames.add(cursor.getString(0)); // Fetching stop name
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        return stopNames;
+    }
+
 }
 

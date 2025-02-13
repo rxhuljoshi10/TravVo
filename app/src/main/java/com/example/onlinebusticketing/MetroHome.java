@@ -78,6 +78,7 @@ public class MetroHome extends AppCompatActivity {
 
         appThemeSetup();
         navigationListener();
+        stopNames = databaseHelper.getAllMetroStops();
 
         gestureDetector = new GestureDetector(this, new SwipeGestureListener());
         swipeView.setOnTouchListener((v, event) -> gestureDetector.onTouchEvent(event));
