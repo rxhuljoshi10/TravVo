@@ -4,5 +4,5 @@
     <solid android:color="@android:color/transparent" />
     <stroke
         android:width="2dp"
-        android:color="@color/primaryColor" /> <!-- Adjust the width and color as needed -->
+        android:color="?attr/colorPrimary" />
 </shape>

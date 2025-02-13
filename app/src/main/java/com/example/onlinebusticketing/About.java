@@ -1,5 +1,6 @@
 package com.example.onlinebusticketing;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,6 +13,15 @@ public class About extends AppCompatActivity {
     ImageView featuresIcon, missionIcon, contactIcon, developersIcon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences cookies = getSharedPreferences("Cookies", MODE_PRIVATE);
+        String homePage = cookies.getString("homePage", "Home");
+
+        if (homePage.equals("MetroHome")) {
+            setTheme(R.style.Theme_MetroUI);
+        } else {
+            setTheme(R.style.Theme_BusUI);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 

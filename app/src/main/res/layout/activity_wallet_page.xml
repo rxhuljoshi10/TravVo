@@ -61,7 +61,7 @@
                 android:padding="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginEnd="10dp"
-                android:textColor="@color/primaryColor"
+                android:textColor="?attr/colorPrimary"
                 android:background="@drawable/bordered_backgroud"
                 android:layout_gravity="bottom" />
 

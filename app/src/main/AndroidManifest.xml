@@ -26,7 +26,7 @@
         android:icon="@drawable/travo_logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.OnlineBusTicketing">
+        android:theme="@style/Theme.BusUI">
         <activity
             android:name=".MetroHome"
             android:exported="false" />

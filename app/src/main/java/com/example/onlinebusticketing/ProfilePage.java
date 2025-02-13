@@ -15,7 +15,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,7 +22,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -57,8 +55,15 @@ public class ProfilePage extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-//        setTheme(R.style.MetroTheme);
+        SharedPreferences cookies = getSharedPreferences("Cookies", MODE_PRIVATE);
+        String homePage = cookies.getString("homePage", "Home");
+
+        if (homePage.equals("MetroHome")) {
+            setTheme(R.style.Theme_MetroUI);
+        } else {
+            setTheme(R.style.Theme_BusUI);
+        }
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_page);
@@ -80,19 +85,8 @@ public class ProfilePage extends AppCompatActivity {
         userDOBView.setText(userDob);
 
         viewSetup();
-        changeTheme();
     }
 
-    public void changeTheme(){
-        SharedPreferences cookies = getSharedPreferences("Cookies", Context.MODE_PRIVATE);
-        String activityName = cookies.getString("homePage", "Home");
-        if (activityName.equals("MetroHome")){
-            headerView.setImageResource(R.drawable.profile_ui_metro);
-            Window window = getWindow();
-            window.setStatusBarColor(ContextCompat.getColor(this, R.color.primaryColorMetro));
-
-        }
-    }
 
     private void viewSetup() {
         if(userName!=null && (!userName.isEmpty())){

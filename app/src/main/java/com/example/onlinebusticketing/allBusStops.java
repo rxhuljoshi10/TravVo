@@ -3,6 +3,7 @@ package com.example.onlinebusticketing;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
 import android.text.Editable;
@@ -33,6 +34,14 @@ public class allBusStops extends AppCompatActivity implements InputActivityAdapt
     @SuppressLint("Range")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences cookies = getSharedPreferences("Cookies", MODE_PRIVATE);
+        String homePage = cookies.getString("homePage", "Home");
+
+        if (homePage.equals("MetroHome")) {
+            setTheme(R.style.Theme_MetroUI);
+        } else {
+            setTheme(R.style.Theme_BusUI);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_bus_stops);
 

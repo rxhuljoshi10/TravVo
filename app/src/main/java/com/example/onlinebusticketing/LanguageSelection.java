@@ -29,6 +29,15 @@ public class LanguageSelection extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences cookies = getSharedPreferences("Cookies", MODE_PRIVATE);
+        String homePage = cookies.getString("homePage", "Home");
+
+        if (homePage.equals("MetroHome")) {
+            setTheme(R.style.Theme_MetroUI);
+        } else {
+            setTheme(R.style.Theme_BusUI);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_language_selection);
 
@@ -76,7 +85,7 @@ public class LanguageSelection extends AppCompatActivity {
     }
 
     private void highlightSelectedLang(int index) {
-        cardViews.get(index).setOutlineSpotShadowColor(getResources().getColor(R.color.primaryColor));
+        cardViews.get(index).setOutlineSpotShadowColor(com.google.android.material.R.attr.colorPrimary);
         checkImageViews.get(index).setVisibility(View.VISIBLE);
     }
 
@@ -98,7 +107,16 @@ public class LanguageSelection extends AppCompatActivity {
             startActivity(new Intent(this, LoginPage.class));
         }
         else {
-            startActivity(new Intent(this, Home.class));
+            String activityName = sharedPreferences.getString("homePage", "Home");
+
+            Class<?> homeActivity;
+            try {
+                homeActivity = Class.forName("com.example.onlinebusticketing." + activityName);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            Intent intent = new Intent(this, homeActivity);
+            startActivity(intent);
         }
         finish();
     }

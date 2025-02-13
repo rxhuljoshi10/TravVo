@@ -1,6 +1,5 @@
 package com.example.onlinebusticketing;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,14 +7,12 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 
 public class RechargePage extends AppCompatActivity {
     TextView walletBalanceView, warningView, nextBtn;
@@ -24,6 +21,14 @@ public class RechargePage extends AppCompatActivity {
     int RechargeAmount = 10;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences sharedPreferences = getSharedPreferences("Cookies", MODE_PRIVATE);
+        String homePage = sharedPreferences.getString("homePage", "Home");
+
+        if (homePage.equals("MetroHome")) {
+            setTheme(R.style.Theme_MetroUI);
+        } else {
+            setTheme(R.style.Theme_BusUI);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recharge_page);
 
@@ -51,22 +56,8 @@ public class RechargePage extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
-
-        changeTheme();
-
     }
 
-    public void changeTheme(){
-        SharedPreferences cookies = getSharedPreferences("Cookies", Context.MODE_PRIVATE);
-        String activityName = cookies.getString("homePage", "Home");
-        if (activityName.equals("MetroHome")){
-            nextBtn.setBackground(ContextCompat.getDrawable(this, R.drawable.disabled_backgroud_metro));
-            toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.primaryColorMetro));
-            Window window = getWindow();
-            window.setStatusBarColor(ContextCompat.getColor(this, R.color.primaryColorMetro));
-
-        }
-    }
 
     public void setAmount(View view){
         String cardText = "";

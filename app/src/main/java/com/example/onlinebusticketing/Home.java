@@ -202,8 +202,9 @@ public class Home extends AppCompatActivity implements HistoryListAdapter.OnItem
                     Intent intent = new Intent(Home.this, MetroHome.class);
                     SharedPreferences.Editor editor = cookies.edit();
                     editor.putString("homePage", "MetroHome").apply();
-
+                    recreate();
                     startActivity(intent);
+                    finish();
                     overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                     return true;
                 }

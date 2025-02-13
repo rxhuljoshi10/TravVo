@@ -2,6 +2,7 @@ package com.example.onlinebusticketing;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
@@ -26,6 +27,15 @@ public class SavedPlaces extends AppCompatActivity implements SavedPlacesAdapter
     String userId, entry;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences cookies = getSharedPreferences("Cookies", MODE_PRIVATE);
+        String homePage = cookies.getString("homePage", "Home");
+
+        if (homePage.equals("MetroHome")) {
+            setTheme(R.style.Theme_MetroUI);
+        } else {
+            setTheme(R.style.Theme_BusUI);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saved_places);
 

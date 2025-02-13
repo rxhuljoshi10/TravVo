@@ -1,24 +1,42 @@
+<!--<resources xmlns:tools="http://schemas.android.com/tools">-->
+<!--    &lt;!&ndash; Base application theme. &ndash;&gt;-->
+<!--    <style name="Base.Theme.OnlineBusTicketing" parent="Theme.Material3.DayNight.NoActionBar">-->
+<!--        <item name="colorPrimary">@color/primaryColor</item>-->
+<!--    </style>-->
+
+<!--    <style name="Theme.OnlineBusTicketing" parent="Base.Theme.OnlineBusTicketing">-->
+<!--        <item name="colorPrimary">@color/primaryColor</item>-->
+<!--    </style>-->
+
+<!--    <style name="Theme.OnlineBusTicketing.NoActionBar">-->
+<!--        <item name="windowActionBar">false</item>-->
+<!--        <item name="windowNoTitle">true</item>-->
+<!--    </style>-->
+
+<!--    <style name="Theme.OnlineBusTicketing.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">-->
+<!--        <item name="android:textColor">@color/black</item>-->
+<!--    </style>-->
+
+<!--    <style name="Theme.OnlineBusTicketing.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">-->
+<!--        <item name="android:textColor">@color/black</item>-->
+<!--    </style>-->
+
+<!--</resources>-->
+
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.OnlineBusTicketing" parent="Theme.Material3.DayNight.NoActionBar">
+    <!-- Bus Theme (Default) -->
+    <style name="Theme.BusUI" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryVariant">@color/primaryBackground</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/secondaryBackground</item>
     </style>
 
-    <style name="Theme.OnlineBusTicketing" parent="Base.Theme.OnlineBusTicketing">
-        <item name="colorPrimary">@color/primaryColor</item>
+    <!-- Metro Theme -->
+    <style name="Theme.MetroUI" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primaryColorMetro</item>
+        <item name="colorPrimaryVariant">@color/primaryBackground</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/secondaryBackground</item>
     </style>
-
-    <style name="Theme.OnlineBusTicketing.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="Theme.OnlineBusTicketing.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="android:textColor">@color/black</item>
-    </style>
-
-    <style name="Theme.OnlineBusTicketing.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
-        <item name="android:textColor">@color/black</item>
-    </style>
-
 </resources>
