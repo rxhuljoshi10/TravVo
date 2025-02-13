@@ -1,6 +1,7 @@
 package com.example.onlinebusticketing;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,8 +23,17 @@ public class BookingHistory extends AppCompatActivity implements BookingHistoryA
     List<TicketData> bookingDetailsList = new ArrayList<>();
     DatabaseHelper databaseHelper = new DatabaseHelper(this);
     TextView textView;
+    String homePage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences sharedPreferences = getSharedPreferences("Cookies", MODE_PRIVATE);
+        homePage = sharedPreferences.getString("homePage", "Home");
+
+        if (homePage.equals("MetroHome")) {
+            setTheme(R.style.Theme_MetroUI);
+        } else {
+            setTheme(R.style.Theme_BusUI);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking_history);
 
@@ -45,10 +55,18 @@ public class BookingHistory extends AppCompatActivity implements BookingHistoryA
 
     @Override
     public void onItemClick(TicketData selectedItem) {
-        ArrayList<String> eligibleBuses = databaseHelper.getEligibleBuses(selectedItem.source, selectedItem.destination);
-        Intent intent = new Intent(BookingHistory.this, TicketView.class);
+        Intent intent;
+        if(selectedItem.travel.equals("Bus")){
+            ArrayList<String> eligibleBuses = databaseHelper.getEligibleBuses(selectedItem.source, selectedItem.destination);
+            intent = new Intent(BookingHistory.this, TicketView.class);
+            intent.putExtra("eligibleBuses", eligibleBuses);
+
+        }
+        else{
+            intent = new Intent(BookingHistory.this, TicketViewMetro.class);
+        }
+
         intent.putExtra("ticketData", selectedItem);
-        intent.putExtra("eligibleBuses", eligibleBuses);
         intent.putExtra("entry","view");
         startActivity(intent);
     }

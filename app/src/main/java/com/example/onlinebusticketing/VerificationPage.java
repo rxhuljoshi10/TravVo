@@ -273,8 +273,9 @@ public class VerificationPage extends AppCompatActivity {
                         String date = snapshot.child(key).child("date").getValue(String.class);
                         String time = snapshot.child(key).child("time").getValue(String.class);
                         String status = snapshot.child(key).child("status").getValue(String.class);
+                        String travel = snapshot.child(key).child("travel").getValue(String.class);
 
-                        TicketData ticketData = new TicketData(key, bid, source, destination, fullPrice, halfPrice, fullCounter, halfCounter, totalFullPrice, totalHalfPrice, totalPrice, date, time, status);
+                        TicketData ticketData = new TicketData(key, bid, source, destination, fullPrice, halfPrice, fullCounter, halfCounter, totalFullPrice, totalHalfPrice, totalPrice, date, time, status, travel);
                         databaseHelper.addBookingDetails(ticketData, userId);
                     }
                 }

@@ -28,6 +28,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BusUI">
         <activity
+            android:name=".TicketViewMetro"
+            android:exported="false" />
+        <activity
             android:name=".MetroHome"
             android:exported="false" />
         <activity

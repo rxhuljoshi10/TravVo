@@ -12,9 +12,9 @@ public class TicketData implements Serializable {
     public int totalHalfPrice;
     public int totalPrice;
 
-    String tDate, tTime, bookingId, tid;
+    String tDate, tTime, bookingId, tid, travel;
 
-    public TicketData(String tid, String bid, String source, String destination, int fullPrice, int halfPrice, int fullCounter, int halfCounter, int totalFullPrice, int totalHalfPrice, int totalPrice, String tDate, String tTime, String status) {
+    public TicketData(String tid, String bid, String source, String destination, int fullPrice, int halfPrice, int fullCounter, int halfCounter, int totalFullPrice, int totalHalfPrice, int totalPrice, String tDate, String tTime, String status, String travel) {
         this.tid = tid;
         this.bookingId = bid;
         this.source = source;
@@ -29,6 +29,7 @@ public class TicketData implements Serializable {
         this.tDate = tDate;
         this.tTime = tTime;
         this.status = status;
+        this.travel = travel;
     }
 
     public TicketData(String bookingId, String source, String destination, int totalPrice, String tDate, String tTime, String status) {

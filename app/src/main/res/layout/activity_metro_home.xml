@@ -55,7 +55,7 @@
                         android:layout_width="280dp"
                         android:layout_height="53dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/logo"
+                        android:src="@drawable/logo_metro"
                         android:clickable="true"
                         android:focusable="true"/>
 

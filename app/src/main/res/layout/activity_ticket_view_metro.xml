@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TicketView">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:background="@color/primaryColorMetro"/>
+
+    <!--    <ImageView-->
+    <!--        android:id="@+id/imageViewQR"-->
+    <!--        android:layout_width="120dp"-->
+    <!--        android:layout_height="120dp"-->
+    <!--        android:src="@drawable/ic_invalidqr"-->
+    <!--        android:layout_gravity="end"-->
+    <!--        android:layout_marginTop="55dp"-->
+    <!--        android:layout_marginEnd="20dp"-->
+    <!--        android:visibility="visible"/>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="15dp">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_key_left"
+            android:layout_marginTop="20dp"
+            app:tint="@color/white"
+            android:onClick="previous"/>
+
+        <TextView
+            android:id="@+id/titleView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/booking_details"
+            android:textSize="31sp"
+            android:fontFamily="sans-serif-black"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/amountPaid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Amount Paid : ₹20"
+            android:textSize="17sp"
+            android:fontFamily="sans-serif-medium"
+            android:layout_marginTop="18dp"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/bookingId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Booking ID : 2321456012"
+            android:textSize="17sp"
+            android:fontFamily="sans-serif-medium"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/white"/>
+
+        <LinearLayout
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/borders"
+            android:padding="15dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_marginTop="15dp">
+
+            <!--            <TextView-->
+            <!--                android:id="@+id/ticketId"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:gravity="center"-->
+            <!--                android:text="R0921"-->
+            <!--                android:textSize="30sp"-->
+            <!--                android:fontFamily="sans-serif-black"-->
+            <!--                android:paddingVertical="5sp"/>-->
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/icon_location"
+                    android:layout_marginVertical="5dp"
+                    android:layout_gravity="center"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/sourceView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Source"
+                        android:textSize="20sp"
+                        android:fontFamily="sans-serif-medium"/>
+
+                    <View
+                        android:layout_width="60dp"
+                        android:layout_height="1dp"
+                        android:background="@color/secondaryBackground"
+                        android:layout_marginStart="15dp"/>
+
+                    <TextView
+                        android:id="@+id/destinationView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Destination"
+                        android:textSize="20sp"
+                        android:fontFamily="sans-serif-medium"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="3dp"
+                android:background="@drawable/dashed_line"
+                android:layout_marginVertical="20dp"
+                android:layout_marginHorizontal="10dp"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="30dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ticket_fare"
+                        android:textSize="18sp"
+                        android:fontFamily="sans-serif-medium"/>
+
+                    <TextView
+                        android:id="@+id/totalPriceView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="₹10"
+                        android:textSize="23sp"
+                        android:fontFamily="sans-serif-black"
+                        android:layout_gravity="center_horizontal"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/dashed_line"
+                    android:layout_marginHorizontal="15dp"
+                    android:rotation="90" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/dateView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="12/01/24"
+                        android:textSize="20sp"
+                        android:fontFamily="sans-serif-medium"/>
+
+                    <TextView
+                        android:id="@+id/timeView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="23:12"
+                        android:textSize="20sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:layout_gravity="center_horizontal"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="3dp"
+                android:background="@drawable/dashed_line"
+                android:layout_marginVertical="20dp"
+                android:layout_marginHorizontal="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"
+                android:layout_marginHorizontal="20dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/fullTicketView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Full : 1 x ₹10"
+                        android:layout_marginTop="10dp"
+                        android:textSize="16sp" />
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Helpline : 020-2454-545"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="2dp"
+                        android:textSize="13sp"/>
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:id="@+id/imageViewQR"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_cancelledqr2"
+                    android:visibility="visible"/>
+
+            </LinearLayout>
+
+            <!--            <TextView-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:text="Helpline : 020-2454-5454"-->
+            <!--                android:textSize="14sp"/>-->
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="140dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_gravity="center_horizontal">
+
+            <LinearLayout
+                android:id="@+id/bookAgainView"
+                android:layout_width="100dp"
+                android:layout_height="65dp"
+                android:orientation="vertical"
+                android:background="@drawable/borders"
+                android:padding="10dp"
+                android:layout_marginStart="15dp"
+                android:gravity="center"
+                android:onClick="bookAgain"
+                android:visibility="visible">
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_bookagain"
+                    app:tint="@color/iconColor" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="11sp"
+                    android:text="@string/book_again"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="65dp"
+                android:orientation="vertical"
+                android:background="@drawable/borders"
+                android:padding="10dp"
+                android:layout_marginStart="15dp"
+                android:gravity="center"
+                android:onClick="displayRoute">
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/route"
+                    app:tint="@color/iconColor" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="11sp"
+                    android:text="@string/view_route"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cancelView"
+                android:layout_width="100dp"
+                android:layout_height="65dp"
+                android:orientation="vertical"
+                android:background="@drawable/borders"
+                android:padding="10dp"
+                android:layout_marginStart="15dp"
+                android:gravity="center"
+                android:onClick="cancelTicket"
+                android:visibility="gone">
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_cancel_ticket"
+                    app:tint="@color/iconColor" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="11sp"
+                    android:text="@string/cancel_booking"/>
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/confirmBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:paddingBottom="10dp"
+            android:text="Confirm Now"
+            android:textColor="@color/white"
+            android:layout_gravity="bottom"
+            android:textSize="25sp"
+            android:layout_marginHorizontal="25dp"
+            android:visibility="gone"/>
+    </LinearLayout>
+</FrameLayout>

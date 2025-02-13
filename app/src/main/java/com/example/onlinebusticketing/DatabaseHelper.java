@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     private static final String TABLE_NAME_2 = "SEARCH_HISTORY";
     private static final String CREATE_TABLE_2 = "CREATE TABLE "+ TABLE_NAME_2 +"(search_ID INTEGER PRIMARY KEY AUTOINCREMENT, userId varchar(20)," +
-        "SOURCE TEXT, DESTINATION TEXT);";
+        "SOURCE TEXT, DESTINATION TEXT, TRAVEL TEXT);";
 
 
     private static final String TABLE_NAME_3 = "Bus_Routes";
@@ -28,10 +28,10 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     private static final String TABLE_NAME_4 = "RECENT_SEARCHES";
     private static final String CREATE_TABLE_4 = "CREATE TABLE "+ TABLE_NAME_4 +"(search_ID INTEGER PRIMARY KEY AUTOINCREMENT, userId varchar(20)," +
-            "stop TEXT);";
+            "stop TEXT, travel TEXT);";
 
     private static final String TABLE_BOOKING_HISTORY = "tableBookingHistory";
-    private static final String CREATE_TABLE_5 = "CREATE TABLE "+ TABLE_BOOKING_HISTORY +"(tid INTEGER PRIMARY KEY, uid INTEGER, bid INTEGER, bSource varchar(20), bDestination varchar(20), fullPrice INTEGER, halfPrice INTEGER, fullCounter INTEGER, halfCounter INTEGER, totalFullPrice INTEGER, totalHalfPrice INTEGER, totalPrice INTEGER, bDate varchar(15), bTime varchar(10), status varchar(20));";
+    private static final String CREATE_TABLE_5 = "CREATE TABLE "+ TABLE_BOOKING_HISTORY +"(tid INTEGER PRIMARY KEY, uid INTEGER, bid INTEGER, bSource varchar(20), bDestination varchar(20), fullPrice INTEGER, halfPrice INTEGER, fullCounter INTEGER, halfCounter INTEGER, totalFullPrice INTEGER, totalHalfPrice INTEGER, totalPrice INTEGER, bDate varchar(15), bTime varchar(10), status varchar(20), travel varchar(20));";
 
     private static final String TABLE_SAVED_PLACES = "SavedPlaces";
     private static final String CREATE_TABLE_6 = "CREATE TABLE "+ TABLE_SAVED_PLACES +"(sid INTEGER PRIMARY KEY AUTOINCREMENT, title varchar(30), address varchar(30));";
@@ -103,7 +103,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
 
 
-
     public List<String> getBusStops(){
         List<String> temp = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -125,24 +124,25 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 //        db.close();
 //    }
 
-    public void insertSearchHistory(String userID, String source, String destination){
+    public void insertSearchHistory(String userID, String source, String destination, String travel){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("userID", userID);
         values.put("SOURCE", source);
         values.put("DESTINATION", destination);
+        values.put("TRAVEL", travel);
         db.insert(TABLE_NAME_2,null, values);
         db.close();
     }
 
-    public List<String> getLastSearchHistory(String userID) {
+    public List<String> getLastSearchHistory(String userID, String travel) {
         List<String> searchHistory = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT DISTINCT SOURCE, DESTINATION FROM " + TABLE_NAME_2 +
-                " WHERE userId = ? ORDER BY search_ID DESC LIMIT 5";
+                " WHERE userId = ? AND TRAVEL = ? ORDER BY search_ID DESC LIMIT 5";
 
         Cursor cursor = null;
-        cursor = db.rawQuery(query, new String[]{userID});
+        cursor = db.rawQuery(query, new String[]{userID, travel});
         if (cursor != null && cursor.moveToFirst()) {
             do {
                 @SuppressLint("Range") String source = cursor.getString(cursor.getColumnIndex("SOURCE"));
@@ -155,11 +155,12 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
 
 
-    public void insertSearchedStop(String userID, String stop){
+    public void insertSearchedStop(String userID, String stop, String travel){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("userID", userID);
         values.put("stop", stop);
+        values.put("travel", travel);
         db.insert(TABLE_NAME_4,null, values);
         db.close();
     }
@@ -168,10 +169,28 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         ArrayList<String> searchHistory = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT DISTINCT stop FROM " + TABLE_NAME_4 +
-                " WHERE userId = ? ORDER BY search_ID DESC LIMIT 5";
+                " WHERE userId = ? AND travel = ? ORDER BY search_ID DESC LIMIT 5";
 
         Cursor cursor = null;
-        cursor = db.rawQuery(query, new String[]{userID});
+        cursor = db.rawQuery(query, new String[]{userID, "Bus"});
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                @SuppressLint("Range") String stop_name = cursor.getString(cursor.getColumnIndex("stop"));
+                searchHistory.add(stop_name);
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return searchHistory;
+    }
+
+    public ArrayList<String> getRecentSearchedStopsMetro(String userId) {
+        ArrayList<String> searchHistory = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT DISTINCT stop FROM " + TABLE_NAME_4 +
+                " WHERE userId = ? AND travel = ? ORDER BY search_ID DESC LIMIT 5";
+
+        Cursor cursor = null;
+        cursor = db.rawQuery(query, new String[]{userId,"Metro"});
         if (cursor != null && cursor.moveToFirst()) {
             do {
                 @SuppressLint("Range") String stop_name = cursor.getString(cursor.getColumnIndex("stop"));
@@ -407,6 +426,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         v.put("bDate", bookingDetails.tDate);
         v.put("bTime", bookingDetails.tTime);
         v.put("status", bookingDetails.status);
+        v.put("travel", bookingDetails.travel);
 
         db.insert(TABLE_BOOKING_HISTORY, null, v);
     }
@@ -437,8 +457,9 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 String tDate = cursor.getString(cursor.getColumnIndex("bDate"));
                 String tTime = cursor.getString(cursor.getColumnIndex("bTime"));
                 String status = cursor.getString(cursor.getColumnIndex("status"));
+                String travel = cursor.getString(cursor.getColumnIndex("travel"));
 
-                TicketData bookingDetails = new TicketData(tid, bid, source, destination,fullPrice, halfPrice, fullCounter, halfCounter, totalFullPrice, totalHalfPrice, totalPrice, tDate, tTime, status);
+                TicketData bookingDetails = new TicketData(tid, bid, source, destination,fullPrice, halfPrice, fullCounter, halfCounter, totalFullPrice, totalHalfPrice, totalPrice, tDate, tTime, status, travel);
                 bookingList.add(bookingDetails);
             } while (cursor.moveToNext());
         }
@@ -577,7 +598,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         }
     }
 
-    public double getMetroFare(String source, String destination) {
+    public int getMetroFare(String source, String destination) {
         SQLiteDatabase db = this.getReadableDatabase();
         double fare = -1; // Default value if no route is found
 
@@ -590,7 +611,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         cursor.close();
         db.close();
 
-        return fare;
+        return (int) fare;
     }
 
     public ArrayList<String> getAllMetroStops() {

@@ -287,7 +287,7 @@ public class Home extends AppCompatActivity implements HistoryListAdapter.OnItem
             Intent intent = new Intent(Home.this, nextActivity);
             ArrayList<String> eligibleBuses = databaseHelper.getEligibleBuses(source, destination);
             if (eligibleBuses.size() != 0) {
-                databaseHelper.insertSearchHistory(userId, source, destination);
+                databaseHelper.insertSearchHistory(userId, source, destination, "Bus");
                 intent.putExtra("source", source);
                 intent.putExtra("destination", destination);
                 intent.putStringArrayListExtra("eligibleBuses", eligibleBuses);
@@ -377,7 +377,7 @@ public class Home extends AppCompatActivity implements HistoryListAdapter.OnItem
             nav_header_view.setText(userName);
         }
 
-        List<String> lastSearchHistory = databaseHelper.getLastSearchHistory(userId);
+        List<String> lastSearchHistory = databaseHelper.getLastSearchHistory(userId, "Bus");
         HistoryListAdapter historyListAdapter = new HistoryListAdapter( this, lastSearchHistory, sourceEntry, destinationEntry);
         historyView.setAdapter(historyListAdapter);
     }

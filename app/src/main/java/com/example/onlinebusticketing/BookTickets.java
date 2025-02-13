@@ -81,7 +81,7 @@ public class BookTickets extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(valid_stop_check()) {
-                    databaseHelper.insertSearchHistory(FirebaseAuth.getInstance().getCurrentUser().getUid(),sourceEntry.getText().toString(), destinationEntry.getText().toString());
+                    databaseHelper.insertSearchHistory(FirebaseAuth.getInstance().getCurrentUser().getUid(),sourceEntry.getText().toString(), destinationEntry.getText().toString(), "Bus");
                     Intent intent = new Intent(BookTickets.this, Ticket_Summary.class);
                     String source = sourceEntry.getText().toString();
                     String destination = destinationEntry.getText().toString();
@@ -113,7 +113,7 @@ public class BookTickets extends AppCompatActivity {
         });
 
 
-        List<String> lastSearchHistory = databaseHelper.getLastSearchHistory(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        List<String> lastSearchHistory = databaseHelper.getLastSearchHistory(FirebaseAuth.getInstance().getCurrentUser().getUid(), "Bus");
 
         ArrayAdapter<String> historyAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, lastSearchHistory);
         historyView.setAdapter(historyAdapter);

@@ -5,6 +5,7 @@ import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.Animatable;
@@ -41,8 +42,10 @@ public class Ticket_Summary extends AppCompatActivity {
     ArrayList<String> eligibleBuses = new ArrayList<>();
     TextView sourceView, destinationView, walletBalanceView, totalPriceView,
             counterFullView, counterFullView2, fullPriceView, fullSinglePrice, totalFullPriceView,
-            counterHalfView, counterHalfView2, halfPriceView, halfSinglePrice, totalHalfPriceView;
-    LinearLayout walletView;
+            counterHalfView, counterHalfView2, halfPriceView, halfSinglePrice, totalHalfPriceView,
+            busListLabel;
+    LinearLayout walletView, halfPriceParentView, halfPriceParentView2;
+    RecyclerView busList;
     ImageView viewDraggable;
     View coverview;
     private Button btnSwipe;
@@ -52,19 +55,28 @@ public class Ticket_Summary extends AppCompatActivity {
     int totalPrice = fullPrice;
     float walletBalance;
     int originalBtnWidth;
-    String source, destination, userId;
+    String source, destination, userId, homePage;
     final static int animationDuration = 400;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences sharedPreferences = getSharedPreferences("Cookies", MODE_PRIVATE);
+        homePage = sharedPreferences.getString("homePage", "Home");
+
+        if (homePage.equals("MetroHome")) {
+            setTheme(R.style.Theme_MetroUI);
+        } else {
+            setTheme(R.style.Theme_BusUI);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticket_summary);
+
 
         Intent intent = getIntent();
         source = intent.getStringExtra("source");
         destination = intent.getStringExtra("destination");
-        eligibleBuses = intent.getStringArrayListExtra("eligibleBuses");
-        String bus = eligibleBuses.get(0);
-        fullPrice = getPrice(bus, source, destination);
+
+
 
         sourceView = findViewById(R.id.sourceView);
         destinationView = findViewById(R.id.destinationView);
@@ -89,6 +101,11 @@ public class Ticket_Summary extends AppCompatActivity {
         destinationView.setText(destination);
         coverview = findViewById(R.id.coverView);
 
+        busListLabel = findViewById(R.id.busListLabel);
+        busList = findViewById(R.id.busList);
+        halfPriceParentView = findViewById(R.id.halfPriceParentView);
+        halfPriceParentView2 = findViewById(R.id.halfPriceParentView2);
+
         userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
@@ -97,9 +114,21 @@ public class Ticket_Summary extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_key_left);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        RecyclerView recyclerView = findViewById(R.id.busList);
-        BusListAdapter adapter = new BusListAdapter(eligibleBuses, source, destination);
-        recyclerView.setAdapter(adapter);
+        if(homePage.equals("MetroHome")){
+            fullPrice = databaseHelper.getMetroFare(source, destination);
+            busListLabel.setVisibility(View.GONE);
+            busList.setVisibility(View.GONE);
+            halfPriceParentView.setVisibility(View.GONE);
+            halfPriceParentView2.setVisibility(View.GONE);
+        }
+        else{
+            eligibleBuses = intent.getStringArrayListExtra("eligibleBuses");
+            String bus = eligibleBuses.get(0);
+            fullPrice = getPrice(bus, source, destination);
+            RecyclerView recyclerView = findViewById(R.id.busList);
+            BusListAdapter adapter = new BusListAdapter(eligibleBuses, source, destination);
+            recyclerView.setAdapter(adapter);
+        }
 
         updateCounterTextView();
         implementSwipeButton();
@@ -274,12 +303,25 @@ public class Ticket_Summary extends AppCompatActivity {
         String tid = date + time + sec;
         tid = tid.replace("/","").replace(":","");
 
-        TicketData ticketData = new TicketData(tid, bid, source, destination, fullPrice, halfPrice, fullCounter, halfCounter, totalFullPrice, totalHalfPrice, totalPrice,date, time, "Booking Succesful");
+        TicketData ticketData;
+        if(homePage.equals("MetroHome")){
+            ticketData = new TicketData(tid, bid, source, destination, fullPrice, halfPrice, fullCounter, halfCounter, totalFullPrice, totalHalfPrice, totalPrice,date, time, "Booking Succesful","Metro");
+        }
+        else{
+            ticketData = new TicketData(tid, bid, source, destination, fullPrice, halfPrice, fullCounter, halfCounter, totalFullPrice, totalHalfPrice, totalPrice,date, time, "Booking Succesful","Bus");
+        }
         saveData(ticketData);
 
-        Intent intent = new Intent(Ticket_Summary.this, TicketView.class);
+        Intent intent;
+        if(homePage.equals("MetroHome")){
+            intent = new Intent(Ticket_Summary.this, TicketViewMetro.class);
+        }
+        else{
+            intent = new Intent(Ticket_Summary.this, TicketView.class);
+            intent.putExtra("eligibleBuses", eligibleBuses);
+        }
+
         intent.putExtra("ticketData", ticketData);
-        intent.putExtra("eligibleBuses", eligibleBuses);
         intent.putExtra("entry","book");
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
@@ -308,6 +350,7 @@ public class Ticket_Summary extends AppCompatActivity {
         databaseReference.child("date").setValue(t.tDate);
         databaseReference.child("time").setValue(t.tTime);
         databaseReference.child("status").setValue(t.status);
+        databaseReference.child("travel").setValue(t.travel);
     }
 
     private String getRandomNumbers() {

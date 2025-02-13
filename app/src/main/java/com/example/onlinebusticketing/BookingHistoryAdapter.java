@@ -47,6 +47,7 @@ public class BookingHistoryAdapter extends RecyclerView.Adapter<BookingHistoryAd
         holder.dateView.setText(item.tDate+",");
         holder.timeView.setText(item.tTime);
         holder.statusView.setText(item.status);
+        holder.travelView.setText(item.travel);
         if(item.status.equals( "Cancelled" )){
             holder.statusView.setTextColor(Color.RED);
         }
@@ -70,7 +71,7 @@ public class BookingHistoryAdapter extends RecyclerView.Adapter<BookingHistoryAd
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         LinearLayout ItemView;
-        TextView sourceView, destinationView, bidView, dateView, timeView, statusView;
+        TextView sourceView, destinationView, bidView, dateView, timeView, statusView, travelView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -81,6 +82,7 @@ public class BookingHistoryAdapter extends RecyclerView.Adapter<BookingHistoryAd
             dateView = itemView.findViewById(R.id.dateView);
             timeView = itemView.findViewById(R.id.timeView);
             statusView = itemView.findViewById(R.id.statusView);
+            travelView = itemView.findViewById(R.id.travelView);
         }
     }
     public interface OnItemClickListener {

@@ -1,17 +1,17 @@
-PCMC,Sant Tukaram Nagar,1.5,0,10
-PCMC,Bhosari,3.0,1,15
-PCMC,Kasarwadi,4.5,2,20
-PCMC,Phugewadi,6.0,3,25
-PCMC,Dapodi,7.5,4,30
-PCMC,Bopodi,9.0,5,35
-PCMC,Khadki,10.5,6,40
-PCMC,Range Hills,12.0,7,45
-PCMC,Shivaji Nagar,13.5,8,50
-PCMC,Civil Court,15.0,9,55
-PCMC,Budhwar Peth,16.5,10,60
-PCMC,Mandai,18.0,11,65
-PCMC,Swargate,19.5,12,70
-Sant Tukaram Nagar,PCMC,1.5,0,10
+PCMC Bhavan,Sant Tukaram Nagar,1.5,0,10
+PCMC Bhavan,Bhosari,3.0,1,15
+PCMC Bhavan,Kasarwadi,4.5,2,20
+PCMC Bhavan,Phugewadi,6.0,3,25
+PCMC Bhavan,Dapodi,7.5,4,30
+PCMC Bhavan,Bopodi,9.0,5,35
+PCMC Bhavan,Khadki,10.5,6,40
+PCMC Bhavan,Range Hills,12.0,7,45
+PCMC Bhavan,Shivaji Nagar,13.5,8,50
+PCMC Bhavan,Civil Court,15.0,9,55
+PCMC Bhavan,Budhwar Peth,16.5,10,60
+PCMC Bhavan,Mandai,18.0,11,65
+PCMC Bhavan,Swargate,19.5,12,70
+Sant Tukaram Nagar,PCMC Bhavan,1.5,0,10
 Sant Tukaram Nagar,Bhosari,1.5,0,10
 Sant Tukaram Nagar,Kasarwadi,3.0,1,15
 Sant Tukaram Nagar,Phugewadi,4.5,2,20
@@ -24,7 +24,7 @@ Sant Tukaram Nagar,Civil Court,13.5,8,50
 Sant Tukaram Nagar,Budhwar Peth,15.0,9,55
 Sant Tukaram Nagar,Mandai,16.5,10,60
 Sant Tukaram Nagar,Swargate,18.0,11,65
-Bhosari,PCMC,3.0,1,15
+Bhosari,PCMC Bhavan,3.0,1,15
 Bhosari,Sant Tukaram Nagar,1.5,0,10
 Bhosari,Kasarwadi,1.5,0,10
 Bhosari,Phugewadi,3.0,1,15
@@ -37,7 +37,7 @@ Bhosari,Civil Court,12.0,7,45
 Bhosari,Budhwar Peth,13.5,8,50
 Bhosari,Mandai,15.0,9,55
 Bhosari,Swargate,16.5,10,60
-Kasarwadi,PCMC,4.5,2,20
+Kasarwadi,PCMC Bhavan,4.5,2,20
 Kasarwadi,Sant Tukaram Nagar,3.0,1,15
 Kasarwadi,Bhosari,1.5,0,10
 Kasarwadi,Phugewadi,1.5,0,10
@@ -50,7 +50,7 @@ Kasarwadi,Civil Court,10.5,6,40
 Kasarwadi,Budhwar Peth,12.0,7,45
 Kasarwadi,Mandai,13.5,8,50
 Kasarwadi,Swargate,15.0,9,55
-Phugewadi,PCMC,6.0,3,25
+Phugewadi,PCMC Bhavan,6.0,3,25
 Phugewadi,Sant Tukaram Nagar,4.5,2,20
 Phugewadi,Bhosari,3.0,1,15
 Phugewadi,Kasarwadi,1.5,0,10
@@ -63,7 +63,7 @@ Phugewadi,Civil Court,9.0,5,35
 Phugewadi,Budhwar Peth,10.5,6,40
 Phugewadi,Mandai,12.0,7,45
 Phugewadi,Swargate,13.5,8,50
-Dapodi,PCMC,7.5,4,30
+Dapodi,PCMC Bhavan,7.5,4,30
 Dapodi,Sant Tukaram Nagar,6.0,3,25
 Dapodi,Bhosari,4.5,2,20
 Dapodi,Kasarwadi,3.0,1,15
@@ -76,7 +76,7 @@ Dapodi,Civil Court,7.5,4,30
 Dapodi,Budhwar Peth,9.0,5,35
 Dapodi,Mandai,10.5,6,40
 Dapodi,Swargate,12.0,7,45
-Bopodi,PCMC,9.0,5,35
+Bopodi,PCMC Bhavan,9.0,5,35
 Bopodi,Sant Tukaram Nagar,7.5,4,30
 Bopodi,Bhosari,6.0,3,25
 Bopodi,Kasarwadi,4.5,2,20
@@ -89,7 +89,7 @@ Bopodi,Civil Court,6.0,3,25
 Bopodi,Budhwar Peth,7.5,4,30
 Bopodi,Mandai,9.0,5,35
 Bopodi,Swargate,10.5,6,40
-Khadki,PCMC,10.5,6,40
+Khadki,PCMC Bhavan,10.5,6,40
 Khadki,Sant Tukaram Nagar,9.0,5,35
 Khadki,Bhosari,7.5,4,30
 Khadki,Kasarwadi,6.0,3,25
@@ -102,7 +102,7 @@ Khadki,Civil Court,4.5,2,20
 Khadki,Budhwar Peth,6.0,3,25
 Khadki,Mandai,7.5,4,30
 Khadki,Swargate,9.0,5,35
-Range Hills,PCMC,12.0,7,45
+Range Hills,PCMC Bhavan,12.0,7,45
 Range Hills,Sant Tukaram Nagar,10.5,6,40
 Range Hills,Bhosari,9.0,5,35
 Range Hills,Kasarwadi,7.5,4,30
@@ -115,7 +115,7 @@ Range Hills,Civil Court,3.0,1,15
 Range Hills,Budhwar Peth,4.5,2,20
 Range Hills,Mandai,6.0,3,25
 Range Hills,Swargate,7.5,4,30
-Shivaji Nagar,PCMC,13.5,8,50
+Shivaji Nagar,PCMC Bhavan,13.5,8,50
 Shivaji Nagar,Sant Tukaram Nagar,12.0,7,45
 Shivaji Nagar,Bhosari,10.5,6,40
 Shivaji Nagar,Kasarwadi,9.0,5,35
@@ -128,7 +128,7 @@ Shivaji Nagar,Civil Court,1.5,0,10
 Shivaji Nagar,Budhwar Peth,3.0,1,15
 Shivaji Nagar,Mandai,4.5,2,20
 Shivaji Nagar,Swargate,6.0,3,25
-Civil Court,PCMC,15.0,9,55
+Civil Court,PCMC Bhavan,15.0,9,55
 Civil Court,Sant Tukaram Nagar,13.5,8,50
 Civil Court,Bhosari,12.0,7,45
 Civil Court,Kasarwadi,10.5,6,40
@@ -141,7 +141,7 @@ Civil Court,Shivaji Nagar,1.5,0,10
 Civil Court,Budhwar Peth,1.5,0,10
 Civil Court,Mandai,3.0,1,15
 Civil Court,Swargate,4.5,2,20
-Budhwar Peth,PCMC,16.5,10,60
+Budhwar Peth,PCMC Bhavan,16.5,10,60
 Budhwar Peth,Sant Tukaram Nagar,15.0,9,55
 Budhwar Peth,Bhosari,13.5,8,50
 Budhwar Peth,Kasarwadi,12.0,7,45
@@ -154,7 +154,7 @@ Budhwar Peth,Shivaji Nagar,3.0,1,15
 Budhwar Peth,Civil Court,1.5,0,10
 Budhwar Peth,Mandai,1.5,0,10
 Budhwar Peth,Swargate,3.0,1,15
-Mandai,PCMC,18.0,11,65
+Mandai,PCMC Bhavan,18.0,11,65
 Mandai,Sant Tukaram Nagar,16.5,10,60
 Mandai,Bhosari,15.0,9,55
 Mandai,Kasarwadi,13.5,8,50
@@ -167,7 +167,7 @@ Mandai,Shivaji Nagar,4.5,2,20
 Mandai,Civil Court,3.0,1,15
 Mandai,Budhwar Peth,1.5,0,10
 Mandai,Swargate,1.5,0,10
-Swargate,PCMC,19.5,12,70
+Swargate,PCMC Bhavan,19.5,12,70
 Swargate,Sant Tukaram Nagar,18.0,11,65
 Swargate,Bhosari,16.5,10,60
 Swargate,Kasarwadi,15.0,9,55

@@ -24,7 +24,7 @@ import com.google.zxing.common.BitMatrix;
 
 import java.util.ArrayList;
 
-public class TicketView extends AppCompatActivity {
+public class TicketViewMetro extends AppCompatActivity {
     TextView ticketId, dateView, timeView, sourceView, destinationView, totalPriceView,
             fullTicketView, halfTicketView, amountPaid, bookingId, titleView;
     ArrayList<String> eligibleBuses = new ArrayList<>();
@@ -47,9 +47,9 @@ public class TicketView extends AppCompatActivity {
 //        } else {
 //            setTheme(R.style.Theme_BusUI);
 //        }
-
+        setTheme(R.style.Theme_MetroUI);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ticket_view);
+        setContentView(R.layout.activity_ticket_view_metro);
 
 
 //        ticketId = findViewById(R.id.ticketId);
@@ -58,7 +58,7 @@ public class TicketView extends AppCompatActivity {
         sourceView = findViewById(R.id.sourceView);
         destinationView = findViewById(R.id.destinationView);
         fullTicketView = findViewById(R.id.fullTicketView);
-        halfTicketView = findViewById(R.id.halfTicketView);
+
         totalPriceView = findViewById(R.id.totalPriceView);
         amountPaid = findViewById(R.id.amountPaid);
         bookingId = findViewById(R.id.bookingId);
@@ -74,15 +74,14 @@ public class TicketView extends AppCompatActivity {
     private void setTicketData() {
         Intent intent = getIntent();
         ticketData = (TicketData) intent.getSerializableExtra("ticketData");
-        eligibleBuses = intent.getStringArrayListExtra("eligibleBuses");
         entry = intent.getStringExtra("entry");
+
         if(ticketData!=null) {
             sourceView.setText(ticketData.source);
             destinationView.setText(ticketData.destination);
 
             totalPriceView.setText("₹"+ticketData.totalPrice);
             fullTicketView.setText("Full : "+ ticketData.fullCounter+" x ₹"+ticketData.fullPrice);
-            halfTicketView.setText("Half : "+ ticketData.halfCounter+" x ₹"+ticketData.halfPrice);
             amountPaid.setText("Amount Paid : ₹"+ticketData.totalPrice);
 
             dateView.setText(ticketData.tDate);
@@ -93,7 +92,7 @@ public class TicketView extends AppCompatActivity {
             if(!ticketData.status.equals("Cancelled")) {
                 imageViewQR.setVisibility(View.VISIBLE);
 //                confirmBtn.setVisibility(View.VISIBLE);
-                bookAgainView.setVisibility(View.GONE);
+//                bookAgainView.setVisibility(View.GONE);
                 cancelTicketView.setVisibility(View.VISIBLE);
                 generateQRCode(ticketData.bookingId);
             }
@@ -104,7 +103,7 @@ public class TicketView extends AppCompatActivity {
     }
 
     public void displayEligibleBuses(View v){
-        Intent intent = new Intent(TicketView.this, EligibleBusList.class);
+        Intent intent = new Intent(TicketViewMetro.this, EligibleBusList.class);
         intent.putExtra("source", ticketData.source);
         intent.putExtra("destination", ticketData.destination);
         intent.putExtra("eligibleBuses", eligibleBuses);
@@ -112,7 +111,7 @@ public class TicketView extends AppCompatActivity {
     }
 
     public void displayRoute(View v){
-        Intent intent = new Intent(TicketView.this, ListOfBusStops.class);
+        Intent intent = new Intent(TicketViewMetro.this, ListOfBusStops.class);
         intent.putExtra("source", ticketData.source);
         intent.putExtra("destination", ticketData.destination);
         intent.putExtra("busNumber", eligibleBuses.get(0));
@@ -149,7 +148,7 @@ public class TicketView extends AppCompatActivity {
         builder.setTitle("Confirm Cancellation..!")
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(TicketView.this, "Ticket Cancelled!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TicketViewMetro.this, "Ticket Cancelled!", Toast.LENGTH_SHORT).show();
                         databaseHelper.updateBookingStatus(ticketData.bookingId, "Cancelled");
                         FirebaseDatabase db = FirebaseDatabase.getInstance();
 
@@ -175,7 +174,7 @@ public class TicketView extends AppCompatActivity {
     }
 
     public void bookAgain(View view) {
-        Intent intent = new Intent(TicketView.this, Ticket_Summary.class);
+        Intent intent = new Intent(this, Ticket_Summary.class);
         intent.putExtra("source", ticketData.source);
         intent.putExtra("destination", ticketData.destination);
         intent.putExtra("eligibleBuses", eligibleBuses);

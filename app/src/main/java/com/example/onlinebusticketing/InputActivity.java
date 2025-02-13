@@ -35,13 +35,13 @@ public class InputActivity extends AppCompatActivity implements InputActivityAda
     List<Location> stopsLocationList = new ArrayList<>();
     LocationHelper locationHelper = new LocationHelper(this);
     DatabaseHelper databaseHelper = new DatabaseHelper(this);
-    String entry, userId;
+    String entry, userId, homePage;
 
     @SuppressLint("Range")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences cookies = getSharedPreferences("Cookies", MODE_PRIVATE);
-        String homePage = cookies.getString("homePage", "Home");
+        homePage = cookies.getString("homePage", "Home");
 
         if (homePage.equals("MetroHome")) {
             setTheme(R.style.Theme_MetroUI);
@@ -68,9 +68,11 @@ public class InputActivity extends AppCompatActivity implements InputActivityAda
         userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         stopsLocationList = databaseHelper.getStopsLocationList();
-        recentSearches = databaseHelper.getRecentSearchedStops(userId);
+        if(homePage.equals("MetroHome")) recentSearches = databaseHelper.getRecentSearchedStopsMetro(userId);
+        else recentSearches = databaseHelper.getRecentSearchedStops(userId);
         inputActivityAdapter = new InputActivityAdapter(this, recentSearches, R.layout.item_recent_stop_list);
         recentStopsView.setAdapter(inputActivityAdapter);
+
         if(recentSearches.isEmpty()){
             recentView.setVisibility(View.GONE);
         }
@@ -141,7 +143,8 @@ public class InputActivity extends AppCompatActivity implements InputActivityAda
 
     private void transferSelectedData(String selectedItem) {
         Intent resultIntent = new Intent();
-        databaseHelper.insertSearchedStop(userId,selectedItem);
+        if(homePage.equals("MetroHome")) databaseHelper.insertSearchedStop(userId,selectedItem, "Metro");
+        else databaseHelper.insertSearchedStop(userId,selectedItem, "Bus");
         resultIntent.putExtra("userInput", selectedItem);
         setResult(Activity.RESULT_OK, resultIntent);
         finish();

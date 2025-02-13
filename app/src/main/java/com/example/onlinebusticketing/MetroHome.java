@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.GestureDetector;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -15,8 +16,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.cardview.widget.CardView;
@@ -29,8 +32,9 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class MetroHome extends AppCompatActivity {
+public class MetroHome extends AppCompatActivity implements HistoryListAdapter.OnItemClickListener{
     DatabaseHelper databaseHelper = new DatabaseHelper(this);
     ArrayList<String> stopNames = new ArrayList<>();
     DrawerLayout drawerLayout;
@@ -120,7 +124,7 @@ public class MetroHome extends AppCompatActivity {
         swapBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                swapInputEntry();
+                swapInputEntry();
             }
         });
 
@@ -128,7 +132,7 @@ public class MetroHome extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(MyUtil.isWalletActivated(MetroHome.this)) {
-//                    checkAndProceed(Ticket_Summary.class);
+                    checkAndProceed(Ticket_Summary.class);
                 }
                 else{
                     FragmentWalletActivation activateWallet = new FragmentWalletActivation();
@@ -170,6 +174,41 @@ public class MetroHome extends AppCompatActivity {
 
     }
 
+    private void checkAndProceed(Class<?> nextActivity) {
+        String source = sourceEntry.getText().toString();
+        String destination = destinationEntry.getText().toString();
+
+        if (valid_stop_check(source, destination)) {
+            Intent intent = new Intent(this, nextActivity);
+            databaseHelper.insertSearchHistory(userId, source, destination, "Metro");
+            intent.putExtra("source", source);
+            intent.putExtra("destination", destination);
+            startActivity(intent);
+        }
+    }
+    private Boolean valid_stop_check(String source, String destination) {
+        if (source.isEmpty() && destination.isEmpty()){
+            Toast.makeText(this, "Enter Source & Destination", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (source.isEmpty()) {
+            Toast.makeText(this, "Enter Source", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (destination.isEmpty()) {
+            Toast.makeText(this, "Enter Destination", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (source.equals(destination)){
+            Toast.makeText(this, "Source & Destination cannot be same!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return stopNames.contains(source) && stopNames.contains(destination);
+    }
+    public void swapInputEntry(){
+        String sourceText = sourceEntry.getText().toString();
+        String destinationText = destinationEntry.getText().toString();
+
+        destinationEntry.setText(sourceText);
+        sourceEntry.setText(destinationText);
+    }
 
     private class SwipeGestureListener extends GestureDetector.SimpleOnGestureListener {
         private static final int SWIPE_THRESHOLD = 20;
@@ -189,13 +228,13 @@ public class MetroHome extends AppCompatActivity {
 
                     startActivity(intent);
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                    finish();
                     return true;
                 }
             }
             return false;
         }
     }
-
     public void toggleDrawer(View view) {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
@@ -236,7 +275,6 @@ public class MetroHome extends AppCompatActivity {
             }
         });
     }
-
     private void appThemeSetup() {
         MenuItem menuItem = navigationView.getMenu().findItem(R.id.nav_theme);
         @SuppressLint("UseSwitchCompatOrMaterialCode") Switch themeSwitchBtn = (Switch) menuItem.getActionView().findViewById(R.id.themeSwitchBtn);
@@ -264,5 +302,61 @@ public class MetroHome extends AppCompatActivity {
                 }
             }
         });
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1 && resultCode == RESULT_OK){
+            sourceEntry.setText(data.getStringExtra("userInput"));
+        }
+        else if(requestCode == 2 && resultCode == RESULT_OK){
+            destinationEntry.setText(data.getStringExtra("userInput"));
+        }
+    }
+
+    public void openBookingHistory(View v){
+        startActivity(new Intent(this, BookingHistory.class));
+    }
+    @Override
+    protected void onStart(){
+        super.onStart();
+        SharedPreferences userData = getSharedPreferences("UserData",Context.MODE_PRIVATE);
+        String userName = userData.getString("name","");
+        if(userName.equals("")){
+            nav_header_view.setText("User Name");
+        }
+        else{
+            nav_header_view.setText(userName);
+        }
+
+        List<String> lastSearchHistory = databaseHelper.getLastSearchHistory(userId, "Metro");
+        HistoryListAdapter historyListAdapter = new HistoryListAdapter( this, lastSearchHistory, sourceEntry, destinationEntry);
+        historyView.setAdapter(historyListAdapter);
+    }
+
+    @Override
+    public void onItemClick(String item) {
+        checkAndProceed(Ticket_Summary.class);
+    }
+
+    private boolean doubleBackToExitPressedOnce = false;
+    private static final int TIME_INTERVAL = 2000;
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Press again to Exit!", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, TIME_INTERVAL);
     }
 }
