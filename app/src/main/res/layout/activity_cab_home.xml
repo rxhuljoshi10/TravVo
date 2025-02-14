@@ -9,7 +9,7 @@
     <View
         android:id="@+id/headerView"
         android:layout_width="match_parent"
-        android:layout_height="160dp"
+        android:layout_height="200dp"
         android:background="@color/primaryColorCab"
         android:clickable="true"
         android:focusable="true"
@@ -22,9 +22,9 @@
 
     <ImageView
         android:id="@+id/swipeView"
-        android:layout_width="280dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center_horizontal"
+        android:layout_width="290dp"
+        android:layout_height="75dp"
+        android:layout_gravity="center"
         android:clickable="true"
         android:focusable="true"
         android:src="@drawable/travvo_ola"

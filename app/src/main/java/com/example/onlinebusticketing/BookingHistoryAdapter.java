@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -48,6 +49,11 @@ public class BookingHistoryAdapter extends RecyclerView.Adapter<BookingHistoryAd
         holder.timeView.setText(item.tTime);
         holder.statusView.setText(item.status);
         holder.travelView.setText(item.travel);
+        if(item.travel.equals("Metro")){
+            holder.imageView.setImageResource(R.drawable.ic_train_logo);
+        }
+
+
         if(item.status.equals( "Cancelled" )){
             holder.statusView.setTextColor(Color.RED);
         }
@@ -72,6 +78,7 @@ public class BookingHistoryAdapter extends RecyclerView.Adapter<BookingHistoryAd
     public static class ViewHolder extends RecyclerView.ViewHolder {
         LinearLayout ItemView;
         TextView sourceView, destinationView, bidView, dateView, timeView, statusView, travelView;
+        ImageView imageView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -83,6 +90,7 @@ public class BookingHistoryAdapter extends RecyclerView.Adapter<BookingHistoryAd
             timeView = itemView.findViewById(R.id.timeView);
             statusView = itemView.findViewById(R.id.statusView);
             travelView = itemView.findViewById(R.id.travelView);
+            imageView = itemView.findViewById(R.id.imageView7);
         }
     }
     public interface OnItemClickListener {

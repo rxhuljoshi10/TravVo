@@ -77,7 +77,6 @@ public class Ticket_Summary extends AppCompatActivity {
         destination = intent.getStringExtra("destination");
 
 
-
         sourceView = findViewById(R.id.sourceView);
         destinationView = findViewById(R.id.destinationView);
         fullPriceView = findViewById(R.id.fullPriceView);

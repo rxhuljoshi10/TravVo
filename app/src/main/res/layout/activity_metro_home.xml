@@ -45,16 +45,16 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginHorizontal="8dp"
                         android:onClick="toggleDrawer"
                         android:src="@drawable/icon_profile"
                         app:tint="@color/white" />
 
                     <ImageView
                         android:id="@+id/swipeView"
-                        android:layout_width="280dp"
-                        android:layout_height="60dp"
-                        android:layout_gravity="center_horizontal"
+                        android:layout_width="290dp"
+                        android:layout_height="75dp"
+                        android:layout_gravity="center"
                         android:src="@drawable/travvo_metro"
                         android:clickable="true"
                         android:focusable="true"/>
@@ -241,10 +241,10 @@
                             android:padding="5dp">
 
                             <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/ic_train" />
+                                android:src="@drawable/ic_train_logo" />
 
                             <TextView
                                 android:layout_width="wrap_content"
