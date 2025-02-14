@@ -175,7 +175,7 @@ public class Home extends AppCompatActivity implements HistoryListAdapter.OnItem
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Home.this, allBusStops.class);
-                intent.putExtra("Entry", "");
+                intent.putExtra("Entry", "display");
                 intent.putExtra("position", -1);
                 startActivity(intent);
             }
@@ -198,10 +198,20 @@ public class Home extends AppCompatActivity implements HistoryListAdapter.OnItem
             if (e1 == null || e2 == null) return false;
             float diffX = e2.getX() - e1.getX();
             if (Math.abs(diffX) > SWIPE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
-                if (diffX > 0) {
+                if (diffX < 0) {
                     Intent intent = new Intent(Home.this, MetroHome.class);
                     SharedPreferences.Editor editor = cookies.edit();
                     editor.putString("homePage", "MetroHome").apply();
+                    recreate();
+                    startActivity(intent);
+                    finish();
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                    return true;
+                }
+                else{
+                    Intent intent = new Intent(Home.this, CabHome.class);
+                    SharedPreferences.Editor editor = cookies.edit();
+                    editor.putString("homePage", "Home").apply();
                     recreate();
                     startActivity(intent);
                     finish();

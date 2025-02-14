@@ -30,6 +30,7 @@
         <item name="colorPrimaryVariant">@color/primaryBackground</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorSecondary">@color/secondaryBackground</item>
+        <item name="android:progressTint">@color/iconColor</item>
     </style>
 
     <!-- Metro Theme -->
@@ -38,5 +39,6 @@
         <item name="colorPrimaryVariant">@color/primaryBackground</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorSecondary">@color/secondaryBackground</item>
+        <item name="android:progressTint">@color/iconColor</item>
     </style>
 </resources>

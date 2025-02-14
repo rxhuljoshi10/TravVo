@@ -21,4 +21,9 @@
 
 <!--    Metro UI colors : -->
     <color name="primaryColorMetro">#8647F6</color>
+    <color name="purple">#A020F0</color>
+    <color name="aqua">#00FFFF</color>
+
+    <!--    Metro UI colors : -->
+    <color name="primaryColorCab">#3AC340</color>
 </resources>

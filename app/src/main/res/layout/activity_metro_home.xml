@@ -53,9 +53,9 @@
                     <ImageView
                         android:id="@+id/swipeView"
                         android:layout_width="280dp"
-                        android:layout_height="53dp"
+                        android:layout_height="60dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/logo_metro"
+                        android:src="@drawable/travvo_metro"
                         android:clickable="true"
                         android:focusable="true"/>
 
@@ -224,7 +224,7 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/selectBus"
                         android:layout_width="172dp"
-                        android:layout_height="50dp"
+                        android:layout_height="60dp"
                         android:layout_gravity="center"
                         android:layout_marginHorizontal="10dp"
                         android:layout_marginVertical="10dp"
@@ -241,18 +241,19 @@
                             android:padding="5dp">
 
                             <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:layout_marginStart="5dp"
-                                android:src="@drawable/icon_bus" />
+                                android:src="@drawable/ic_train" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:ems="5"
                                 android:fontFamily="sans-serif-condensed"
+                                android:gravity="center"
                                 android:padding="5dp"
-                                android:text="Lines"
+                                android:text="Metro Route Map"
                                 android:textSize="15sp" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -260,7 +261,7 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/selectStop"
                         android:layout_width="172dp"
-                        android:layout_height="50dp"
+                        android:layout_height="60dp"
                         android:layout_gravity="center"
                         android:layout_marginHorizontal="10dp"
                         android:layout_marginVertical="10dp"
@@ -288,7 +289,7 @@
                                 android:fontFamily="sans-serif-condensed"
                                 android:gravity="center"
                                 android:padding="5dp"
-                                android:text="Stops"
+                                android:text="Metro Stations"
                                 android:textSize="15sp" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -331,6 +332,7 @@
         </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
+
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"

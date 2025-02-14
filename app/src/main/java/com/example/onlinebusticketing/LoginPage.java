@@ -63,6 +63,8 @@ public class LoginPage extends AppCompatActivity {
 
         if (alreadyUser()){
             SharedPreferences sharedPreferences = getSharedPreferences("Cookies", Context.MODE_PRIVATE);
+//            SharedPreferences.Editor editor = sharedPreferences.edit();
+//            editor.putString("homePage", "Home").apply();
             String activityName = sharedPreferences.getString("homePage", "Home");
 
             Class<?> homeActivity;

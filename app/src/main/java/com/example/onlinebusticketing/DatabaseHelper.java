@@ -187,7 +187,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         ArrayList<String> searchHistory = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT DISTINCT stop FROM " + TABLE_NAME_4 +
-                " WHERE userId = ? AND travel = ? ORDER BY search_ID DESC LIMIT 5";
+                " WHERE userId = ? AND travel = ? ORDER BY search_ID DESC LIMIT 3";
 
         Cursor cursor = null;
         cursor = db.rawQuery(query, new String[]{userId,"Metro"});
@@ -364,6 +364,24 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         }
         cursor.close();
         return stopsLocationList;
+    }
+    @SuppressLint("Range")
+    public ArrayList<Location> getMetroStopsLocationList() {
+        ArrayList<Location> metroStopsLocationList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT Latitude, Longitude FROM metro_stops GROUP BY Station_Name";
+
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                Location location = new Location("");
+                location.setLatitude(cursor.getDouble(cursor.getColumnIndex("Latitude")));
+                location.setLongitude(cursor.getDouble(cursor.getColumnIndex("Longitude")));
+                metroStopsLocationList.add(location);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return metroStopsLocationList;
     }
 
     @SuppressLint("Range")
@@ -629,6 +647,19 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db.close();
 
         return stopNames;
+    }
+
+    public String getLineTypeForStop(String stopName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String lineType = "Unknown"; // Default if not found
+
+        Cursor cursor = db.rawQuery("SELECT LINE FROM metro_stops WHERE Station_Name=?", new String[]{stopName});
+        if (cursor.moveToFirst()) {
+            lineType = cursor.getString(0);
+        }
+        cursor.close();
+        db.close();
+        return lineType;
     }
 
 }

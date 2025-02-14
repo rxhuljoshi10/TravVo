@@ -17,4 +17,7 @@
 
 <!--    Metro UI Colors:-->
     <color name="primaryColorMetro">#8647F6</color>
+
+    <!--    Metro UI colors : -->
+    <color name="primaryColorCab">#3AC340</color>
 </resources>

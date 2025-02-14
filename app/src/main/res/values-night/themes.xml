@@ -17,6 +17,7 @@
         <item name="colorOnPrimary">@color/primaryBackground</item>
         <item name="colorSecondary">@color/secondaryBackground</item>
         <item name="android:windowBackground">@color/primaryBackground</item>
+        <item name="android:progressTint">@color/grey</item>
     </style>
 
     <!-- Dark Mode Metro Theme -->
@@ -26,5 +27,6 @@
         <item name="colorOnPrimary">@color/primaryBackground</item>
         <item name="colorSecondary">@color/secondaryBackground</item>
         <item name="android:windowBackground">@color/primaryBackground</item>
+        <item name="android:progressTint">@color/grey</item>
     </style>
 </resources>

@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.GestureDetector;
@@ -27,12 +29,16 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.models.SlideModel;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class MetroHome extends AppCompatActivity implements HistoryListAdapter.OnItemClickListener{
     DatabaseHelper databaseHelper = new DatabaseHelper(this);
@@ -82,6 +88,8 @@ public class MetroHome extends AppCompatActivity implements HistoryListAdapter.O
 
         appThemeSetup();
         navigationListener();
+        setupSlider();
+        langSetup();
         stopNames = databaseHelper.getAllMetroStops();
 
         gestureDetector = new GestureDetector(this, new SwipeGestureListener());
@@ -151,7 +159,7 @@ public class MetroHome extends AppCompatActivity implements HistoryListAdapter.O
         selectBusNumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MetroHome.this, SearchBusEntry.class));
+                startActivity(new Intent(MetroHome.this, MetroMap.class));
             }
         });
 
@@ -200,6 +208,10 @@ public class MetroHome extends AppCompatActivity implements HistoryListAdapter.O
             Toast.makeText(this, "Source & Destination cannot be same!", Toast.LENGTH_SHORT).show();
             return false;
         }
+        else if(databaseHelper.getMetroFare(source, destination) == -1){
+            Toast.makeText(this, "Invalid Souce or Destination", Toast.LENGTH_SHORT).show();
+            return false;
+        }
         return stopNames.contains(source) && stopNames.contains(destination);
     }
     public void swapInputEntry(){
@@ -221,14 +233,23 @@ public class MetroHome extends AppCompatActivity implements HistoryListAdapter.O
 
             if (Math.abs(diffX) > SWIPE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
                 if (diffX < 0) {
+                    Intent intent = new Intent(MetroHome.this, CabHome.class);
+                    SharedPreferences.Editor editor = cookies.edit();
+                    editor.putString("homePage", "MetroHome").apply();
+                    recreate();
+                    startActivity(intent);
+                    finish();
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                    return true;
+                }
+                else{
                     Intent intent = new Intent(MetroHome.this, Home.class);
                     SharedPreferences.Editor editor = cookies.edit();
-                    editor.putString("homePage", "Home");
-                    editor.apply();
-
+                    editor.putString("homePage", "Home").apply();
+                    recreate();
                     startActivity(intent);
-                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                     finish();
+                    overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                     return true;
                 }
             }
@@ -358,5 +379,30 @@ public class MetroHome extends AppCompatActivity implements HistoryListAdapter.O
                 doubleBackToExitPressedOnce = false;
             }
         }, TIME_INTERVAL);
+    }
+
+    public void openScanner(View view){
+        Intent intent = new Intent(MetroHome.this, ScannerActivity.class);
+        startActivity(intent);
+    }
+
+    private void setupSlider() {
+        ArrayList<SlideModel> imageList = new ArrayList<>();
+        imageList.add(new SlideModel(R.drawable.slider1, ScaleTypes.CENTER_CROP));
+        imageList.add(new SlideModel(R.drawable.slider2,ScaleTypes.CENTER_CROP));
+        imageList.add(new SlideModel(R.drawable.slider3,ScaleTypes.CENTER_CROP));
+        imageList.add(new SlideModel(R.drawable.slider4,ScaleTypes.CENTER_CROP));
+        ImageSlider imageSlider = findViewById(R.id.image_slider);
+        imageSlider.setImageList(imageList);
+    }
+
+    private void langSetup() {
+        String lang = cookies.getString("appLang", "en");
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Resources resources = this.getResources();
+        Configuration config = resources.getConfiguration();
+        config.setLocale(locale);
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
     }
 }

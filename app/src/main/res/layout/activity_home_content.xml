@@ -51,9 +51,9 @@
                 <ImageView
                     android:id="@+id/swipeView"
                     android:layout_width="280dp"
-                    android:layout_height="53dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/logo"
+                    android:src="@drawable/travvo_bus"
                     android:clickable="true"
                     android:focusable="true"/>
 

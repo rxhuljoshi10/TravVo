@@ -101,13 +101,15 @@
         android:paddingHorizontal="25dp"
         android:layout_marginBottom="15dp">
         <TextView
-            android:layout_width="48dp"
+            android:id="@+id/fullText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
             android:text="@string/full"
             android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/rupeeSymbol"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" :  ₹"
@@ -267,7 +269,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
-                android:layout_width="43sp"
+                android:id="@+id/fullTextSummary"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/full"
                 style="@style/ticketPriceSummary"/>

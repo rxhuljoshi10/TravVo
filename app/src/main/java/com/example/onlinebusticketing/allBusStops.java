@@ -49,7 +49,7 @@ public class allBusStops extends AppCompatActivity implements InputActivityAdapt
         entry = intent.getStringExtra("Entry");
         position = intent.getIntExtra("position", -1);
 //        stopNames = intent.getStringArrayListExtra("stopNames");
-        stopNames = databaseHelper.getStopNames();
+
 
 
         stopsView = findViewById(R.id.stopsView);
@@ -58,9 +58,16 @@ public class allBusStops extends AppCompatActivity implements InputActivityAdapt
         inputField.requestFocus();
         inputField.addTextChangedListener(new CustomTextWatcher());
 
-        stopsLocationList = databaseHelper.getStopsLocationList();
+//        stopsLocationList = databaseHelper.getStopsLocationList();
 
-        inputActivityAdapter = new InputActivityAdapter(this, stopNames, R.layout.item_stop_name_list);
+        if(homePage.equals("MetroHome")){
+            stopNames = databaseHelper.getAllMetroStops();
+            inputActivityAdapter = new InputActivityAdapter(this, stopNames, R.layout.item_stop_name_list_metro, this, "Metro");
+        }
+        else{
+            stopNames = databaseHelper.getStopNames();
+            inputActivityAdapter = new InputActivityAdapter(this, stopNames, R.layout.item_stop_name_list, this, "Bus");
+        }
         stopsView.setAdapter(inputActivityAdapter);
 
         imgClear.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +77,6 @@ public class allBusStops extends AppCompatActivity implements InputActivityAdapt
             }
         });
     }
-
 
 
     @Override
@@ -85,7 +91,7 @@ public class allBusStops extends AppCompatActivity implements InputActivityAdapt
             Intent intent = new Intent(allBusStops.this, AddPlace.class);
             intent.putExtra("stop", selectedItem);
             startActivityForResult(intent, 1);
-        } else {
+        } else if(entry.equals("display")){
             ArrayList<String> stopBuses = databaseHelper.getStopBuses(selectedItem);
             removeOddIndices(stopBuses);
             Intent intent = new Intent(allBusStops.this, EligibleBusList.class);

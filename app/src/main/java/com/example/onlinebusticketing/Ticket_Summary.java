@@ -43,7 +43,7 @@ public class Ticket_Summary extends AppCompatActivity {
     TextView sourceView, destinationView, walletBalanceView, totalPriceView,
             counterFullView, counterFullView2, fullPriceView, fullSinglePrice, totalFullPriceView,
             counterHalfView, counterHalfView2, halfPriceView, halfSinglePrice, totalHalfPriceView,
-            busListLabel;
+            busListLabel, fullText, fullTextSummary, rupeeSymbol;
     LinearLayout walletView, halfPriceParentView, halfPriceParentView2;
     RecyclerView busList;
     ImageView viewDraggable;
@@ -105,6 +105,9 @@ public class Ticket_Summary extends AppCompatActivity {
         busList = findViewById(R.id.busList);
         halfPriceParentView = findViewById(R.id.halfPriceParentView);
         halfPriceParentView2 = findViewById(R.id.halfPriceParentView2);
+        fullText = findViewById(R.id.fullText);
+        fullTextSummary = findViewById(R.id.fullTextSummary);
+        rupeeSymbol = findViewById(R.id.rupeeSymbol);
 
         userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -120,6 +123,10 @@ public class Ticket_Summary extends AppCompatActivity {
             busList.setVisibility(View.GONE);
             halfPriceParentView.setVisibility(View.GONE);
             halfPriceParentView2.setVisibility(View.GONE);
+            fullText.setText("Passengers");
+            fullTextSummary.setText("Passengers : ");
+            rupeeSymbol.setVisibility(View.GONE);
+            fullPriceView.setVisibility(View.GONE);
         }
         else{
             eligibleBuses = intent.getStringArrayListExtra("eligibleBuses");

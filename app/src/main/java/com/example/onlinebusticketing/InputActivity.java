@@ -67,11 +67,26 @@ public class InputActivity extends AppCompatActivity implements InputActivityAda
 
         userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        stopsLocationList = databaseHelper.getStopsLocationList();
-        if(homePage.equals("MetroHome")) recentSearches = databaseHelper.getRecentSearchedStopsMetro(userId);
-        else recentSearches = databaseHelper.getRecentSearchedStops(userId);
-        inputActivityAdapter = new InputActivityAdapter(this, recentSearches, R.layout.item_recent_stop_list);
-        recentStopsView.setAdapter(inputActivityAdapter);
+
+        if(homePage.equals("MetroHome")) {
+            recentSearches = databaseHelper.getRecentSearchedStopsMetro(userId);
+            inputActivityAdapter = new InputActivityAdapter(this, recentSearches, R.layout.item_recent_stop_list, this, "Metroo");
+            recentStopsView.setAdapter(inputActivityAdapter);
+            inputActivityAdapter = new InputActivityAdapter(this, stopNames, R.layout.item_stop_name_list_metro, this, "Metro");
+            stopsView.setAdapter(inputActivityAdapter);
+            stopsLocationList = databaseHelper.getMetroStopsLocationList();
+        }
+        else {
+            recentSearches = databaseHelper.getRecentSearchedStops(userId);
+            inputActivityAdapter = new InputActivityAdapter(this, recentSearches, R.layout.item_recent_stop_list, this, "Bus");
+            recentStopsView.setAdapter(inputActivityAdapter);
+            inputActivityAdapter = new InputActivityAdapter(this, stopNames, R.layout.item_stop_name_list, this, "Bus");
+            stopsView.setAdapter(inputActivityAdapter);
+            stopsLocationList = databaseHelper.getStopsLocationList();
+        }
+
+
+
 
         if(recentSearches.isEmpty()){
             recentView.setVisibility(View.GONE);
@@ -81,9 +96,6 @@ public class InputActivity extends AppCompatActivity implements InputActivityAda
             imgLocation.setVisibility(View.GONE);
             findViewById(R.id.centerView).setVisibility(View.GONE);
         }
-
-        inputActivityAdapter = new InputActivityAdapter(this, stopNames, R.layout.item_stop_name_list);
-        stopsView.setAdapter(inputActivityAdapter);
 
         imgLocation.setOnClickListener(new View.OnClickListener() {
             @Override

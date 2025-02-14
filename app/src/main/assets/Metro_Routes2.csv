@@ -1,0 +1,510 @@
+PCMC,Sant Tukaram Nagar,1.5,0,13.50
+PCMC,Bhosari,3.0,1,13.50
+PCMC,Kasarwadi,4.5,2,18.0
+PCMC,Phugewadi,6.0,3,18.0
+PCMC,Dapodi,7.5,4,22.50
+PCMC,Khadki,9.0,5,22.50
+PCMC,Shivaji Nagar,10.5,6,27.0
+PCMC,Civil Court,12.0,7,27.0
+PCMC,Budhwar Peth,13.5,8,27.0
+PCMC,Mandai,15.0,9,27.0
+PCMC,Swargate,16.5,10,27.0
+PCMC,Vanaz,18.0,11,31.50
+PCMC,Anand Nagar,19.5,12,31.50
+PCMC,Ideal Colony,21.0,13,27.0
+PCMC,Nal Stop,22.5,14,27.0
+PCMC,Garware College,24.0,15,27.0
+PCMC,Deccan Gymkhana,25.5,16,27.0
+PCMC,Chhatrapati Sambhaji Udyan,27.0,17,27.0
+PCMC,Civil Court,28.5,18,27.0
+PCMC,Mangalwar Peth,30.0,19,27.0
+PCMC,Pune Railway Station,31.5,20,27.0
+PCMC,Ruby Hall Clinic,33.0,21,27.0
+PCMC,Bund Garden,34.5,22,27.0
+PCMC,Yerwada,36,23,27.0
+PCMC,Kalyani Nagar,37.5,24,31.50
+PCMC,Ramwadi,39,25,31.50
+Sant Tukaram Nagar,PCMC,1.5,0,13.0
+Sant Tukaram Nagar,Bhosari,1.5,0,13.0
+Sant Tukaram Nagar,Kasarwadi,3.0,1,16.0
+Sant Tukaram Nagar,Phugewadi,4.5,2,19.0
+Sant Tukaram Nagar,Dapodi,6.0,3,22.0
+Sant Tukaram Nagar,Khadki,7.5,4,25.0
+Sant Tukaram Nagar,Shivaji Nagar,9.0,5,28.0
+Sant Tukaram Nagar,Civil Court,10.5,6,31.0
+Sant Tukaram Nagar,Budhwar Peth,12.0,7,34.0
+Sant Tukaram Nagar,Mandai,13.5,8,37.0
+Sant Tukaram Nagar,Swargate,15.0,9,40.0
+Sant Tukaram Nagar,Vanaz,16.5,10,43.0
+Sant Tukaram Nagar,Anand Nagar,18.0,11,46.0
+Sant Tukaram Nagar,Ideal Colony,19.5,12,49.0
+Sant Tukaram Nagar,Nal Stop,21.0,13,52.0
+Sant Tukaram Nagar,Garware College,22.5,14,55.0
+Sant Tukaram Nagar,Deccan Gymkhana,24.0,15,58.0
+Sant Tukaram Nagar,Chhatrapati Sambhaji Udyan,25.5,16,61.0
+Sant Tukaram Nagar,Civil Court Aqua,27.0,17,64.0
+Sant Tukaram Nagar,Mangalwar Peth,28.5,18,67.0
+Sant Tukaram Nagar,Pune Railway Station,30.0,19,70.0
+Sant Tukaram Nagar,Ruby Hall Clinic,31.5,20,73.0
+Bhosari,PCMC,3.0,1,16.0
+Bhosari,Sant Tukaram Nagar,1.5,0,13.0
+Bhosari,Kasarwadi,1.5,0,13.0
+Bhosari,Phugewadi,3.0,1,16.0
+Bhosari,Dapodi,4.5,2,19.0
+Bhosari,Khadki,6.0,3,22.0
+Bhosari,Shivaji Nagar,7.5,4,25.0
+Bhosari,Civil Court,9.0,5,28.0
+Bhosari,Budhwar Peth,10.5,6,31.0
+Bhosari,Mandai,12.0,7,34.0
+Bhosari,Swargate,13.5,8,37.0
+Bhosari,Vanaz,15.0,9,40.0
+Bhosari,Anand Nagar,16.5,10,43.0
+Bhosari,Ideal Colony,18.0,11,46.0
+Bhosari,Nal Stop,19.5,12,49.0
+Bhosari,Garware College,21.0,13,52.0
+Bhosari,Deccan Gymkhana,22.5,14,55.0
+Bhosari,Chhatrapati Sambhaji Udyan,24.0,15,58.0
+Bhosari,Civil Court Aqua,25.5,16,61.0
+Bhosari,Mangalwar Peth,27.0,17,64.0
+Bhosari,Pune Railway Station,28.5,18,67.0
+Bhosari,Ruby Hall Clinic,30.0,19,70.0
+Kasarwadi,PCMC,4.5,2,19.0
+Kasarwadi,Sant Tukaram Nagar,3.0,1,16.0
+Kasarwadi,Bhosari,1.5,0,13.0
+Kasarwadi,Phugewadi,1.5,0,13.0
+Kasarwadi,Dapodi,3.0,1,16.0
+Kasarwadi,Khadki,4.5,2,19.0
+Kasarwadi,Shivaji Nagar,6.0,3,22.0
+Kasarwadi,Civil Court,7.5,4,25.0
+Kasarwadi,Budhwar Peth,9.0,5,28.0
+Kasarwadi,Mandai,10.5,6,31.0
+Kasarwadi,Swargate,12.0,7,34.0
+Kasarwadi,Vanaz,13.5,8,37.0
+Kasarwadi,Anand Nagar,15.0,9,40.0
+Kasarwadi,Ideal Colony,16.5,10,43.0
+Kasarwadi,Nal Stop,18.0,11,46.0
+Kasarwadi,Garware College,19.5,12,49.0
+Kasarwadi,Deccan Gymkhana,21.0,13,52.0
+Kasarwadi,Chhatrapati Sambhaji Udyan,22.5,14,55.0
+Kasarwadi,Civil Court Aqua,24.0,15,58.0
+Kasarwadi,Mangalwar Peth,25.5,16,61.0
+Kasarwadi,Pune Railway Station,27.0,17,64.0
+Kasarwadi,Ruby Hall Clinic,28.5,18,67.0
+Phugewadi,PCMC,6.0,3,22.0
+Phugewadi,Sant Tukaram Nagar,4.5,2,19.0
+Phugewadi,Bhosari,3.0,1,16.0
+Phugewadi,Kasarwadi,1.5,0,13.0
+Phugewadi,Dapodi,1.5,0,13.0
+Phugewadi,Khadki,3.0,1,16.0
+Phugewadi,Shivaji Nagar,4.5,2,19.0
+Phugewadi,Civil Court,6.0,3,22.0
+Phugewadi,Budhwar Peth,7.5,4,25.0
+Phugewadi,Mandai,9.0,5,28.0
+Phugewadi,Swargate,10.5,6,31.0
+Phugewadi,Vanaz,12.0,7,34.0
+Phugewadi,Anand Nagar,13.5,8,37.0
+Phugewadi,Ideal Colony,15.0,9,40.0
+Phugewadi,Nal Stop,16.5,10,43.0
+Phugewadi,Garware College,18.0,11,46.0
+Phugewadi,Deccan Gymkhana,19.5,12,49.0
+Phugewadi,Chhatrapati Sambhaji Udyan,21.0,13,52.0
+Phugewadi,Civil Court Aqua,22.5,14,55.0
+Phugewadi,Mangalwar Peth,24.0,15,58.0
+Phugewadi,Pune Railway Station,25.5,16,61.0
+Phugewadi,Ruby Hall Clinic,27.0,17,64.0
+Dapodi,PCMC,7.5,4,25.0
+Dapodi,Sant Tukaram Nagar,6.0,3,22.0
+Dapodi,Bhosari,4.5,2,19.0
+Dapodi,Kasarwadi,3.0,1,16.0
+Dapodi,Phugewadi,1.5,0,13.0
+Dapodi,Khadki,1.5,0,13.0
+Dapodi,Shivaji Nagar,3.0,1,16.0
+Dapodi,Civil Court,4.5,2,19.0
+Dapodi,Budhwar Peth,6.0,3,22.0
+Dapodi,Mandai,7.5,4,25.0
+Dapodi,Swargate,9.0,5,28.0
+Dapodi,Vanaz,10.5,6,31.0
+Dapodi,Anand Nagar,12.0,7,34.0
+Dapodi,Ideal Colony,13.5,8,37.0
+Dapodi,Nal Stop,15.0,9,40.0
+Dapodi,Garware College,16.5,10,43.0
+Dapodi,Deccan Gymkhana,18.0,11,46.0
+Dapodi,Chhatrapati Sambhaji Udyan,19.5,12,49.0
+Dapodi,Civil Court Aqua,21.0,13,52.0
+Dapodi,Mangalwar Peth,22.5,14,55.0
+Dapodi,Pune Railway Station,24.0,15,58.0
+Dapodi,Ruby Hall Clinic,25.5,16,61.0
+Khadki,PCMC,9.0,5,28.0
+Khadki,Sant Tukaram Nagar,7.5,4,25.0
+Khadki,Bhosari,6.0,3,22.0
+Khadki,Kasarwadi,4.5,2,19.0
+Khadki,Phugewadi,3.0,1,16.0
+Khadki,Dapodi,1.5,0,13.0
+Khadki,Shivaji Nagar,1.5,0,13.0
+Khadki,Civil Court,3.0,1,16.0
+Khadki,Budhwar Peth,4.5,2,19.0
+Khadki,Mandai,6.0,3,22.0
+Khadki,Swargate,7.5,4,25.0
+Khadki,Vanaz,9.0,5,28.0
+Khadki,Anand Nagar,10.5,6,31.0
+Khadki,Ideal Colony,12.0,7,34.0
+Khadki,Nal Stop,13.5,8,37.0
+Khadki,Garware College,15.0,9,40.0
+Khadki,Deccan Gymkhana,16.5,10,43.0
+Khadki,Chhatrapati Sambhaji Udyan,18.0,11,46.0
+Khadki,Civil Court Aqua,19.5,12,49.0
+Khadki,Mangalwar Peth,21.0,13,52.0
+Khadki,Pune Railway Station,22.5,14,55.0
+Khadki,Ruby Hall Clinic,24.0,15,58.0
+Shivaji Nagar,PCMC,10.5,6,31.0
+Shivaji Nagar,Sant Tukaram Nagar,9.0,5,28.0
+Shivaji Nagar,Bhosari,7.5,4,25.0
+Shivaji Nagar,Kasarwadi,6.0,3,22.0
+Shivaji Nagar,Phugewadi,4.5,2,19.0
+Shivaji Nagar,Dapodi,3.0,1,16.0
+Shivaji Nagar,Khadki,1.5,0,13.0
+Shivaji Nagar,Civil Court,1.5,0,13.0
+Shivaji Nagar,Budhwar Peth,3.0,1,16.0
+Shivaji Nagar,Mandai,4.5,2,19.0
+Shivaji Nagar,Swargate,6.0,3,22.0
+Shivaji Nagar,Vanaz,7.5,4,25.0
+Shivaji Nagar,Anand Nagar,9.0,5,28.0
+Shivaji Nagar,Ideal Colony,10.5,6,31.0
+Shivaji Nagar,Nal Stop,12.0,7,34.0
+Shivaji Nagar,Garware College,13.5,8,37.0
+Shivaji Nagar,Deccan Gymkhana,15.0,9,40.0
+Shivaji Nagar,Chhatrapati Sambhaji Udyan,16.5,10,43.0
+Shivaji Nagar,Civil Court Aqua,18.0,11,46.0
+Shivaji Nagar,Mangalwar Peth,19.5,12,49.0
+Shivaji Nagar,Pune Railway Station,21.0,13,52.0
+Shivaji Nagar,Ruby Hall Clinic,22.5,14,55.0
+Civil Court,PCMC,12.0,7,34.0
+Civil Court,Sant Tukaram Nagar,10.5,6,31.0
+Civil Court,Bhosari,9.0,5,28.0
+Civil Court,Kasarwadi,7.5,4,25.0
+Civil Court,Phugewadi,6.0,3,22.0
+Civil Court,Dapodi,4.5,2,19.0
+Civil Court,Khadki,3.0,1,16.0
+Civil Court,Shivaji Nagar,1.5,0,13.0
+Civil Court,Budhwar Peth,1.5,0,13.0
+Civil Court,Mandai,3.0,1,16.0
+Civil Court,Swargate,4.5,2,19.0
+Civil Court,Vanaz,6.0,3,22.0
+Civil Court,Anand Nagar,7.5,4,25.0
+Civil Court,Ideal Colony,9.0,5,28.0
+Civil Court,Nal Stop,10.5,6,31.0
+Civil Court,Garware College,12.0,7,34.0
+Civil Court,Deccan Gymkhana,13.5,8,37.0
+Civil Court,Chhatrapati Sambhaji Udyan,15.0,9,40.0
+Civil Court,Civil Court Aqua,16.5,10,43.0
+Civil Court,Mangalwar Peth,18.0,11,46.0
+Civil Court,Pune Railway Station,19.5,12,49.0
+Civil Court,Ruby Hall Clinic,21.0,13,52.0
+Budhwar Peth,PCMC,13.5,8,37.0
+Budhwar Peth,Sant Tukaram Nagar,12.0,7,34.0
+Budhwar Peth,Bhosari,10.5,6,31.0
+Budhwar Peth,Kasarwadi,9.0,5,28.0
+Budhwar Peth,Phugewadi,7.5,4,25.0
+Budhwar Peth,Dapodi,6.0,3,22.0
+Budhwar Peth,Khadki,4.5,2,19.0
+Budhwar Peth,Shivaji Nagar,3.0,1,16.0
+Budhwar Peth,Civil Court,1.5,0,13.0
+Budhwar Peth,Mandai,1.5,0,13.0
+Budhwar Peth,Swargate,3.0,1,16.0
+Budhwar Peth,Vanaz,4.5,2,19.0
+Budhwar Peth,Anand Nagar,6.0,3,22.0
+Budhwar Peth,Ideal Colony,7.5,4,25.0
+Budhwar Peth,Nal Stop,9.0,5,28.0
+Budhwar Peth,Garware College,10.5,6,31.0
+Budhwar Peth,Deccan Gymkhana,12.0,7,34.0
+Budhwar Peth,Chhatrapati Sambhaji Udyan,13.5,8,37.0
+Budhwar Peth,Civil Court Aqua,15.0,9,40.0
+Budhwar Peth,Mangalwar Peth,16.5,10,43.0
+Budhwar Peth,Pune Railway Station,18.0,11,46.0
+Budhwar Peth,Ruby Hall Clinic,19.5,12,49.0
+Mandai,PCMC,15.0,9,40.0
+Mandai,Sant Tukaram Nagar,13.5,8,37.0
+Mandai,Bhosari,12.0,7,34.0
+Mandai,Kasarwadi,10.5,6,31.0
+Mandai,Phugewadi,9.0,5,28.0
+Mandai,Dapodi,7.5,4,25.0
+Mandai,Khadki,6.0,3,22.0
+Mandai,Shivaji Nagar,4.5,2,19.0
+Mandai,Civil Court,3.0,1,16.0
+Mandai,Budhwar Peth,1.5,0,13.0
+Mandai,Swargate,1.5,0,13.0
+Mandai,Vanaz,3.0,1,16.0
+Mandai,Anand Nagar,4.5,2,19.0
+Mandai,Ideal Colony,6.0,3,22.0
+Mandai,Nal Stop,7.5,4,25.0
+Mandai,Garware College,9.0,5,28.0
+Mandai,Deccan Gymkhana,10.5,6,31.0
+Mandai,Chhatrapati Sambhaji Udyan,12.0,7,34.0
+Mandai,Civil Court Aqua,13.5,8,37.0
+Mandai,Mangalwar Peth,15.0,9,40.0
+Mandai,Pune Railway Station,16.5,10,43.0
+Mandai,Ruby Hall Clinic,18.0,11,46.0
+Swargate,PCMC,16.5,10,43.0
+Swargate,Sant Tukaram Nagar,15.0,9,40.0
+Swargate,Bhosari,13.5,8,37.0
+Swargate,Kasarwadi,12.0,7,34.0
+Swargate,Phugewadi,10.5,6,31.0
+Swargate,Dapodi,9.0,5,28.0
+Swargate,Khadki,7.5,4,25.0
+Swargate,Shivaji Nagar,6.0,3,22.0
+Swargate,Civil Court,4.5,2,19.0
+Swargate,Budhwar Peth,3.0,1,16.0
+Swargate,Mandai,1.5,0,13.0
+Swargate,Vanaz,1.5,0,13.0
+Swargate,Anand Nagar,3.0,1,16.0
+Swargate,Ideal Colony,4.5,2,19.0
+Swargate,Nal Stop,6.0,3,22.0
+Swargate,Garware College,7.5,4,25.0
+Swargate,Deccan Gymkhana,9.0,5,28.0
+Swargate,Chhatrapati Sambhaji Udyan,10.5,6,31.0
+Swargate,Civil Court Aqua,12.0,7,34.0
+Swargate,Mangalwar Peth,13.5,8,37.0
+Swargate,Pune Railway Station,15.0,9,40.0
+Swargate,Ruby Hall Clinic,16.5,10,43.0
+Vanaz,PCMC,18.0,11,46.0
+Vanaz,Sant Tukaram Nagar,16.5,10,43.0
+Vanaz,Bhosari,15.0,9,40.0
+Vanaz,Kasarwadi,13.5,8,37.0
+Vanaz,Phugewadi,12.0,7,34.0
+Vanaz,Dapodi,10.5,6,31.0
+Vanaz,Khadki,9.0,5,28.0
+Vanaz,Shivaji Nagar,7.5,4,25.0
+Vanaz,Civil Court,6.0,3,22.0
+Vanaz,Budhwar Peth,4.5,2,19.0
+Vanaz,Mandai,3.0,1,16.0
+Vanaz,Swargate,1.5,0,13.0
+Vanaz,Anand Nagar,1.5,0,13.0
+Vanaz,Ideal Colony,3.0,1,16.0
+Vanaz,Nal Stop,4.5,2,19.0
+Vanaz,Garware College,6.0,3,22.0
+Vanaz,Deccan Gymkhana,7.5,4,25.0
+Vanaz,Chhatrapati Sambhaji Udyan,9.0,5,28.0
+Vanaz,Civil Court Aqua,10.5,6,31.0
+Vanaz,Mangalwar Peth,12.0,7,34.0
+Vanaz,Pune Railway Station,13.5,8,37.0
+Vanaz,Ruby Hall Clinic,15.0,9,40.0
+Anand Nagar,PCMC,19.5,12,49.0
+Anand Nagar,Sant Tukaram Nagar,18.0,11,46.0
+Anand Nagar,Bhosari,16.5,10,43.0
+Anand Nagar,Kasarwadi,15.0,9,40.0
+Anand Nagar,Phugewadi,13.5,8,37.0
+Anand Nagar,Dapodi,12.0,7,34.0
+Anand Nagar,Khadki,10.5,6,31.0
+Anand Nagar,Shivaji Nagar,9.0,5,28.0
+Anand Nagar,Civil Court,7.5,4,25.0
+Anand Nagar,Budhwar Peth,6.0,3,22.0
+Anand Nagar,Mandai,4.5,2,19.0
+Anand Nagar,Swargate,3.0,1,16.0
+Anand Nagar,Vanaz,1.5,0,13.0
+Anand Nagar,Ideal Colony,1.5,0,13.0
+Anand Nagar,Nal Stop,3.0,1,16.0
+Anand Nagar,Garware College,4.5,2,19.0
+Anand Nagar,Deccan Gymkhana,6.0,3,22.0
+Anand Nagar,Chhatrapati Sambhaji Udyan,7.5,4,25.0
+Anand Nagar,Civil Court Aqua,9.0,5,28.0
+Anand Nagar,Mangalwar Peth,10.5,6,31.0
+Anand Nagar,Pune Railway Station,12.0,7,34.0
+Anand Nagar,Ruby Hall Clinic,13.5,8,37.0
+Ideal Colony,PCMC,21.0,13,52.0
+Ideal Colony,Sant Tukaram Nagar,19.5,12,49.0
+Ideal Colony,Bhosari,18.0,11,46.0
+Ideal Colony,Kasarwadi,16.5,10,43.0
+Ideal Colony,Phugewadi,15.0,9,40.0
+Ideal Colony,Dapodi,13.5,8,37.0
+Ideal Colony,Khadki,12.0,7,34.0
+Ideal Colony,Shivaji Nagar,10.5,6,31.0
+Ideal Colony,Civil Court,9.0,5,28.0
+Ideal Colony,Budhwar Peth,7.5,4,25.0
+Ideal Colony,Mandai,6.0,3,22.0
+Ideal Colony,Swargate,4.5,2,19.0
+Ideal Colony,Vanaz,3.0,1,16.0
+Ideal Colony,Anand Nagar,1.5,0,13.0
+Ideal Colony,Nal Stop,1.5,0,13.0
+Ideal Colony,Garware College,3.0,1,16.0
+Ideal Colony,Deccan Gymkhana,4.5,2,19.0
+Ideal Colony,Chhatrapati Sambhaji Udyan,6.0,3,22.0
+Ideal Colony,Civil Court Aqua,7.5,4,25.0
+Ideal Colony,Mangalwar Peth,9.0,5,28.0
+Ideal Colony,Pune Railway Station,10.5,6,31.0
+Ideal Colony,Ruby Hall Clinic,12.0,7,34.0
+Nal Stop,PCMC,22.5,14,55.0
+Nal Stop,Sant Tukaram Nagar,21.0,13,52.0
+Nal Stop,Bhosari,19.5,12,49.0
+Nal Stop,Kasarwadi,18.0,11,46.0
+Nal Stop,Phugewadi,16.5,10,43.0
+Nal Stop,Dapodi,15.0,9,40.0
+Nal Stop,Khadki,13.5,8,37.0
+Nal Stop,Shivaji Nagar,12.0,7,34.0
+Nal Stop,Civil Court,10.5,6,31.0
+Nal Stop,Budhwar Peth,9.0,5,28.0
+Nal Stop,Mandai,7.5,4,25.0
+Nal Stop,Swargate,6.0,3,22.0
+Nal Stop,Vanaz,4.5,2,19.0
+Nal Stop,Anand Nagar,3.0,1,16.0
+Nal Stop,Ideal Colony,1.5,0,13.0
+Nal Stop,Garware College,1.5,0,13.0
+Nal Stop,Deccan Gymkhana,3.0,1,16.0
+Nal Stop,Chhatrapati Sambhaji Udyan,4.5,2,19.0
+Nal Stop,Civil Court Aqua,6.0,3,22.0
+Nal Stop,Mangalwar Peth,7.5,4,25.0
+Nal Stop,Pune Railway Station,9.0,5,28.0
+Nal Stop,Ruby Hall Clinic,10.5,6,31.0
+Garware College,PCMC,24.0,15,58.0
+Garware College,Sant Tukaram Nagar,22.5,14,55.0
+Garware College,Bhosari,21.0,13,52.0
+Garware College,Kasarwadi,19.5,12,49.0
+Garware College,Phugewadi,18.0,11,46.0
+Garware College,Dapodi,16.5,10,43.0
+Garware College,Khadki,15.0,9,40.0
+Garware College,Shivaji Nagar,13.5,8,37.0
+Garware College,Civil Court,12.0,7,34.0
+Garware College,Budhwar Peth,10.5,6,31.0
+Garware College,Mandai,9.0,5,28.0
+Garware College,Swargate,7.5,4,25.0
+Garware College,Vanaz,6.0,3,22.0
+Garware College,Anand Nagar,4.5,2,19.0
+Garware College,Ideal Colony,3.0,1,16.0
+Garware College,Nal Stop,1.5,0,13.0
+Garware College,Deccan Gymkhana,1.5,0,13.0
+Garware College,Chhatrapati Sambhaji Udyan,3.0,1,16.0
+Garware College,Civil Court Aqua,4.5,2,19.0
+Garware College,Mangalwar Peth,6.0,3,22.0
+Garware College,Pune Railway Station,7.5,4,25.0
+Garware College,Ruby Hall Clinic,9.0,5,28.0
+Deccan Gymkhana,PCMC,25.5,16,61.0
+Deccan Gymkhana,Sant Tukaram Nagar,24.0,15,58.0
+Deccan Gymkhana,Bhosari,22.5,14,55.0
+Deccan Gymkhana,Kasarwadi,21.0,13,52.0
+Deccan Gymkhana,Phugewadi,19.5,12,49.0
+Deccan Gymkhana,Dapodi,18.0,11,46.0
+Deccan Gymkhana,Khadki,16.5,10,43.0
+Deccan Gymkhana,Shivaji Nagar,15.0,9,40.0
+Deccan Gymkhana,Civil Court,13.5,8,37.0
+Deccan Gymkhana,Budhwar Peth,12.0,7,34.0
+Deccan Gymkhana,Mandai,10.5,6,31.0
+Deccan Gymkhana,Swargate,9.0,5,28.0
+Deccan Gymkhana,Vanaz,7.5,4,25.0
+Deccan Gymkhana,Anand Nagar,6.0,3,22.0
+Deccan Gymkhana,Ideal Colony,4.5,2,19.0
+Deccan Gymkhana,Nal Stop,3.0,1,16.0
+Deccan Gymkhana,Garware College,1.5,0,13.0
+Deccan Gymkhana,Chhatrapati Sambhaji Udyan,1.5,0,13.0
+Deccan Gymkhana,Civil Court Aqua,3.0,1,16.0
+Deccan Gymkhana,Mangalwar Peth,4.5,2,19.0
+Deccan Gymkhana,Pune Railway Station,6.0,3,22.0
+Deccan Gymkhana,Ruby Hall Clinic,7.5,4,25.0
+Chhatrapati Sambhaji Udyan,PCMC,27.0,17,64.0
+Chhatrapati Sambhaji Udyan,Sant Tukaram Nagar,25.5,16,61.0
+Chhatrapati Sambhaji Udyan,Bhosari,24.0,15,58.0
+Chhatrapati Sambhaji Udyan,Kasarwadi,22.5,14,55.0
+Chhatrapati Sambhaji Udyan,Phugewadi,21.0,13,52.0
+Chhatrapati Sambhaji Udyan,Dapodi,19.5,12,49.0
+Chhatrapati Sambhaji Udyan,Khadki,18.0,11,46.0
+Chhatrapati Sambhaji Udyan,Shivaji Nagar,16.5,10,43.0
+Chhatrapati Sambhaji Udyan,Civil Court,15.0,9,40.0
+Chhatrapati Sambhaji Udyan,Budhwar Peth,13.5,8,37.0
+Chhatrapati Sambhaji Udyan,Mandai,12.0,7,34.0
+Chhatrapati Sambhaji Udyan,Swargate,10.5,6,31.0
+Chhatrapati Sambhaji Udyan,Vanaz,9.0,5,28.0
+Chhatrapati Sambhaji Udyan,Anand Nagar,7.5,4,25.0
+Chhatrapati Sambhaji Udyan,Ideal Colony,6.0,3,22.0
+Chhatrapati Sambhaji Udyan,Nal Stop,4.5,2,19.0
+Chhatrapati Sambhaji Udyan,Garware College,3.0,1,16.0
+Chhatrapati Sambhaji Udyan,Deccan Gymkhana,1.5,0,13.0
+Chhatrapati Sambhaji Udyan,Civil Court Aqua,1.5,0,13.0
+Chhatrapati Sambhaji Udyan,Mangalwar Peth,3.0,1,16.0
+Chhatrapati Sambhaji Udyan,Pune Railway Station,4.5,2,19.0
+Chhatrapati Sambhaji Udyan,Ruby Hall Clinic,6.0,3,22.0
+Civil Court Aqua,PCMC,28.5,18,67.0
+Civil Court Aqua,Sant Tukaram Nagar,27.0,17,64.0
+Civil Court Aqua,Bhosari,25.5,16,61.0
+Civil Court Aqua,Kasarwadi,24.0,15,58.0
+Civil Court Aqua,Phugewadi,22.5,14,55.0
+Civil Court Aqua,Dapodi,21.0,13,52.0
+Civil Court Aqua,Khadki,19.5,12,49.0
+Civil Court Aqua,Shivaji Nagar,18.0,11,46.0
+Civil Court Aqua,Civil Court,16.5,10,43.0
+Civil Court Aqua,Budhwar Peth,15.0,9,40.0
+Civil Court Aqua,Mandai,13.5,8,37.0
+Civil Court Aqua,Swargate,12.0,7,34.0
+Civil Court Aqua,Vanaz,10.5,6,31.0
+Civil Court Aqua,Anand Nagar,9.0,5,28.0
+Civil Court Aqua,Ideal Colony,7.5,4,25.0
+Civil Court Aqua,Nal Stop,6.0,3,22.0
+Civil Court Aqua,Garware College,4.5,2,19.0
+Civil Court Aqua,Deccan Gymkhana,3.0,1,16.0
+Civil Court Aqua,Chhatrapati Sambhaji Udyan,1.5,0,13.0
+Civil Court Aqua,Mangalwar Peth,1.5,0,13.0
+Civil Court Aqua,Pune Railway Station,3.0,1,16.0
+Civil Court Aqua,Ruby Hall Clinic,4.5,2,19.0
+Mangalwar Peth,PCMC,30.0,19,70.0
+Mangalwar Peth,Sant Tukaram Nagar,28.5,18,67.0
+Mangalwar Peth,Bhosari,27.0,17,64.0
+Mangalwar Peth,Kasarwadi,25.5,16,61.0
+Mangalwar Peth,Phugewadi,24.0,15,58.0
+Mangalwar Peth,Dapodi,22.5,14,55.0
+Mangalwar Peth,Khadki,21.0,13,52.0
+Mangalwar Peth,Shivaji Nagar,19.5,12,49.0
+Mangalwar Peth,Civil Court,18.0,11,46.0
+Mangalwar Peth,Budhwar Peth,16.5,10,43.0
+Mangalwar Peth,Mandai,15.0,9,40.0
+Mangalwar Peth,Swargate,13.5,8,37.0
+Mangalwar Peth,Vanaz,12.0,7,34.0
+Mangalwar Peth,Anand Nagar,10.5,6,31.0
+Mangalwar Peth,Ideal Colony,9.0,5,28.0
+Mangalwar Peth,Nal Stop,7.5,4,25.0
+Mangalwar Peth,Garware College,6.0,3,22.0
+Mangalwar Peth,Deccan Gymkhana,4.5,2,19.0
+Mangalwar Peth,Chhatrapati Sambhaji Udyan,3.0,1,16.0
+Mangalwar Peth,Civil Court Aqua,1.5,0,13.0
+Mangalwar Peth,Pune Railway Station,1.5,0,13.0
+Mangalwar Peth,Ruby Hall Clinic,3.0,1,16.0
+Pune Railway Station,PCMC,31.5,20,73.0
+Pune Railway Station,Sant Tukaram Nagar,30.0,19,70.0
+Pune Railway Station,Bhosari,28.5,18,67.0
+Pune Railway Station,Kasarwadi,27.0,17,64.0
+Pune Railway Station,Phugewadi,25.5,16,61.0
+Pune Railway Station,Dapodi,24.0,15,58.0
+Pune Railway Station,Khadki,22.5,14,55.0
+Pune Railway Station,Shivaji Nagar,21.0,13,52.0
+Pune Railway Station,Civil Court,19.5,12,49.0
+Pune Railway Station,Budhwar Peth,18.0,11,46.0
+Pune Railway Station,Mandai,16.5,10,43.0
+Pune Railway Station,Swargate,15.0,9,40.0
+Pune Railway Station,Vanaz,13.5,8,37.0
+Pune Railway Station,Anand Nagar,12.0,7,34.0
+Pune Railway Station,Ideal Colony,10.5,6,31.0
+Pune Railway Station,Nal Stop,9.0,5,28.0
+Pune Railway Station,Garware College,7.5,4,25.0
+Pune Railway Station,Deccan Gymkhana,6.0,3,22.0
+Pune Railway Station,Chhatrapati Sambhaji Udyan,4.5,2,19.0
+Pune Railway Station,Civil Court Aqua,3.0,1,16.0
+Pune Railway Station,Mangalwar Peth,1.5,0,13.0
+Pune Railway Station,Ruby Hall Clinic,1.5,0,13.0
+Ruby Hall Clinic,PCMC,33.0,21,76.0
+Ruby Hall Clinic,Sant Tukaram Nagar,31.5,20,73.0
+Ruby Hall Clinic,Bhosari,30.0,19,70.0
+Ruby Hall Clinic,Kasarwadi,28.5,18,67.0
+Ruby Hall Clinic,Phugewadi,27.0,17,64.0
+Ruby Hall Clinic,Dapodi,25.5,16,61.0
+Ruby Hall Clinic,Khadki,24.0,15,58.0
+Ruby Hall Clinic,Shivaji Nagar,22.5,14,55.0
+Ruby Hall Clinic,Civil Court,21.0,13,52.0
+Ruby Hall Clinic,Budhwar Peth,19.5,12,49.0
+Ruby Hall Clinic,Mandai,18.0,11,46.0
+Ruby Hall Clinic,Swargate,16.5,10,43.0
+Ruby Hall Clinic,Vanaz,15.0,9,40.0
+Ruby Hall Clinic,Anand Nagar,13.5,8,37.0
+Ruby Hall Clinic,Ideal Colony,12.0,7,34.0
+Ruby Hall Clinic,Nal Stop,10.5,6,31.0
+Ruby Hall Clinic,Garware College,9.0,5,28.0
+Ruby Hall Clinic,Deccan Gymkhana,7.5,4,25.0
+Ruby Hall Clinic,Chhatrapati Sambhaji Udyan,6.0,3,22.0
+Ruby Hall Clinic,Civil Court Aqua,4.5,2,19.0
+Ruby Hall Clinic,Mangalwar Peth,3.0,1,16.0
+Ruby Hall Clinic,Pune Railway Station,1.5,0,13.0

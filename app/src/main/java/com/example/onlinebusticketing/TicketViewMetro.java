@@ -81,7 +81,7 @@ public class TicketViewMetro extends AppCompatActivity {
             destinationView.setText(ticketData.destination);
 
             totalPriceView.setText("₹"+ticketData.totalPrice);
-            fullTicketView.setText("Full : "+ ticketData.fullCounter+" x ₹"+ticketData.fullPrice);
+            fullTicketView.setText("Passengers : "+ ticketData.fullCounter+" x ₹"+ticketData.fullPrice);
             amountPaid.setText("Amount Paid : ₹"+ticketData.totalPrice);
 
             dateView.setText(ticketData.tDate);

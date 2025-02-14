@@ -217,11 +217,9 @@
                         android:id="@+id/fullTicketView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Full : 1 x ₹10"
+                        android:text="Passengers : 1 x ₹10"
                         android:layout_marginTop="10dp"
                         android:textSize="16sp" />
-
-
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -261,7 +259,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="140dp"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginHorizontal="8dp"
             android:layout_gravity="center_horizontal">
 
             <LinearLayout
