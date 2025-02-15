@@ -152,7 +152,7 @@ public class MetroHome extends AppCompatActivity implements HistoryListAdapter.O
         searchBus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                checkAndProceed(EligibleBusList.class);
+//                checkAndProceed(MetroDirections.class);
             }
         });
 

@@ -174,7 +174,7 @@
                             android:fontFamily="sans-serif-black"
                             android:gravity="center"
                             android:padding="10dp"
-                            android:text="Search Metro"
+                            android:text="Get Directions"
                             android:textSize="22sp" />
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>

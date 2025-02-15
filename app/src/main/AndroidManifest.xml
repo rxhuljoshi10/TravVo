@@ -28,6 +28,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BusUI">
         <activity
+            android:name=".MetroDirections"
+            android:exported="false" />
+        <activity
             android:name=".MetroMap"
             android:exported="false" />
         <activity

@@ -111,11 +111,12 @@ public class TicketViewMetro extends AppCompatActivity {
     }
 
     public void displayRoute(View v){
-        Intent intent = new Intent(TicketViewMetro.this, ListOfBusStops.class);
-        intent.putExtra("source", ticketData.source);
-        intent.putExtra("destination", ticketData.destination);
-        intent.putExtra("busNumber", eligibleBuses.get(0));
-        startActivity(intent);
+
+//        Intent intent = new Intent(TicketViewMetro.this, ListOfBusStops.class);
+//        intent.putExtra("source", ticketData.source);
+//        intent.putExtra("destination", ticketData.destination);
+//        intent.putExtra("busNumber", eligibleBuses.get(0));
+//        startActivity(intent);
     }
 
     private void generateQRCode(String data) {
